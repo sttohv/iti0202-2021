@@ -1,8 +1,9 @@
 package ee.taltech.iti0202.introduction;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
-//import java.util.stream.Stream;
+import java.util.Arrays;
 
 public class Introduction {
 
@@ -38,12 +39,10 @@ public class Introduction {
      * @return list of even numbers.
      */
     public List<Integer> findEvenNumbersList(List<Integer> numbers) {
-        if (numbers.isEmpty()) {
-            return Collections.emptyList();
-        } else {
-            return numbers.stream().filter(num -> num % 2 == 0).collect(Collectors.toList());
-        }
+
+        return numbers.stream().filter(num -> num % 2 == 0).collect(Collectors.toList());
     }
+
 
     /**
      * Method gets an array of numbers.
@@ -70,6 +69,7 @@ public class Introduction {
         System.out.println(introduction.howIsOutcome(1, 10)); //"bad"
         System.out.println(introduction.howIsOutcome(6, 12)); //"good"
         System.out.println(introduction.howIsOutcome(8, 9)); //"ok"
+
 
         List<Integer> nums = new ArrayList<>(Arrays.asList(4, 7, 5, 2, 1, 2, -2, 0));
         List<Integer> nums1 = new ArrayList<>(Arrays.asList());
