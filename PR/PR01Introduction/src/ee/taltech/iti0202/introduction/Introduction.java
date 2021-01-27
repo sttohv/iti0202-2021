@@ -2,7 +2,7 @@ package ee.taltech.iti0202.introduction;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+//import java.util.stream.Stream;
 
 public class Introduction {
 
