@@ -65,11 +65,14 @@ public class Introduction {
      */
     public static void main(String[] args) {
         Introduction introduction = new Introduction();
-        System.out.println(introduction.howIsOutcome(3, 6)); // "bad"
+        int randomInt1 = 3;
+        int randomInt2 = 6;
+        System.out.println(introduction.howIsOutcome(randomInt1, randomInt2)); // "bad"
+        /*
         System.out.println(introduction.howIsOutcome(1, 10)); //"bad"
         System.out.println(introduction.howIsOutcome(6, 12)); //"good"
         System.out.println(introduction.howIsOutcome(8, 9)); //"ok"
-
+        */
 
         /*
         List<Integer> nums = new ArrayList<>(Arrays.asList(4, 7, 5, 2, 1, 2, -2, 0));
@@ -85,7 +88,7 @@ public class Introduction {
 
         int[] array = {9, 0, 24, -6, 3};
         */
-        int[] array1 = {};/*
+        int[] array1 = {}; /*
         int[] array2 = {9, 1, 245, -67, 3};
         System.out.println(Arrays.toString(introduction.findEvenNumbersArray(array))); // [0, 24, -6]
         */
