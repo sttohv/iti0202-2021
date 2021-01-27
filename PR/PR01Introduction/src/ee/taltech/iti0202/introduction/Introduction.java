@@ -71,18 +71,27 @@ public class Introduction {
         System.out.println(introduction.howIsOutcome(8, 9)); //"ok"
 
 
+        /*
         List<Integer> nums = new ArrayList<>(Arrays.asList(4, 7, 5, 2, 1, 2, -2, 0));
+        */
         List<Integer> nums1 = new ArrayList<>(Arrays.asList());
+        /*
         List<Integer> nums2 = new ArrayList<>(Arrays.asList(7, 5, 1));
         System.out.println(introduction.findEvenNumbersList(nums)); // [4, 2, 2, -2, 0]
+        */
         System.out.println(introduction.findEvenNumbersList(nums1));
+        /*
         System.out.println(introduction.findEvenNumbersList(nums2));
 
         int[] array = {9, 0, 24, -6, 3};
-        int[] array1 = {};
+        */
+        int[] array1 = {};/*
         int[] array2 = {9, 1, 245, -67, 3};
         System.out.println(Arrays.toString(introduction.findEvenNumbersArray(array))); // [0, 24, -6]
-        System.out.println(Arrays.toString(introduction.findEvenNumbersArray(array1)));
+        */
+        System.out.println(Arrays.toString(introduction.findEvenNumbersArray(array1)));/*
         System.out.println(Arrays.toString(introduction.findEvenNumbersArray(array2)));
+
+         */
     }
 }
