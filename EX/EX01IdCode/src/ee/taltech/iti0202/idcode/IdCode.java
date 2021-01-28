@@ -31,12 +31,16 @@ public class IdCode {
     public IdCode(String idCodeValue) {
 
         this.idCodeValue = idCodeValue;
-        this.genderNum = idCodeValue.substring(0, 1);
-        this.yearNum = idCodeValue.substring(1, 3);
-        this.monthNum = idCodeValue.substring(3, 5);
-        this.dayNum = idCodeValue.substring(5, 7);
-        this.placeNum = idCodeValue.substring(7, 10);
-        this.controlNum = idCodeValue.substring(10);
+        try {
+            this.genderNum = idCodeValue.substring(0, 1);
+            this.yearNum = idCodeValue.substring(1, 3);
+            this.monthNum = idCodeValue.substring(3, 5);
+            this.dayNum = idCodeValue.substring(5, 7);
+            this.placeNum = idCodeValue.substring(7, 10);
+            this.controlNum = idCodeValue.substring(10);
+        }catch (Exception e){
+            throw new IllegalArgumentException("Wrong Id Code");
+        }
         isCorrect();
     }
 
