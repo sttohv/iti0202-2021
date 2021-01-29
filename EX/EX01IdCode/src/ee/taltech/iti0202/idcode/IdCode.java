@@ -208,10 +208,10 @@ public class IdCode {
             if (sum % 11 == 10) {
                 return Integer.parseInt(controlNum) == 0;
             } else {
-                return Integer.parseInt(controlNum) == sum;
+                return Integer.parseInt(controlNum) == sum%11;
             }
         } else {
-            return Integer.parseInt(controlNum) == sum;
+            return Integer.parseInt(controlNum) == sum%11;
         }
     }
 
