@@ -112,7 +112,7 @@ public class IdCode {
             return "Viljandi";
         } else if (Integer.parseInt(placeNum) < 711) {
             return "Võru";
-        }else{
+        } else {
             return "unknown";
         }
 
@@ -195,8 +195,24 @@ public class IdCode {
     private boolean isControlNumberCorrect() {
         List<Integer> scale = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 1));
         List<Integer> scale1 = new ArrayList<>(Arrays.asList(3, 4, 5, 6, 7, 8, 9, 1, 2, 3));
-
-        return true;
+        int sum = 0;
+        char[] idCode = idCodeValue.toCharArray();
+        for (int i = 0; i < 10; i++) {
+            sum += Character.getNumericValue(idCode[i]) * scale.get(i);
+        }
+        if (sum % 11 == 10) {
+            sum = 0;
+            for (int i = 0; i < 10; i++) {
+                sum += Character.getNumericValue(idCode[i]) * scale1.get(i);
+            }
+            if (sum % 11 == 10) {
+                return Integer.parseInt(controlNum) == 0;
+            } else {
+                return Integer.parseInt(controlNum) == sum;
+            }
+        } else {
+            return Integer.parseInt(controlNum) == sum;
+        }
     }
 
     /**
