@@ -38,7 +38,7 @@ public class IdCode {
             this.dayNum = idCodeValue.substring(5, 7);
             this.placeNum = idCodeValue.substring(7, 10);
             this.controlNum = idCodeValue.substring(10);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException("Wrong Id Code");
         }
         isCorrect();
@@ -66,7 +66,7 @@ public class IdCode {
      * @return String containing information.
      */
     public String getInformation() {
-        return null;
+        return "This is a " + getGender() + " born on " + dayNum + "." + monthNum + "." + getFullYear() + " in " + getBirthPlace();
     }
 
     /**
@@ -75,7 +75,7 @@ public class IdCode {
      * @return enum describing person's gender
      */
     public Gender getGender() {
-        if (Integer.valueOf(genderNum) % 2 == 0) {
+        if (Integer.parseInt(genderNum) % 2 == 0) {
             return Gender.FEMALE;
         }
         return Gender.MALE;
@@ -87,8 +87,37 @@ public class IdCode {
      * @return String with the person's birth place.
      */
     public String getBirthPlace() {
-        return null;
+        Integer placeNumber = Integer.parseInt(placeNum);
+        if (getFullYear() > 2012) {
+            return "unknown";
+        } else if (placeNumber < 11) {
+            return "Kuressaare";
+        } else if (placeNumber < 21 || placeNumber > 270 && placeNumber < 371) {
+            return "Tartu";
+        } else if (placeNumber < 221 || placeNumber > 470 && placeNumber < 491) {
+            return "Tallinn";
+        } else if (Integer.parseInt(placeNum) < 271) {
+            return "Kohtla-Järve";
+        } else if (Integer.parseInt(placeNum) > 421) {
+            return "Narva";
+        } else if (Integer.parseInt(placeNum) > 471) {
+            return "Pärnu";
+        } else if (Integer.parseInt(placeNum) > 521) {
+            return "Paide";
+        } else if (Integer.parseInt(placeNum) > 571) {
+            return "Rakvere";
+        } else if (Integer.parseInt(placeNum) > 601) {
+            return "Valga";
+        } else if (Integer.parseInt(placeNum) > 651) {
+            return "Viljandi";
+        } else if (Integer.parseInt(placeNum) > 711) {
+            return "Võru";
+        }else{
+            return "unknown";
+        }
+
     }
+
 
     /**
      * Get the year that the person was born in.
@@ -96,9 +125,9 @@ public class IdCode {
      * @return int with person's birth year.
      */
     public int getFullYear() {
-        if (Integer.valueOf(genderNum) < 3) {
+        if (Integer.parseInt(genderNum) < 3) {
             return Integer.parseInt("18" + yearNum);
-        } else if (Integer.valueOf(genderNum) < 5) {
+        } else if (Integer.parseInt(genderNum) < 5) {
             return Integer.parseInt("19" + yearNum);
         } else {
             return Integer.parseInt("20" + yearNum);
@@ -111,7 +140,7 @@ public class IdCode {
      * @return boolean describing whether the gender number is correct.
      */
     private boolean isGenderNumberCorrect() {
-        if (Integer.valueOf(genderNum) > 0 && Integer.valueOf(genderNum) < 7) {
+        if (Integer.parseInt(genderNum) > 0 && Integer.parseInt(genderNum) < 7) {
             return true;
         }
         return false;
@@ -132,7 +161,7 @@ public class IdCode {
      * @return boolean describing whether the month number is correct.
      */
     private boolean isMonthNumberCorrect() {
-        if (Integer.valueOf(monthNum) > 0 && Integer.valueOf(monthNum) < 13) {
+        if (Integer.parseInt(monthNum) > 0 && Integer.parseInt(monthNum) < 13) {
             return true;
         }
         return false;
@@ -146,13 +175,13 @@ public class IdCode {
     private boolean isDayNumberCorrect() {
         List<Integer> month31 = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 8, 10, 12));
         List<Integer> month30 = new ArrayList<>(Arrays.asList(4, 6, 9, 11));
-        if (month31.contains(Integer.valueOf(monthNum)) && Integer.valueOf(dayNum) < 31 && dayNum != "00") {
+        if (month31.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < 31 && dayNum != "00") {
             return true;
-        } else if (month30.contains(Integer.valueOf(monthNum)) && Integer.valueOf(dayNum) < 31 && dayNum != "00") {
+        } else if (month30.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < 31 && dayNum != "00") {
             return true;
-        } else if (isLeapYear(getFullYear()) && Integer.valueOf(dayNum) < 29 && dayNum != "00") {
+        } else if (isLeapYear(getFullYear()) && Integer.parseInt(dayNum) < 30 && !dayNum.equals("00")) {
             return true;
-        } else if (isLeapYear(getFullYear()) == false && Integer.valueOf(dayNum) < 28 && dayNum != "00") {
+        } else if (!isLeapYear(getFullYear()) && Integer.parseInt(dayNum) < 29 && !dayNum.equals("00")) {
             return true;
         }
         return false;
@@ -211,7 +240,7 @@ public class IdCode {
         System.out.println(validMaleIdCode.isCorrect());
 //        System.out.println(validMaleIdCode.getInformation());
 //        System.out.println(validMaleIdCode.getGender());
-//        System.out.println(validMaleIdCode.getBirthPlace());
+        System.out.println(validMaleIdCode.getBirthPlace());
 //        System.out.println(validMaleIdCode.getFullYear());
 //        System.out.println(validMaleIdCode.isGenderNumberCorrect());
 //        System.out.println(validMaleIdCode.isYearNumberCorrect());
