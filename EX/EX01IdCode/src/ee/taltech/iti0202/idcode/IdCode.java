@@ -175,7 +175,7 @@ public class IdCode {
     private boolean isDayNumberCorrect() {
         List<Integer> month31 = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 8, 10, 12));
         List<Integer> month30 = new ArrayList<>(Arrays.asList(4, 6, 9, 11));
-        if (month31.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < 31 && dayNum != "00") {
+        if (month31.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < 32 && dayNum != "00") {
             return true;
         } else if (month30.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < 31 && dayNum != "00") {
             return true;
@@ -251,7 +251,7 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("37605033714");
+        IdCode validMaleIdCode = new IdCode("61405310004");
 //        System.out.println(validMaleIdCode.isNumeric());
         System.out.println(validMaleIdCode.isCorrect());
 //        System.out.println(validMaleIdCode.getInformation());
