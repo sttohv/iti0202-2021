@@ -98,19 +98,19 @@ public class IdCode {
             return "Tallinn";
         } else if (Integer.parseInt(placeNum) < 271) {
             return "Kohtla-Järve";
-        } else if (Integer.parseInt(placeNum) > 421) {
+        } else if (Integer.parseInt(placeNum) < 421) {
             return "Narva";
-        } else if (Integer.parseInt(placeNum) > 471) {
+        } else if (Integer.parseInt(placeNum) < 471) {
             return "Pärnu";
-        } else if (Integer.parseInt(placeNum) > 521) {
+        } else if (Integer.parseInt(placeNum) < 521) {
             return "Paide";
-        } else if (Integer.parseInt(placeNum) > 571) {
+        } else if (Integer.parseInt(placeNum) < 571) {
             return "Rakvere";
-        } else if (Integer.parseInt(placeNum) > 601) {
+        } else if (Integer.parseInt(placeNum) < 601) {
             return "Valga";
-        } else if (Integer.parseInt(placeNum) > 651) {
+        } else if (Integer.parseInt(placeNum) < 651) {
             return "Viljandi";
-        } else if (Integer.parseInt(placeNum) > 711) {
+        } else if (Integer.parseInt(placeNum) < 711) {
             return "Võru";
         }else{
             return "unknown";
@@ -235,7 +235,7 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("60008050299");
+        IdCode validMaleIdCode = new IdCode("37605033714");
 //        System.out.println(validMaleIdCode.isNumeric());
         System.out.println(validMaleIdCode.isCorrect());
 //        System.out.println(validMaleIdCode.getInformation());
