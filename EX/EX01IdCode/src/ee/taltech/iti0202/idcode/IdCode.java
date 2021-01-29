@@ -28,6 +28,9 @@ public class IdCode {
         return idCodeValue;
     }
 
+    /**
+     * constructor
+     */
     public IdCode(String idCodeValue) {
 
         this.idCodeValue = idCodeValue;
@@ -52,7 +55,8 @@ public class IdCode {
      */
     public boolean isCorrect() {
         if (isNumeric()) {
-            if (idCodeValue.length() == 11 && isGenderNumberCorrect() && isYearNumberCorrect() && isMonthNumberCorrect() && isDayNumberCorrect() && isControlNumberCorrect()) {
+            if (idCodeValue.length() == 11 && isGenderNumberCorrect() && isYearNumberCorrect() && isMonthNumberCorrect()
+                    && isDayNumberCorrect() && isControlNumberCorrect()) {
                 return true;
             }
         }
@@ -208,17 +212,17 @@ public class IdCode {
             if (sum % 11 == 10) {
                 return Integer.parseInt(controlNum) == 0;
             } else {
-                return Integer.parseInt(controlNum) == sum%11;
+                return Integer.parseInt(controlNum) == sum % 11;
             }
         } else {
-            return Integer.parseInt(controlNum) == sum%11;
+            return Integer.parseInt(controlNum) == sum % 11;
         }
     }
 
     /**
      * Check if the given year is a leap year.
      *
-     * @param fullYear
+     * @param fullYear do something
      * @return boolean describing whether the given year is a leap year.
      */
     private static boolean isLeapYear(int fullYear) {
@@ -231,6 +235,7 @@ public class IdCode {
 
     /**
      * Check if entered IdCode is numeric or not
+     * @return boolean describing whether the idCode consists of all numbers.
      */
     public boolean isNumeric() {
         List<String> nums = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
