@@ -92,7 +92,8 @@ public class IdCode {
      */
     public boolean isCorrect() {
         if (isNumeric()) {
-            if (idCodeValue.length() == INT && isGenderNumberCorrect() && isYearNumberCorrect() && isMonthNumberCorrect()
+            if (idCodeValue.length() == INT && isGenderNumberCorrect() && isYearNumberCorrect()
+                    && isMonthNumberCorrect()
                     && isDayNumberCorrect() && isControlNumberCorrect()) {
                 return true;
             }
@@ -236,8 +237,10 @@ public class IdCode {
      * @return boolean describing whether the control number is correct.
      */
     private boolean isControlNumberCorrect() {
-        List<Integer> scale = new ArrayList<>(Arrays.asList(END_INDEX, INT1, END_INDEX1, INT21, END_INDEX2, INT22, END_INDEX3, INT19, INT23, END_INDEX));
-        List<Integer> scale1 = new ArrayList<>(Arrays.asList(END_INDEX1, INT21, END_INDEX2, INT22, END_INDEX3, INT19, INT23, END_INDEX, INT1, END_INDEX1));
+        List<Integer> scale = new ArrayList<>(Arrays.asList(END_INDEX, INT1, END_INDEX1, INT21, END_INDEX2, INT22,
+                END_INDEX3, INT19, INT23, END_INDEX));
+        List<Integer> scale1 = new ArrayList<>(Arrays.asList(END_INDEX1, INT21, END_INDEX2, INT22, END_INDEX3, INT19,
+                INT23, END_INDEX, INT1, END_INDEX1));
         int sum = INT2;
         char[] idCode = idCodeValue.toCharArray();
         for (int i = INT2; i < END_INDEX4; i++) {
