@@ -41,6 +41,7 @@ public class IdCode {
     public static final int INT25 = 8;
     public static final int INT26 = 400;
     public static final int INT27 = 100;
+    public static final int INT28 = 12;
     private final String idCodeValue;
     private final String genderNum;
     private final String yearNum;
@@ -64,6 +65,7 @@ public class IdCode {
 
     /**
      * constructor
+     *
      * @param idCodeValue entered idCode
      */
     public IdCode(String idCodeValue) {
@@ -90,8 +92,8 @@ public class IdCode {
      */
     public boolean isCorrect() {
         if (isNumeric()) {
-            if (idCodeValue.length() == INT && isGenderNumberCorrect() && isYearNumberCorrect() && isMonthNumberCorrect()
-                    && isDayNumberCorrect() && isControlNumberCorrect()) {
+            if (idCodeValue.length() == INT && isGenderNumberCorrect() && isYearNumberCorrect()
+                    && isMonthNumberCorrect() && isDayNumberCorrect() && isControlNumberCorrect()) {
                 return true;
             }
         }
@@ -105,7 +107,7 @@ public class IdCode {
      * @return String containing information.
      */
     public String getInformation() {
-        return "This is a " + getGender() + " born on " + dayNum + "." + monthNum + "." + getFullYear()
+        return "This is a " + getGender() + " born on " + dayNum + "." + monthNum + "." + getFullYear() + " in "
                 + getBirthPlace();
     }
 
@@ -207,11 +209,13 @@ public class IdCode {
      * @return boolean describing whether the day number is correct.
      */
     private boolean isDayNumberCorrect() {
-        List<Integer> month31 = new ArrayList<>(Arrays.asList(END_INDEX, END_INDEX1, END_INDEX2, END_INDEX3, INT25, END_INDEX4, 12));
+        List<Integer> month31 = new ArrayList<>(Arrays.asList(END_INDEX, END_INDEX1, END_INDEX2, END_INDEX3, INT25,
+                END_INDEX4, INT28));
         List<Integer> month30 = new ArrayList<>(Arrays.asList(INT18, INT19, INT20, INT));
         if (month31.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < INT21 && !dayNum.equals("00")) {
             return true;
-        } else if (month30.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < INT22 && !dayNum.equals("00")) {
+        } else if (month30.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < INT22
+                && !dayNum.equals("00")) {
             return true;
         } else if (isLeapYear(getFullYear()) && Integer.parseInt(dayNum) < INT23 && !dayNum.equals("00")) {
             return true;
@@ -264,6 +268,7 @@ public class IdCode {
 
     /**
      * Check if entered IdCode is numeric or not
+     *
      * @return boolean describing whether the idCode consists of all numbers.
      */
     public boolean isNumeric() {
