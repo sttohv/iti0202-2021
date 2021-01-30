@@ -7,6 +7,7 @@ import java.util.List;
 
 public class IdCode {
 
+    public static final int BEGIN_INDEX = 0;
     public static final int END_INDEX = 1;
     public static final int END_INDEX1 = 3;
     public static final int END_INDEX2 = 5;
@@ -14,34 +15,32 @@ public class IdCode {
     public static final int END_INDEX4 = 10;
     public static final int INT = 11;
     public static final int INT1 = 2;
-    public static final int INT2 = 0;
-    public static final int INT3 = 2012;
-    public static final int INT4 = 21;
-    public static final int INT5 = 270;
-    public static final int INT6 = 371;
-    public static final int INT7 = 221;
-    public static final int INT8 = 470;
-    public static final int INT9 = 491;
-    public static final int INT10 = 271;
-    public static final int INT11 = 421;
-    public static final int INT12 = 471;
-    public static final int INT13 = 521;
-    public static final int INT14 = 571;
-    public static final int INT15 = 601;
-    public static final int INT16 = 651;
-    public static final int INT17 = 711;
-    public static final int INT18 = 13;
-    public static final int INT19 = 8;
-    public static final int INT20 = 12;
-    public static final int INT21 = 4;
-    public static final int INT22 = 6;
-    public static final int INT23 = 9;
-    public static final int INT24 = 32;
-    public static final int INT25 = 31;
-    public static final int INT26 = 30;
-    public static final int INT27 = 29;
-    public static final int INT28 = 400;
-    public static final int INT29 = 100;
+    public static final int INT2 = 2012;
+    public static final int INT3 = 21;
+    public static final int INT4 = 270;
+    public static final int INT5 = 371;
+    public static final int INT6 = 221;
+    public static final int INT7 = 470;
+    public static final int INT8 = 491;
+    public static final int INT9 = 271;
+    public static final int INT10 = 421;
+    public static final int INT11 = 471;
+    public static final int INT12 = 521;
+    public static final int INT13 = 571;
+    public static final int INT14 = 601;
+    public static final int INT15 = 651;
+    public static final int INT16 = 711;
+    public static final int INT17 = 13;
+    public static final int INT18 = 4;
+    public static final int INT19 = 6;
+    public static final int INT20 = 9;
+    public static final int INT21 = 32;
+    public static final int INT22 = 31;
+    public static final int INT23 = 30;
+    public static final int INT24 = 29;
+    public static final int INT25 = 8;
+    public static final int INT26 = 400;
+    public static final int INT27 = 100;
     private final String idCodeValue;
     private final String genderNum;
     private final String yearNum;
@@ -65,14 +64,13 @@ public class IdCode {
 
     /**
      * constructor
-     *
      * @param idCodeValue entered idCode
      */
     public IdCode(String idCodeValue) {
 
         this.idCodeValue = idCodeValue;
         try {
-            this.genderNum = idCodeValue.substring(INT2, END_INDEX);
+            this.genderNum = idCodeValue.substring(BEGIN_INDEX, END_INDEX);
             this.yearNum = idCodeValue.substring(END_INDEX, END_INDEX1);
             this.monthNum = idCodeValue.substring(END_INDEX1, END_INDEX2);
             this.dayNum = idCodeValue.substring(END_INDEX2, END_INDEX3);
@@ -92,13 +90,12 @@ public class IdCode {
      */
     public boolean isCorrect() {
         if (isNumeric()) {
-            if (idCodeValue.length() == INT && isGenderNumberCorrect() && isYearNumberCorrect()
-                    && isMonthNumberCorrect()
+            if (idCodeValue.length() == INT && isGenderNumberCorrect() && isYearNumberCorrect() && isMonthNumberCorrect()
                     && isDayNumberCorrect() && isControlNumberCorrect()) {
                 return true;
             }
         }
-        throw new IllegalArgumentException("wrong ic code");
+        throw new IllegalArgumentException("wrong id code");
 
     }
 
@@ -118,7 +115,7 @@ public class IdCode {
      * @return enum describing person's gender
      */
     public Gender getGender() {
-        if (Integer.parseInt(genderNum) % INT1 == INT2) {
+        if (Integer.parseInt(genderNum) % INT1 == BEGIN_INDEX) {
             return Gender.FEMALE;
         }
         return Gender.MALE;
@@ -131,29 +128,29 @@ public class IdCode {
      */
     public String getBirthPlace() {
         Integer placeNumber = Integer.parseInt(placeNum);
-        if (getFullYear() > INT3) {
+        if (getFullYear() > INT2) {
             return "unknown";
         } else if (placeNumber < INT) {
             return "Kuressaare";
-        } else if (placeNumber < INT4 || placeNumber > INT5 && placeNumber < INT6) {
+        } else if (placeNumber < INT3 || placeNumber > INT4 && placeNumber < INT5) {
             return "Tartu";
-        } else if (placeNumber < INT7 || placeNumber > INT8 && placeNumber < INT9) {
+        } else if (placeNumber < INT6 || placeNumber > INT7 && placeNumber < INT8) {
             return "Tallinn";
-        } else if (Integer.parseInt(placeNum) < INT10) {
+        } else if (Integer.parseInt(placeNum) < INT9) {
             return "Kohtla-Järve";
-        } else if (Integer.parseInt(placeNum) < INT11) {
+        } else if (Integer.parseInt(placeNum) < INT10) {
             return "Narva";
-        } else if (Integer.parseInt(placeNum) < INT12) {
+        } else if (Integer.parseInt(placeNum) < INT11) {
             return "Pärnu";
-        } else if (Integer.parseInt(placeNum) < INT13) {
+        } else if (Integer.parseInt(placeNum) < INT12) {
             return "Paide";
-        } else if (Integer.parseInt(placeNum) < INT14) {
+        } else if (Integer.parseInt(placeNum) < INT13) {
             return "Rakvere";
-        } else if (Integer.parseInt(placeNum) < INT15) {
+        } else if (Integer.parseInt(placeNum) < INT14) {
             return "Valga";
-        } else if (Integer.parseInt(placeNum) < INT16) {
+        } else if (Integer.parseInt(placeNum) < INT15) {
             return "Viljandi";
-        } else if (Integer.parseInt(placeNum) < INT17) {
+        } else if (Integer.parseInt(placeNum) < INT16) {
             return "Võru";
         } else {
             return "unknown";
@@ -183,10 +180,7 @@ public class IdCode {
      * @return boolean describing whether the gender number is correct.
      */
     private boolean isGenderNumberCorrect() {
-        if (Integer.parseInt(genderNum) > INT2 && Integer.parseInt(genderNum) < END_INDEX3) {
-            return true;
-        }
-        return false;
+        return Integer.parseInt(genderNum) > BEGIN_INDEX && Integer.parseInt(genderNum) < END_INDEX3;
     }
 
     /**
@@ -204,10 +198,7 @@ public class IdCode {
      * @return boolean describing whether the month number is correct.
      */
     private boolean isMonthNumberCorrect() {
-        if (Integer.parseInt(monthNum) > INT2 && Integer.parseInt(monthNum) < INT18) {
-            return true;
-        }
-        return false;
+        return Integer.parseInt(monthNum) > BEGIN_INDEX && Integer.parseInt(monthNum) < INT17;
     }
 
     /**
@@ -216,19 +207,15 @@ public class IdCode {
      * @return boolean describing whether the day number is correct.
      */
     private boolean isDayNumberCorrect() {
-        List<Integer> month31 = new ArrayList<>(Arrays.asList(END_INDEX, END_INDEX1, END_INDEX2, END_INDEX3, INT19,
-                END_INDEX4, INT20));
-        List<Integer> month30 = new ArrayList<>(Arrays.asList(INT21, INT22, INT23, INT));
-        if (month31.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < INT24 && dayNum != "00") {
+        List<Integer> month31 = new ArrayList<>(Arrays.asList(END_INDEX, END_INDEX1, END_INDEX2, END_INDEX3, INT25, END_INDEX4, 12));
+        List<Integer> month30 = new ArrayList<>(Arrays.asList(INT18, INT19, INT20, INT));
+        if (month31.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < INT21 && !dayNum.equals("00")) {
             return true;
-        } else if (month30.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < INT25 && dayNum != "00") {
+        } else if (month30.contains(Integer.valueOf(monthNum)) && Integer.parseInt(dayNum) < INT22 && !dayNum.equals("00")) {
             return true;
-        } else if (isLeapYear(getFullYear()) && Integer.parseInt(dayNum) < INT26 && !dayNum.equals("00")) {
+        } else if (isLeapYear(getFullYear()) && Integer.parseInt(dayNum) < INT23 && !dayNum.equals("00")) {
             return true;
-        } else if (!isLeapYear(getFullYear()) && Integer.parseInt(dayNum) < INT27 && !dayNum.equals("00")) {
-            return true;
-        }
-        return false;
+        } else return !isLeapYear(getFullYear()) && Integer.parseInt(dayNum) < INT24 && !dayNum.equals("00");
     }
 
     /**
@@ -237,22 +224,22 @@ public class IdCode {
      * @return boolean describing whether the control number is correct.
      */
     private boolean isControlNumberCorrect() {
-        List<Integer> scale = new ArrayList<>(Arrays.asList(END_INDEX, INT1, END_INDEX1, INT21, END_INDEX2, INT22,
-                END_INDEX3, INT19, INT23, END_INDEX));
-        List<Integer> scale1 = new ArrayList<>(Arrays.asList(END_INDEX1, INT21, END_INDEX2, INT22, END_INDEX3, INT19,
-                INT23, END_INDEX, INT1, END_INDEX1));
-        int sum = INT2;
+        List<Integer> scale = new ArrayList<>(Arrays.asList(END_INDEX, INT1, END_INDEX1, INT18, END_INDEX2, INT19,
+                END_INDEX3, INT25, INT20, END_INDEX));
+        List<Integer> scale1 = new ArrayList<>(Arrays.asList(END_INDEX1, INT18, END_INDEX2, INT19, END_INDEX3, INT25,
+                INT20, END_INDEX, INT1, END_INDEX1));
+        int sum = BEGIN_INDEX;
         char[] idCode = idCodeValue.toCharArray();
-        for (int i = INT2; i < END_INDEX4; i++) {
+        for (int i = BEGIN_INDEX; i < END_INDEX4; i++) {
             sum += Character.getNumericValue(idCode[i]) * scale.get(i);
         }
         if (sum % INT == END_INDEX4) {
-            sum = INT2;
-            for (int i = INT2; i < END_INDEX4; i++) {
+            sum = BEGIN_INDEX;
+            for (int i = BEGIN_INDEX; i < END_INDEX4; i++) {
                 sum += Character.getNumericValue(idCode[i]) * scale1.get(i);
             }
             if (sum % INT == END_INDEX4) {
-                return Integer.parseInt(controlNum) == INT2;
+                return Integer.parseInt(controlNum) == BEGIN_INDEX;
             } else {
                 return Integer.parseInt(controlNum) == sum % INT;
             }
@@ -268,21 +255,20 @@ public class IdCode {
      * @return boolean describing whether the given year is a leap year.
      */
     private static boolean isLeapYear(int fullYear) {
-        if (fullYear % INT21 != INT2) {
+        if (fullYear % INT18 != BEGIN_INDEX) {
             return false;
-        } else if (fullYear % INT28 == INT2) {
+        } else if (fullYear % INT26 == BEGIN_INDEX) {
             return true;
-        } else return fullYear % INT29 != INT2;
+        } else return fullYear % INT27 != BEGIN_INDEX;
     }
 
     /**
      * Check if entered IdCode is numeric or not
-     *
      * @return boolean describing whether the idCode consists of all numbers.
      */
     public boolean isNumeric() {
         List<String> nums = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
-        int notNums = INT2;
+        int notNums = BEGIN_INDEX;
         for (char num : idCodeValue.toCharArray()
         ) {
             if (!nums.contains(Character.toString(num))) {
@@ -290,7 +276,7 @@ public class IdCode {
             }
 
         }
-        return notNums == INT2;
+        return notNums == BEGIN_INDEX;
     }
 
     /**
