@@ -3,6 +3,7 @@ package ee.taltech.iti0202.datastructures;
 import java.util.*;
 
 public class DataStructures {
+    public static Map<String, Integer> students = new HashMap<>();
 
     /**
      * Given String is a sentence with some words.
@@ -83,7 +84,12 @@ public class DataStructures {
      * @param studentInfo String with a pattern (name:grade)
      */
     public void addStudent(String studentInfo) {
+        String name = studentInfo.split(":")[0];
+        int grade = Integer.parseInt(studentInfo.split(":")[1]);
 
+        if (students.isEmpty() || !students.containsKey(name) && grade >= 0 && grade < 6) {
+            students.put(name, grade);
+        }
     }
 
     /**
@@ -95,7 +101,11 @@ public class DataStructures {
      * @return int student's grade.
      */
     public int getStudentGrade(String name) {
-        return 0;
+        if (students.containsKey(name)) {
+            return students.get(name);
+        } else {
+            return -1;
+        }
     }
 
     /**
@@ -111,20 +121,20 @@ public class DataStructures {
 //        System.out.println(wordCount(new String[]{})); // empty
 //        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
 
-        System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo] any order
-        System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a] any order
-        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM"))); // [SPAM]
+//        System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo] any order
+//        System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a] any order
+//        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM"))); // [SPAM]
 
-//        DataStructures dataStructures = new DataStructures();
+        DataStructures dataStructures = new DataStructures();
 
-//        dataStructures.addStudent("Ago:5");
-//        dataStructures.addStudent("Martin:0");
-//        dataStructures.addStudent("Margo:3");
-//        dataStructures.addStudent("Cheater:6");
-//
-//        System.out.println(dataStructures.getStudentGrade("Ago")); // 5
-//        System.out.println(dataStructures.getStudentGrade("Martin")); // 0
-//        System.out.println(dataStructures.getStudentGrade("Margo")); // 3
-//        System.out.println(dataStructures.getStudentGrade("Cheater")); // -1
+        dataStructures.addStudent("Ago:5");
+        dataStructures.addStudent("Martin:0");
+        dataStructures.addStudent("Margo:3");
+        dataStructures.addStudent("Cheater:6");
+
+        System.out.println(dataStructures.getStudentGrade("Ago")); // 5
+        System.out.println(dataStructures.getStudentGrade("Martin")); // 0
+        System.out.println(dataStructures.getStudentGrade("Margo")); // 3
+        System.out.println(dataStructures.getStudentGrade("Cheater")); // -1
     }
 }
