@@ -1,12 +1,6 @@
 package ee.taltech.iti0202.datastructures;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class DataStructures {
 
@@ -48,7 +42,15 @@ public class DataStructures {
      * @return map containing all word to count mappings.
      */
     public static Map<String, Integer> wordCount(String[] sentence) {
-        return null;
+        Map<String, Integer> result = new HashMap<>();
+        for (String word : sentence
+        ) {
+            if (!result.containsKey(word)) {
+                result.put(word, Collections.frequency(Arrays.asList(sentence), word));
+            }
+
+        }
+        return result;
     }
 
     /**
