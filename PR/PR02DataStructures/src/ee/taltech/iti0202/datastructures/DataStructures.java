@@ -67,11 +67,12 @@ public class DataStructures {
      */
     public static List<String> onlyEvenWords(List<String> words) {
         List<String> result = new ArrayList<>();
-        for (String word : words
-        ) {
+        for (String word : words) {
             int frequency = Collections.frequency(words, word);
-            if (!result.contains(word) && frequency > 1) {
-                result.add(word);
+            if(!result.contains(word)&&frequency>1){
+                for (int i = 0; i <= frequency/2; i+=2) {
+                    result.add(word);
+                }
             }
         }
         return result;
@@ -123,7 +124,7 @@ public class DataStructures {
 
         System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo] any order
         System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a] any order
-        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM","SPAM"))); // [SPAM]
+        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM", "SPAM"))); // [SPAM]
 
 //        DataStructures dataStructures = new DataStructures();
 //
