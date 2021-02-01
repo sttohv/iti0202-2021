@@ -65,7 +65,15 @@ public class DataStructures {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-        return null;
+        List<String> result = new ArrayList<>();
+        for (String word : words
+        ) {
+            if (!result.contains(word) && Collections.frequency(words, word) % 2 == 0 && Collections.frequency
+                    (words, word) != 0) {
+                result.add(word);
+            }
+        }
+        return result;
     }
 
     /**
@@ -96,27 +104,27 @@ public class DataStructures {
      * @param args Commend line arguments.
      */
     public static void main(String[] args) {
-        System.out.println(findLongestWord("nimi on salastatud"));  // "salastatud"
-        System.out.println(findLongestWord("aaa bbbbb"));  // "bbbbb"
-        System.out.println(findLongestWord("hello ahllo")); // "ahllo"
+//        System.out.println(findLongestWord("nimi on salastatud"));  // "salastatud"
+//        System.out.println(findLongestWord("aaa bbbbb"));  // "bbbbb"
+//        System.out.println(findLongestWord("hello ahllo")); // "ahllo"
 
-        System.out.println(wordCount(new String[]{})); // empty
-        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
+//        System.out.println(wordCount(new String[]{})); // empty
+//        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
 
         System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo] any order
         System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a] any order
         System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM"))); // [SPAM]
 
-        DataStructures dataStructures = new DataStructures();
+//        DataStructures dataStructures = new DataStructures();
 
-        dataStructures.addStudent("Ago:5");
-        dataStructures.addStudent("Martin:0");
-        dataStructures.addStudent("Margo:3");
-        dataStructures.addStudent("Cheater:6");
-
-        System.out.println(dataStructures.getStudentGrade("Ago")); // 5
-        System.out.println(dataStructures.getStudentGrade("Martin")); // 0
-        System.out.println(dataStructures.getStudentGrade("Margo")); // 3
-        System.out.println(dataStructures.getStudentGrade("Cheater")); // -1
+//        dataStructures.addStudent("Ago:5");
+//        dataStructures.addStudent("Martin:0");
+//        dataStructures.addStudent("Margo:3");
+//        dataStructures.addStudent("Cheater:6");
+//
+//        System.out.println(dataStructures.getStudentGrade("Ago")); // 5
+//        System.out.println(dataStructures.getStudentGrade("Martin")); // 0
+//        System.out.println(dataStructures.getStudentGrade("Margo")); // 3
+//        System.out.println(dataStructures.getStudentGrade("Cheater")); // -1
     }
 }
