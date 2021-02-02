@@ -18,7 +18,8 @@ public class DataStructures {
      * <p>
      * Hints:
      * You can split words into an array using "str.split()"
-     * Sorting the list with the longest words can definitely help you to find the word which comes alphabetically first.
+     * Sorting the list with the longest words can definitely help you to find the word which comes alphabetically
+     * first.
      *
      * @param sentence input String to find the longest words
      * @return the longest String from input
@@ -69,17 +70,16 @@ public class DataStructures {
      */
     public static List<String> onlyEvenWords(List<String> words) {
 
-        //miks see pask ei tööta -.-
 
         String[] wordsArray = new String[words.size()];
         Map<String, Integer> wordcounts = wordCount(words.toArray(wordsArray));
         List<String> result = new ArrayList<>();
-        for (String word: new ArrayList<>(wordcounts.keySet()) //kõik keyd on nüüd listis
-             ) {
-            for (int i = 0; i < wordcounts.get(word)/2; i++) {
+        for (String word : new ArrayList<>(wordcounts.keySet()) //kõik keyd on nüüd listis
+        ) {
+            for (int i = 0; i < wordcounts.get(word) / 2; i++) {
                 result.add(word);
             }
-            
+
         }
         return result;
     }
@@ -126,11 +126,14 @@ public class DataStructures {
 //        System.out.println(findLongestWord("hello ahllo")); // "ahllo"
 
 //        System.out.println(wordCount(new String[]{})); // empty
-//        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
+//        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); //
+//        {bacon=2, eggs=2, SPAM=3}
 
-        System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo] any order
+        System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo]
+        // any order
         System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a] any order
-        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM","SPAM","SPAM", "bacon", "bacon"))); // [SPAM]
+        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM", "SPAM", "SPAM",
+                "bacon", "bacon"))); // [SPAM]
 
 //        DataStructures dataStructures = new DataStructures();
 //
