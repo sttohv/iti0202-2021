@@ -1,5 +1,7 @@
 package ee.taltech.iti0202.datastructures;
 
+//import java.util.*;
+
 import java.util.*;
 
 public class DataStructures {
@@ -72,7 +74,7 @@ public class DataStructures {
         String[] wordsArray = new String[words.size()];
         Map<String, Integer> wordcounts = wordCount(words.toArray(wordsArray));
         List<String> result = new ArrayList<>();
-        for (String word:new ArrayList<String>(wordcounts.keySet()) //kõik keyd on nüüd listis
+        for (String word: new ArrayList<>(wordcounts.keySet()) //kõik keyd on nüüd listis
              ) {
             for (int i = 0; i < wordcounts.get(word)/2; i++) {
                 result.add(word);
@@ -80,20 +82,6 @@ public class DataStructures {
             
         }
         return result;
-//        for (String word : words) {
-//            int frequency = Collections.frequency(words, word);
-//            if(!result.contains(word)&&frequency>1 && frequency%2==1){
-//                for (int i = 0; i <= frequency/2; i+=2) {
-//                    result.add(word);
-//                }
-//            }else if(!result.contains(word)&&frequency>1 && frequency%2==0){
-//
-//                for (int i = 0; i < frequency/2+2; i+=2) {
-//                    result.add(word);
-//                }
-//            }
-//        }
-        //return result;
     }
 
     /**
