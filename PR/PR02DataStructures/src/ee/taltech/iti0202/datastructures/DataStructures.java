@@ -66,16 +66,34 @@ public class DataStructures {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
+
+        //miks see pask ei tööta -.-
+
+        String[] wordsArray = new String[words.size()];
+        Map<String, Integer> wordcounts = wordCount(words.toArray(wordsArray));
         List<String> result = new ArrayList<>();
-        for (String word : words) {
-            int frequency = Collections.frequency(words, word);
-            if(!result.contains(word)&&frequency>1){
-                for (int i = 0; i <= frequency/2; i+=2) {
-                    result.add(word);
-                }
+        for (String word:new ArrayList<String>(wordcounts.keySet()) //kõik keyd on nüüd listis
+             ) {
+            for (int i = 0; i < wordcounts.get(word)/2; i++) {
+                result.add(word);
             }
+            
         }
         return result;
+//        for (String word : words) {
+//            int frequency = Collections.frequency(words, word);
+//            if(!result.contains(word)&&frequency>1 && frequency%2==1){
+//                for (int i = 0; i <= frequency/2; i+=2) {
+//                    result.add(word);
+//                }
+//            }else if(!result.contains(word)&&frequency>1 && frequency%2==0){
+//
+//                for (int i = 0; i < frequency/2+2; i+=2) {
+//                    result.add(word);
+//                }
+//            }
+//        }
+        //return result;
     }
 
     /**
@@ -124,7 +142,7 @@ public class DataStructures {
 
         System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo] any order
         System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a] any order
-        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM", "SPAM"))); // [SPAM]
+        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM","SPAM","SPAM", "bacon", "bacon"))); // [SPAM]
 
 //        DataStructures dataStructures = new DataStructures();
 //
@@ -132,7 +150,7 @@ public class DataStructures {
 //        dataStructures.addStudent("Martin:0");
 //        dataStructures.addStudent("Margo:3");
 //        dataStructures.addStudent("Cheater:6");
-//
+
 //        System.out.println(dataStructures.getStudentGrade("Ago")); // 5
 //        System.out.println(dataStructures.getStudentGrade("Martin")); // 0
 //        System.out.println(dataStructures.getStudentGrade("Margo")); // 3
