@@ -2,9 +2,16 @@ package ee.taltech.iti0202.datastructures;
 
 //import java.util.*;
 
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 public class DataStructures {
+    public static final int INT = 6;
     public static Map<String, Integer> students = new HashMap<>();
 
     /**
@@ -94,7 +101,7 @@ public class DataStructures {
         String name = studentInfo.split(":")[0];
         int grade = Integer.parseInt(studentInfo.split(":")[1]);
 
-        if (students.isEmpty() || !students.containsKey(name) && grade >= 0 && grade < 6) {
+        if (students.isEmpty() || !students.containsKey(name) && grade >= 0 && grade < INT) {
             students.put(name, grade);
         }
     }
