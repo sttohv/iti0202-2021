@@ -294,7 +294,7 @@ public class IdCode {
 //        System.out.println(validMaleIdCode.isNumeric());
         System.out.println(validMaleIdCode.isCorrect());
 //        System.out.println(validMaleIdCode.getInformation());
-//        System.out.println(validMaleIdCode.getGender());
+//        System.out.println(validMaleIdCode.getGender());gtm repo
         System.out.println(validMaleIdCode.getBirthPlace());
 //        System.out.println(validMaleIdCode.getFullYear());
 //        System.out.println(validMaleIdCode.isGenderNumberCorrect());
