@@ -5,17 +5,17 @@ import java.util.stream.Collectors;
 
 public class WebBrowser {
     private String homePage;
-    private List<String> historyList;
+    private List<String> historyList = new ArrayList<>();
     private String current;
     private int backCount;
-    private List<String> bookmarkList;
+    private List<String> bookmarkList= new ArrayList<>();
+    private List<String> someList= new ArrayList<>();
 
     public WebBrowser() {
         homePage = "google.com";
-        historyList = new ArrayList<>();
         historyList.add(homePage);
+        someList.add(homePage);
         current = homePage;
-        bookmarkList = new ArrayList<>();
     }
 
     /**
@@ -23,9 +23,9 @@ public class WebBrowser {
      */
     public void homePage() {
         //TODO: implement
-
         if (!current.equals(homePage)) {
             historyList.add(homePage);
+            someList.add(homePage);
             current = homePage;
             backCount = 0; //checka üle kas on ikka õiges kohas
         }
@@ -38,8 +38,9 @@ public class WebBrowser {
      */
     public void back() {
         //TODO: implement
-        if (historyList.size() > 1) {
+        if (someList.size() > 1) {
             current = historyList.get(historyList.size() - 2);
+            someList.remove(someList.size()-1);
             historyList.add(current);
             backCount++;
         }
@@ -66,6 +67,7 @@ public class WebBrowser {
         //TODO: implement
         current = url;
         historyList.add(current);
+        someList.add(current);
         backCount = 0;
     }
 
@@ -109,18 +111,21 @@ public class WebBrowser {
         //TODO: implement
         Map<String, Integer> result = new HashMap<>();
         String top3 = "";
-        for (String page:historyList
+        for (String page : historyList
         ) {
-            if(!result.containsKey(page)){
+            if (!result.containsKey(page)) {
                 result.put(page, Collections.frequency(historyList, page));
             }
         }
 
         List<String> keys = result.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).limit(3).map(Map.Entry::getKey).collect(Collectors.toList());
-        for (String key:keys
+        for (String key : keys
         ) {
-            top3 = top3 + key + " - " + result.get(key) + " visits"+ "\n";
-
+            if(result.get(key)>1) {
+                top3 = top3 + key + " - " + result.get(key) + " visits" + "\n";
+            }else{
+                top3 = top3 + key + " - " + result.get(key) + " visit" + "\n";
+            }
         }
         return top3;
     }
@@ -149,5 +154,9 @@ public class WebBrowser {
     public String getCurrentUrl() {
         //TODO: implement
         return current;
+    }
+
+    public static void main(String[] args) {
+
     }
 }
