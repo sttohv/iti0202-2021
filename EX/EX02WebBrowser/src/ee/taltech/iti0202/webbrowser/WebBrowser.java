@@ -47,7 +47,6 @@ public class WebBrowser {
      * Goes forward to next page.
      */
     public void forward() {
-        //TODO: implement
         if (forward.size() > 0) {
             back.add(current);
             current = forward.get(forward.size() - 1);
@@ -62,7 +61,6 @@ public class WebBrowser {
      * @param url url to go to
      */
     public void goTo(String url) {
-        //TODO: implement
         if (url != current) {
             current = url;
             historyList.add(current);
@@ -75,7 +73,6 @@ public class WebBrowser {
      * Add a webpage as a bookmark.
      */
     public void addAsBookmark() {
-        //TODO: implement
         if (!bookmarkList.contains(current)) {
             bookmarkList.add(current);
         }
@@ -87,17 +84,19 @@ public class WebBrowser {
      * @param bookmark to remove
      */
     public void removeBookmark(String bookmark) {
-        //TODO: implement
         bookmarkList.remove(bookmark);
     }
 
+    /**
+     * Get bookmarks.
+     */
     public List<String> getBookmarks() {
-        //TODO: implement
         return bookmarkList;
     }
-
+    /**
+     * Get bookmarks.
+     */
     public void setHomePage(String homePage) {
-        //TODO: implement
         this.homePage = homePage;
     }
 
@@ -108,7 +107,6 @@ public class WebBrowser {
      * @return a String that contains top three visited pages separated with a newline "\n"
      */
     public String getTop3VisitedPages() {
-        //TODO: implement
         Map<String, Integer> result = new HashMap<>();
         String top3 = "";
         for (String page : historyList
@@ -126,19 +124,7 @@ public class WebBrowser {
                 top3 = top3 + key + " - " + result.get(key) + " visit" + "\n";
             }
         }
-        if(top3=="twitter.com - 1 visit\n" +
-                "google.com - 1 visit"){
-            return "google.com - 1 visit\n" +
-                    "twitter.com - 1 visit";
-        }
-        else if(top3.equals("twitter.com - 1 visit\n" +
-                "google.com - 1 visit\n" +
-                "facebook.com - 1 visit")){
-            return "google.com - 1 visit\n" +
-                    "twitter.com - 1 visit\n" +
-                    "facebook.com - 1 visit";
-        }else{
-        return top3;}
+        return top3;
     }
 
 
@@ -153,7 +139,6 @@ public class WebBrowser {
      * @return list of all visited pages
      */
     public List<String> getHistory() {
-        //TODO: implement
         return historyList;
     }
 
@@ -164,11 +149,6 @@ public class WebBrowser {
      * @return active web page
      */
     public String getCurrentUrl() {
-        //TODO: implement
         return current;
-    }
-
-    public static void main(String[] args) {
-
     }
 }
