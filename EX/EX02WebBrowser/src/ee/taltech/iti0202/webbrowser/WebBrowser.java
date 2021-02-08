@@ -1,8 +1,15 @@
 package ee.taltech.iti0202.webbrowser;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Public class
+ */
 public class WebBrowser {
     private String homePage;
     private List<String> historyList = new ArrayList<>();
@@ -13,6 +20,9 @@ public class WebBrowser {
     private List<String> forward = new ArrayList<>();
 
 
+    /**
+     * Creates webBrowser object.
+     */
     public WebBrowser() {
         homePage = "google.com";
         backCount = false;
@@ -25,7 +35,6 @@ public class WebBrowser {
      * Goes to homepage.
      */
     public void homePage() {
-        //TODO: implement
         goTo(homePage);
     }
 
@@ -33,7 +42,6 @@ public class WebBrowser {
      * Goes back to previous page.
      */
     public void back() {
-        //TODO: implement
         if (back.size() > 1) {
             forward.add(current);
             back.remove(back.size() - 1);
@@ -61,7 +69,7 @@ public class WebBrowser {
      * @param url url to go to
      */
     public void goTo(String url) {
-        if (url != current) {
+        if (!url.equals(current)) {
             current = url;
             historyList.add(current);
             back.add(current);
@@ -89,10 +97,13 @@ public class WebBrowser {
 
     /**
      * Get bookmarks.
+     *
+     * @return return something
      */
     public List<String> getBookmarks() {
         return bookmarkList;
     }
+
     /**
      * Get bookmarks.
      */
@@ -115,7 +126,8 @@ public class WebBrowser {
                 result.put(page, Collections.frequency(historyList, page));
             }
         }
-        List<String> keys = result.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).limit(3).map(Map.Entry::getKey).collect(Collectors.toList());
+        List<String> keys = result.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue()
+                .reversed()).limit(3).map(Map.Entry::getKey).collect(Collectors.toList());
         for (String key : keys
         ) {
             if (result.get(key) > 1) {
