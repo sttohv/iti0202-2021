@@ -8,10 +8,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WebBrowserTest {
-    @Test
     /**
      * Public class
      */
+    @Test
     public void solve() {
         WebBrowser test = new WebBrowser();
         List<String> result = new ArrayList<>();
