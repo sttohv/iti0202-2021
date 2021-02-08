@@ -7,14 +7,17 @@ public class WebBrowser {
     private String homePage;
     private List<String> historyList = new ArrayList<>();
     private String current;
-    private int backCount;
-    private List<String> bookmarkList= new ArrayList<>();
-    private List<String> someList= new ArrayList<>();
+    private boolean backCount;
+    private List<String> bookmarkList = new ArrayList<>();
+    private List<String> back = new ArrayList<>();
+    private List<String> forward = new ArrayList<>();
+
 
     public WebBrowser() {
         homePage = "google.com";
+        backCount = false;
         historyList.add(homePage);
-        someList.add(homePage);
+        back.add(homePage);
         current = homePage;
     }
 
@@ -23,14 +26,7 @@ public class WebBrowser {
      */
     public void homePage() {
         //TODO: implement
-        if (!current.equals(homePage)) {
-            historyList.add(homePage);
-            someList.add(homePage);
-            current = homePage;
-            backCount = 0; //checka üle kas on ikka õiges kohas
-        }
-
-
+        goTo(homePage);
     }
 
     /**
@@ -38,11 +34,12 @@ public class WebBrowser {
      */
     public void back() {
         //TODO: implement
-        if (someList.size() > 1) {
-            current = historyList.get(historyList.size() - 2);
-            someList.remove(someList.size()-1);
+        if (back.size() > 1) {
+            forward.add(current);
+            back.remove(back.size() - 1);
+            current = back.get(back.size() - 1);
             historyList.add(current);
-            backCount++;
+
         }
     }
 
@@ -51,10 +48,11 @@ public class WebBrowser {
      */
     public void forward() {
         //TODO: implement
-        if (backCount > 0) {
-            current = historyList.get(historyList.size() - 2);
+        if (forward.size() > 0) {
+            back.add(current);
+            current = forward.get(forward.size() - 1);
             historyList.add(current);
-            backCount--;
+            forward.remove(forward.size() - 1);
         }
     }
 
@@ -65,10 +63,12 @@ public class WebBrowser {
      */
     public void goTo(String url) {
         //TODO: implement
-        current = url;
-        historyList.add(current);
-        someList.add(current);
-        backCount = 0;
+        if (url != current) {
+            current = url;
+            historyList.add(current);
+            back.add(current);
+            forward = new ArrayList<>();
+        }
     }
 
     /**
@@ -121,9 +121,9 @@ public class WebBrowser {
         List<String> keys = result.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).limit(3).map(Map.Entry::getKey).collect(Collectors.toList());
         for (String key : keys
         ) {
-            if(result.get(key)>1) {
+            if (result.get(key) > 1) {
                 top3 = top3 + key + " - " + result.get(key) + " visits" + "\n";
-            }else{
+            } else {
                 top3 = top3 + key + " - " + result.get(key) + " visit" + "\n";
             }
         }

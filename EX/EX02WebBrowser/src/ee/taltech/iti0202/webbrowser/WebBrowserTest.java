@@ -20,10 +20,6 @@ public class WebBrowserTest {
         test.back();
         test.back();
         assertEquals(test.getHistory(), result);
-
-
-
-
     }
 
 
