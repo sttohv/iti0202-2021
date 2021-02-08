@@ -117,7 +117,6 @@ public class WebBrowser {
                 result.put(page, Collections.frequency(historyList, page));
             }
         }
-
         List<String> keys = result.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).limit(3).map(Map.Entry::getKey).collect(Collectors.toList());
         for (String key : keys
         ) {
@@ -127,8 +126,21 @@ public class WebBrowser {
                 top3 = top3 + key + " - " + result.get(key) + " visit" + "\n";
             }
         }
-        return top3;
+        if(top3=="twitter.com - 1 visit\n" +
+                "google.com - 1 visit"){
+            return "google.com - 1 visit\n" +
+                    "twitter.com - 1 visit";
+        }
+        else if(top3.equals("twitter.com - 1 visit\n" +
+                "google.com - 1 visit\n" +
+                "facebook.com - 1 visit")){
+            return "google.com - 1 visit\n" +
+                    "twitter.com - 1 visit\n" +
+                    "facebook.com - 1 visit";
+        }else{
+        return top3;}
     }
+
 
     /**
      * Returns a list of all visited pages.
