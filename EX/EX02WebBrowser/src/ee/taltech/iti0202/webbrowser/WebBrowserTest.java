@@ -5,11 +5,14 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WebBrowserTest {
     @Test
-    public void solve(){
+    /**
+     * Public class
+     */
+    public void solve() {
         WebBrowser test = new WebBrowser();
         List<String> result = new ArrayList<>();
         result.add("google.com");
@@ -21,6 +24,4 @@ public class WebBrowserTest {
         test.back();
         assertEquals(test.getHistory(), result);
     }
-
-
 }
