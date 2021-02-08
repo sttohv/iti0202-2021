@@ -1,3 +1,4 @@
+
 package ee.taltech.iti0202.webbrowser;
 
 import java.util.ArrayList;
@@ -106,6 +107,7 @@ public class WebBrowser {
 
     /**
      * Get bookmarks.
+     *
      * @param homePage do something
      */
     public void setHomePage(String homePage) {
