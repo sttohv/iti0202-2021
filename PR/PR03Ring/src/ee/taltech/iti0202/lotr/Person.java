@@ -21,12 +21,16 @@ public class Person {
     }
 
     public String isSauron() {
-        if(name.equals("Sauron")&&ring.equals(Ring.Material.GOLD)&& ring.equals(Ring.Type.THE_ONE)){
+        if(name.equals("Sauron")&& ring.type==Ring.Type.THE_ONE && ring.material==Ring.Material.GOLD){
             return "Affirmative";
         }
-        else if(name.equals("Sauron")&&ring.equals(Ring.Type.THE_ONE)&&!ring.equals(Ring.Material.GOLD)){
+        else if(name.equals("Sauron")&&ring.type==Ring.Type.THE_ONE&& !(ring.material==Ring.Material.GOLD)){
             return "No, the ring is fake!";
-        }else if(name.equals("Sauron") && !ring.equals(Ring.Type.THE_ONE)|| ring == null){
+        }
+        else if(ring.material==Ring.Material.GOLD && ring.type==Ring.Type.THE_ONE && !name.equals("Sauron")){
+            return "No, he just stole the ring.";
+        }
+        else if(name.equals("Sauron") && !(ring.type==Ring.Type.THE_ONE)|| ring == null){
             return "No, but he's claiming to be.";
         }
         return "No";
