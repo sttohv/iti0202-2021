@@ -1,9 +1,9 @@
 package ee.taltech.iti0202.lotr;
 
 public class Person {
-    public String race;
-    public String name;
-    public Ring ring;
+    private String race;
+    private String name;
+    private Ring ring;
 
     public Person(String race, String name, Ring ring) {
         this.race = race;
@@ -28,7 +28,7 @@ public class Person {
             return "No, the ring is fake!";
         }
         else if(ring.material==Ring.Material.GOLD && ring.type==Ring.Type.THE_ONE && !name.equals("Sauron")){
-            return "No, he just stole the ring.";
+            return "No, he just stole the ring";
         }
         else if(name.equals("Sauron") && !(ring.type==Ring.Type.THE_ONE)|| ring == null){
             return "No, but he's claiming to be.";
