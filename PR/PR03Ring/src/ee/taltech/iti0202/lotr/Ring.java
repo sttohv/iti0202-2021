@@ -15,8 +15,8 @@ public class Ring {
     /**
      * Constructor
      *
-     * @param type
-     * @param material
+     * @param type ring type
+     * @param material ring material
      */
     public Ring(Type type, Material material) {
         this.type = type;
@@ -42,6 +42,10 @@ public class Ring {
         return material;
     }
 
+    /**
+     * run tests
+     * @param args info
+     */
     public static void main(String[] args) {
         Ring theRing = new Ring(Type.THE_ONE, Material.GOLD);
         Person sauron = new Person("Maiar", "Sauron");

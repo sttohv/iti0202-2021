@@ -32,7 +32,7 @@ public class Person {
     /**
      * Set ring
      *
-     * @param ring
+     * @param ring persons ring
      */
     public void setRing(Ring ring) {
         this.ring = ring;
@@ -47,14 +47,14 @@ public class Person {
         try {
 
 
-            if (name.equals("Sauron") && ring.getType() == Ring.Type.THE_ONE && ring.getMaterial() ==
-                    Ring.Material.GOLD) {
+            if (name.equals("Sauron") && ring.getType() == Ring.Type.THE_ONE && ring.getMaterial()
+                    == Ring.Material.GOLD) {
                 return "Affirmative";
-            } else if (name.equals("Sauron") && ring.getType() == Ring.Type.THE_ONE && !(ring.getMaterial() ==
-                    Ring.Material.GOLD)) {
+            } else if (name.equals("Sauron") && ring.getType() == Ring.Type.THE_ONE && !(ring.getMaterial()
+                    == Ring.Material.GOLD)) {
                 return "No, the ring is fake!";
-            } else if (ring.getMaterial() == Ring.Material.GOLD && ring.getType() == Ring.Type.THE_ONE &&
-                    !name.equals("Sauron")) {
+            } else if (ring.getMaterial() == Ring.Material.GOLD && ring.getType() == Ring.Type.THE_ONE
+                    && !name.equals("Sauron")) {
                 return "No, he just stole the ring";
             } else if (name.equals("Sauron") && !(ring.getType() == Ring.Type.THE_ONE)) {
                 return "No, but he's claiming to be";
