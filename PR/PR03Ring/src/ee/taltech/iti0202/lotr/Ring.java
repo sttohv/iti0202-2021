@@ -12,16 +12,32 @@ public class Ring {
         GOLD, SILVER, BRONZE, PLASTIC, DIAMOND
     }
 
+    /**
+     * Constructor
+     *
+     * @param type
+     * @param material
+     */
     public Ring(Type type, Material material) {
         this.type = type;
         this.material = material;
     }
 
+    /**
+     * get method that returns private field type
+     *
+     * @return ring type
+     */
     public Type getType() {
         return type;
 
     }
 
+    /**
+     * get method that returns private field material
+     *
+     * @return ring material
+     */
     public Material getMaterial() {
         return material;
     }
