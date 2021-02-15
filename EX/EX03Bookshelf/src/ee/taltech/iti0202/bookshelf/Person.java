@@ -23,13 +23,17 @@ public class Person {
     }
 
     public boolean buyBook(Book book) {
+        try{
         if (book == null || book.getPrice() > getMoney() || book.getOwner() == null) {
             return false;
         } else {
-            personBooks.add(book);
+            //personBooks.add(book);
             //Book.setBookOwner(this);
             setPersonMoney(getMoney()- book.getPrice());
             return true;
+        }}
+        catch (Exception e){
+            return false;
         }
     }
 
