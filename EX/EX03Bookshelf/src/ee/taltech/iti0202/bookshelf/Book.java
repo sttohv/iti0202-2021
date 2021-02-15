@@ -54,6 +54,7 @@ public class Book {
     }
 
     public boolean buy(Person buyer) {
+        try{
         if(bookOwner.equals(buyer)||buyer.buyBook(this)){
             return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
         }
@@ -61,6 +62,9 @@ public class Book {
             Person.setPersonMoney(buyer.getMoney()-getPrice());
             setBookOwner(buyer);
             return true; //õnnestus -
+        }}
+        catch (Exception e){
+            return false;
         }
     }
 
