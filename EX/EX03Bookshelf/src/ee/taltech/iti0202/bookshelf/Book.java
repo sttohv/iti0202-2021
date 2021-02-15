@@ -9,7 +9,7 @@ public class Book {
     private static int bookYear;
     private static int bookPrice;
     private static Person bookOwner;
-    private static int id = -1;
+    private static int id = 0;
     private static List<Book> allBooks = new ArrayList<>();
 
     public static int getAndIncrementNextId() {
