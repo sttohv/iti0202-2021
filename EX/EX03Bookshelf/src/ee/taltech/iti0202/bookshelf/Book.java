@@ -9,7 +9,7 @@ public class Book {
     private static int bookYear;
     private static int bookPrice;
     private static Person bookOwner;
-    private static int id = 0;
+    private static int id = -1;
     private static List<Book> allBooks = new ArrayList<>();
 
     public static int getAndIncrementNextId() {
@@ -22,6 +22,7 @@ public class Book {
         bookAuthor = author;
         bookYear = yearOfPublishing;
         bookPrice = price;
+        getAndIncrementNextId();
 
     }
 
@@ -55,7 +56,7 @@ public class Book {
 
     public boolean buy(Person buyer) {
         try{
-        if(bookOwner.equals(buyer)||buyer.buyBook(this)){
+        if(buyer==null||bookOwner.equals(buyer)||buyer.buyBook(this)){
             return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
         }
         else{
