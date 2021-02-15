@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book {
-    private static String bookTitle;
-    private static String bookAuthor;
-    private static int bookYear;
-    private static int bookPrice;
-    private static Person bookOwner;
-    private static int id = -1;
+    private String bookTitle;
+    private String bookAuthor;
+    private int bookYear;
+    private int bookPrice;
+    private Person bookOwner;
+    private static int idCount = -1;
+    private int bookId;
     private static List<Book> allBooks = new ArrayList<>();
 
     public static int getAndIncrementNextId() {
-        id++;
-        return id;
+        idCount++;
+        return idCount;
     }
 
     public Book(String title, String author, int yearOfPublishing, int price) {
@@ -22,7 +23,7 @@ public class Book {
         bookAuthor = author;
         bookYear = yearOfPublishing;
         bookPrice = price;
-        getAndIncrementNextId();
+        bookId = getAndIncrementNextId();
 
     }
 
@@ -47,29 +48,26 @@ public class Book {
     }
 
     public int getId() {
-        return id;
+        return idCount;
     }
 
-    public static void setBookOwner(Person bookOwner) {
-        Book.bookOwner = bookOwner;
+    public void setBookOwner(Person bookOwner) {
+        this.bookOwner = bookOwner;
     }
 
     public boolean buy(Person buyer) {
-        try {
-
-
-        if(buyer==null||bookOwner.equals(buyer)||buyer.buyBook(this)){
+        if (bookOwner.equals(buyer) || buyer.buyBook(this)) {
             return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
-        }
-        else{
-            Person.setPersonMoney(buyer.getMoney()-getPrice());
+        } else {
+            if (buyer == null) {
+                Person stina = getOwner();
+                getOwner().setPersonMoney(5);
+            }
+            buyer.setPersonMoney(buyer.getMoney() - getPrice());
             setBookOwner(buyer);
             return true; //õnnestus -
-        }}
-        catch (Exception e){
-            return true;
         }
 
-    }
 
+    }
 }

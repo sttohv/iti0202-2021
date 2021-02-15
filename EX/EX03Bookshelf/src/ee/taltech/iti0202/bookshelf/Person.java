@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
-    private static String personName;
-    private static int personMoney;
-    private static List<Book> personBooks;
+    private String personName;
+    private int personMoney;
+    private List<Book> personBooks;
 
     public Person(String name, int money) {
         personName = name;
@@ -24,11 +24,11 @@ public class Person {
 
     public boolean buyBook(Book book) {
         try{
-        if (book == null || book.getPrice() > getMoney() || book.getOwner() == null) {
+        if (book == null || book.getPrice() > getMoney() || book.getOwner() != null) {
             return false;
         } else {
-            //personBooks.add(book);
-            //Book.setBookOwner(this);
+            personBooks.add(book);
+            book.setBookOwner(this);
             setPersonMoney(getMoney()- book.getPrice());
             return true;
         }}
@@ -41,13 +41,15 @@ public class Person {
         if(book==null||book.getOwner()!=this){
         return false;}
         else{
-            setPersonMoney(getMoney()- book.getPrice());
+            personBooks.remove(book);
+            setPersonMoney(getMoney()+ book.getPrice());
+            book.setBookOwner(null);
 
             return true;
         }
     }
 
-    public static void setPersonMoney(int personMoney) {
-        Person.personMoney = personMoney;
+    public void setPersonMoney(int personMoney) {
+        this.personMoney = personMoney;
     }
 }
