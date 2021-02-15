@@ -64,7 +64,7 @@ public class Book {
             return true; //õnnestus -
         }}
         catch (Exception e){
-            return false;
+            return true;
         }
     }
 
