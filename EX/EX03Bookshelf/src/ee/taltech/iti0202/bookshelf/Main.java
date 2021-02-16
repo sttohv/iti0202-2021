@@ -1,5 +1,13 @@
 package ee.taltech.iti0202.bookshelf;
+
+/**
+ * ekjfckje
+ */
 public class Main {
+    /**
+     * efcnvjn
+     * @param args jdnfvj
+     */
     public static void main(String[] args) {
         Book tammsaare = new Book("Truth and Justice", "Tammsaare", 1926, 100);
         Book meri = new Book("Silverwhite", "Meri", 1976, 200);
@@ -39,7 +47,6 @@ public class Main {
         System.out.println(meri.getId()); // 1
         System.out.println(Book.getAndIncrementNextId()); // 2
         System.out.println();
-
 
 
     }

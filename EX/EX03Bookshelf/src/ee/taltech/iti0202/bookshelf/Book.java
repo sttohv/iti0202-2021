@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Constructor
+ */
 public class Book {
     private String bookTitle;
     private String bookAuthor;
@@ -16,11 +19,22 @@ public class Book {
     private static List<Book> allOfBooks = new ArrayList<>();
     private static HashMap<List<String>, Book> ofBooksMap = new HashMap<>();
 
+    /**
+     * joujou
+     * @return idCOuntfsijc
+     */
     public static int getAndIncrementNextId() {
         idCount++;
         return idCount;
     }
 
+    /**
+     * sadc
+     * @param title fhj
+     * @param author djs
+     * @param yearOfPublishing njf
+     * @param price df
+     */
     public Book(String title, String author, int yearOfPublishing, int price) {
         bookTitle = title;
         bookAuthor = author;
@@ -30,34 +44,67 @@ public class Book {
 
     }
 
+    /**
+     * jdc
+     * @return fdn
+     */
     public String getTitle() {
         return bookTitle;
     }
 
+    /**
+     * djc
+     * @return jfdc
+     */
     public String getAuthor() {
         return bookAuthor;
     }
 
+    /**
+     * jcnj
+     * @return jf
+     */
     public int getYearOfPublishing() {
         return bookYear;
     }
 
+    /**
+     * dcc
+     * @return jnd
+     */
     public Person getOwner() {
         return bookOwner;
     }
 
+    /**
+     * vjfvd
+     * @return kdmfv
+     */
     public int getPrice() {
         return bookPrice;
     }
 
+    /**
+     * dfkv
+     * @return jnv
+     */
     public int getId() {
         return bookId;
     }
 
+    /**
+     * jdfvnjdfn v
+     * @param bookOwner dfvdmnf
+     */
     public void setBookOwner(Person bookOwner) {
         this.bookOwner = bookOwner;
     }
 
+    /**
+     * vn djfvjnd
+     * @param buyer vjndfv
+     * @return jdnfvj
+     */
     public boolean buy(Person buyer) {
         if (buyer == null) {
             if (bookOwner != null) {   //owner olemas ja buyer on null
@@ -89,6 +136,14 @@ public class Book {
         }
     }
 
+    /**
+     * dfn vjdnv
+     * @param title jfv
+     * @param author vfcv
+     * @param yearOfPublishing jdfv
+     * @param price jdvn
+     * @return jdfvn
+     */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book book = new Book(title, author, yearOfPublishing, price);
 //        if (allOfBooks.isEmpty()) {
@@ -125,6 +180,12 @@ public class Book {
 
     }
 
+    /**
+     * dmfv
+     * @param title dgb
+     * @param price dvf
+     * @return dfv
+     */
     public static Book of(String title, int price) {
 //        if(!allOfBooks.isEmpty() || allOfBooks.get(allBooks.size()-1).getTitle().equals(title)){
         for (Book book : allOfBooks
@@ -135,7 +196,8 @@ public class Book {
                 return newBook;
 //            }
             }
-        }return null;
+        }
+        return null;
 
 
     }
