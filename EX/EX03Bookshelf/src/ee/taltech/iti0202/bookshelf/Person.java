@@ -15,6 +15,9 @@ public class Person {
     }
 
     public int getMoney() {
+        if(this == null || personMoney==0){
+            return 0;
+        }
         return personMoney;
     }
 
@@ -24,7 +27,7 @@ public class Person {
 
     public boolean buyBook(Book book) {
         try{
-        if (book == null || book.getPrice() > getMoney() || book.getOwner() != null) {
+        if (book == null || book.getPrice() > personMoney || book.getOwner() != null) {
             return false;
         } else {
             personBooks.add(book);
@@ -38,18 +41,21 @@ public class Person {
     }
 
     public boolean sellBook(Book book) {
-        if(book==null||book.getOwner()!=this){
+        if(book==null||!personBooks.contains(book)){
         return false;}
         else{
             personBooks.remove(book);
             setPersonMoney(getMoney()+ book.getPrice());
             book.setBookOwner(null);
-
             return true;
         }
     }
 
     public void setPersonMoney(int personMoney) {
         this.personMoney = personMoney;
+    }
+
+    public void setPersonBooks(Book book) {
+        this.personBooks.add(book);
     }
 }

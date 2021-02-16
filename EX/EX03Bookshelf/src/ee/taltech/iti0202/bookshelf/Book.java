@@ -48,7 +48,7 @@ public class Book {
     }
 
     public int getId() {
-        return idCount;
+        return bookId;
     }
 
     public void setBookOwner(Person bookOwner) {
@@ -56,18 +56,20 @@ public class Book {
     }
 
     public boolean buy(Person buyer) {
-        if (bookOwner.equals(buyer) || buyer.buyBook(this)) {
+        if (buyer == null) {
+            bookOwner.setPersonMoney(bookOwner.getMoney() + bookPrice);
+            bookOwner = null;
+            return true;
+        } else if (bookOwner.equals(buyer) || bookPrice> buyer.getMoney()) {
             return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
         } else {
-            if (buyer == null) {
-                Person stina = getOwner();
-                getOwner().setPersonMoney(5);
-            }
             buyer.setPersonMoney(buyer.getMoney() - getPrice());
+            bookOwner.setPersonMoney(bookOwner.getMoney() + getPrice());
+            buyer.setPersonBooks(this);
             setBookOwner(buyer);
             return true; //õnnestus -
         }
-
-
     }
+
+
 }
