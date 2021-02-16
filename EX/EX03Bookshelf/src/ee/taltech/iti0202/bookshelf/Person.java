@@ -13,7 +13,8 @@ public class Person {
 
     /**
      * dcdafv
-     * @param name efcvdf
+     *
+     * @param name  efcvdf
      * @param money kfmvkfdv
      */
     public Person(String name, int money) {
@@ -24,6 +25,7 @@ public class Person {
 
     /**
      * jfnvkfv
+     *
      * @return kmfckf
      */
     public int getMoney() {
@@ -36,6 +38,7 @@ public class Person {
 
     /**
      * jfvnkjdfv
+     *
      * @return dnfcvjndf
      */
     public String getName() {
@@ -44,6 +47,7 @@ public class Person {
 
     /**
      * jdfncjn
+     *
      * @param book jndfcjvn
      * @return jndfjnd
      */
@@ -64,6 +68,7 @@ public class Person {
 
     /**
      * jefnjk
+     *
      * @param book efcv
      * @return dfv
      */
@@ -80,6 +85,7 @@ public class Person {
 
     /**
      * befkhb
+     *
      * @param personMoney efbcjhbef
      */
     public void setPersonMoney(int personMoney) {
@@ -88,12 +94,19 @@ public class Person {
 
     /**
      * jfvnjd
+     *
      * @param book inefcvjnef
      */
     public void setPersonBooks(Book book) {
         this.personBooks.add(book);
     }
-    public List<Book> getBooks(){
+
+    /**
+     * itg
+     *
+     * @return lgblgkrj
+     */
+    public List<Book> getBooks() {
         return new ArrayList<>();
     }
 }
