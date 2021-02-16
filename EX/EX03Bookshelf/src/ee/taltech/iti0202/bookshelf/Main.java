@@ -40,5 +40,7 @@ public class Main {
         System.out.println(Book.getAndIncrementNextId()); // 2
         System.out.println();
 
+
+
     }
 }

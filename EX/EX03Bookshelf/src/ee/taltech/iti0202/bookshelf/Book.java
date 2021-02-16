@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.bookshelf;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Book {
@@ -13,6 +14,7 @@ public class Book {
     private int bookId;
     private static List<Book> allBooks = new ArrayList<>();
     private static List<Book> allOfBooks = new ArrayList<>();
+    private static HashMap<List<String>, Book> ofBooksMap = new HashMap<>();
 
     public static int getAndIncrementNextId() {
         idCount++;
@@ -66,7 +68,7 @@ public class Book {
                 return false;
             }
         } else if (bookOwner != null) { //owner ja buyer on olemas
-            if (buyer.getMoney() < bookPrice || buyer.equals(getOwner()))  {
+            if (buyer.getMoney() < bookPrice || buyer.equals(getOwner())) {
                 return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
             } else {
                 buyer.setPersonMoney(buyer.getMoney() - bookPrice);
@@ -76,7 +78,7 @@ public class Book {
                 return true; //õnnestus -
             }
         } else { //ownerit pole aga buyer on
-            if (buyer.getMoney() < bookPrice || buyer.equals(getOwner()))  {
+            if (buyer.getMoney() < bookPrice || buyer.equals(getOwner())) {
                 return false;
             } else {
                 buyer.setPersonMoney(buyer.getMoney() - bookPrice);
@@ -86,10 +88,33 @@ public class Book {
             }
         }
     }
-//    public static Book of(String title, String author, int yearOfPublishing, int price){
+
+    public static Book of(String title, String author, int yearOfPublishing, int price) {
+        Book book = new Book(title, author, yearOfPublishing, price);
+
+        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
+        withoutPrice.add(title);
+        withoutPrice.add(author);
+        withoutPrice.add(Integer.toString(yearOfPublishing));
+
+        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet()); //võtab kõik staatilise mapi keyd list(list listidest)
+
+        if (!mapKeys.contains(withoutPrice)) {
+            List<Book> bookList = new ArrayList<>();
+            bookList.add(book);
+            ofBooksMap.put(withoutPrice, book);
+            return book;
+        } else {
+            return ofBooksMap.get(withoutPrice);
+        }
+
+    }
+
+//    public static Book of(String title, int price) {
+//        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet());
 //
+//        if()
 //    }
-//    public static Book of(String title, int price){}
 //    public static List<Book> getBooksByOwner(Person owner){}
 //    public static boolean removeBook(Book book){}
 //    public static List<Book> getBooksByAuthor(String author)
