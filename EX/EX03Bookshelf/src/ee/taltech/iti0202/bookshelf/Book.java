@@ -21,6 +21,7 @@ public class Book {
 
     /**
      * joujou
+     *
      * @return idCOuntfsijc
      */
     public static int getAndIncrementNextId() {
@@ -30,10 +31,11 @@ public class Book {
 
     /**
      * sadc
-     * @param title fhj
-     * @param author djs
+     *
+     * @param title            fhj
+     * @param author           djs
      * @param yearOfPublishing njf
-     * @param price df
+     * @param price            df
      */
     public Book(String title, String author, int yearOfPublishing, int price) {
         bookTitle = title;
@@ -46,6 +48,7 @@ public class Book {
 
     /**
      * jdc
+     *
      * @return fdn
      */
     public String getTitle() {
@@ -54,6 +57,7 @@ public class Book {
 
     /**
      * djc
+     *
      * @return jfdc
      */
     public String getAuthor() {
@@ -62,6 +66,7 @@ public class Book {
 
     /**
      * jcnj
+     *
      * @return jf
      */
     public int getYearOfPublishing() {
@@ -70,6 +75,7 @@ public class Book {
 
     /**
      * dcc
+     *
      * @return jnd
      */
     public Person getOwner() {
@@ -78,6 +84,7 @@ public class Book {
 
     /**
      * vjfvd
+     *
      * @return kdmfv
      */
     public int getPrice() {
@@ -86,6 +93,7 @@ public class Book {
 
     /**
      * dfkv
+     *
      * @return jnv
      */
     public int getId() {
@@ -94,6 +102,7 @@ public class Book {
 
     /**
      * jdfvnjdfn v
+     *
      * @param bookOwner dfvdmnf
      */
     public void setBookOwner(Person bookOwner) {
@@ -102,6 +111,7 @@ public class Book {
 
     /**
      * vn djfvjnd
+     *
      * @param buyer vjndfv
      * @return jdnfvj
      */
@@ -138,10 +148,11 @@ public class Book {
 
     /**
      * dfn vjdnv
-     * @param title jfv
-     * @param author vfcv
+     *
+     * @param title            jfv
+     * @param author           vfcv
      * @param yearOfPublishing jdfv
-     * @param price jdvn
+     * @param price            jdvn
      * @return jdfvn
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
@@ -184,6 +195,7 @@ public class Book {
 
     /**
      * dmfv
+     *
      * @param title dgb
      * @param price dvf
      * @return dfv
@@ -206,28 +218,31 @@ public class Book {
 
     /**
      * wjc
+     *
      * @param owner dfvf
      * @return dfvdf
      */
-    public static List<Book> getBooksByOwner(Person owner){
+    public static List<Book> getBooksByOwner(Person owner) {
         return new ArrayList<>();
     }
 
     /**
      * fnf
+     *
      * @param book jdfv
      * @return jdvd
      */
-    public static boolean removeBook(Book book){
+    public static boolean removeBook(Book book) {
         return false;
     }
 
     /**
      * jfnjnf
+     *
      * @param author jdfvh
      * @return jdfv
      */
-    public static List<Book> getBooksByAuthor(String author){
+    public static List<Book> getBooksByAuthor(String author) {
         return new ArrayList<>();
     }
 
