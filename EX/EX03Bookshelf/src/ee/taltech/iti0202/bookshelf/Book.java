@@ -65,16 +65,26 @@ public class Book {
             } else {  //pole kumbatki
                 return false;
             }
-        }else if(bookOwner!=null){
-        if (bookOwner.equals(buyer) || bookPrice > buyer.getMoney()) {
-            return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
+        } else if (bookOwner != null) {
+            if (bookOwner.equals(buyer) || bookPrice > buyer.getMoney()) {
+                return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
+            } else {
+                buyer.setPersonMoney(buyer.getMoney() - bookPrice);
+                bookOwner.setPersonMoney(bookOwner.getMoney() + getPrice());
+                buyer.setPersonBooks(this);
+                setBookOwner(buyer);
+                return true; //õnnestus -
+            }
         } else {
-            buyer.setPersonMoney(buyer.getMoney() - getPrice());
-            bookOwner.setPersonMoney(bookOwner.getMoney() + getPrice());
-            buyer.setPersonBooks(this);
-            setBookOwner(buyer);
-            return true; //õnnestus -
-        }}return false;
+            if (bookOwner.equals(buyer) || bookPrice > buyer.getMoney()) {
+                return false;
+            } else {
+                buyer.setPersonMoney(buyer.getMoney() - bookPrice);
+                buyer.setPersonBooks(this);
+                setBookOwner(buyer);
+                return true;
+            }
+        }
     }
 //    public static Book of(String title, String author, int yearOfPublishing, int price){
 //
