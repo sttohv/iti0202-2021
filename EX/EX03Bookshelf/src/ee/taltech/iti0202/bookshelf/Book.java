@@ -14,7 +14,7 @@ public class Book {
     private int bookId;
     private static List<Book> allBooks = new ArrayList<>();
     private static List<Book> allOfBooks = new ArrayList<>();
-    private static HashMap<List<String>, Book> ofBooksMap = new HashMap<>();
+//    private static HashMap<List<String>, Book> ofBooksMap = new HashMap<>();
 
     public static int getAndIncrementNextId() {
         idCount++;
@@ -91,22 +91,37 @@ public class Book {
 
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book book = new Book(title, author, yearOfPublishing, price);
-
-        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
-        withoutPrice.add(title);
-        withoutPrice.add(author);
-        withoutPrice.add(Integer.toString(yearOfPublishing));
-
-        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet()); //võtab kõik staatilise mapi keyd list(list listidest)
-
-        if (!mapKeys.contains(withoutPrice)) {
-            List<Book> bookList = new ArrayList<>();
-            bookList.add(book);
-            ofBooksMap.put(withoutPrice, book);
+        if (allOfBooks.isEmpty()) {
+            allOfBooks.add(book);
             return book;
         } else {
-            return ofBooksMap.get(withoutPrice);
+            for (Book listBook : allOfBooks
+            ) {
+                if(listBook.getTitle().equals(title) && listBook.getAuthor().equals(author) && listBook.getYearOfPublishing()==yearOfPublishing){
+                    return listBook;
+                }
+
+            }
+            allOfBooks.add(book);
+            return book;
         }
+
+
+//        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
+//        withoutPrice.add(title);
+//        withoutPrice.add(author);
+//        withoutPrice.add(Integer.toString(yearOfPublishing));
+//
+//        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet()); //võtab kõik staatilise mapi keyd list(list listidest)
+//
+//        if (!mapKeys.contains(withoutPrice)) {
+//            List<Book> bookList = new ArrayList<>();
+//            bookList.add(book);
+//            ofBooksMap.put(withoutPrice, book);
+//            return book;
+//        } else {
+//            return ofBooksMap.get(withoutPrice);
+//        }
 
     }
 
