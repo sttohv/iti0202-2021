@@ -203,8 +203,32 @@ public class Book {
 
 
     }
-//    public static List<Book> getBooksByOwner(Person owner){}
-//    public static boolean removeBook(Book book){}
-//    public static List<Book> getBooksByAuthor(String author)
+
+    /**
+     * wjc
+     * @param owner dfvf
+     * @return dfvdf
+     */
+    public static List<Book> getBooksByOwner(Person owner){
+        return new ArrayList<>();
+    }
+
+    /**
+     * fnf
+     * @param book jdfv
+     * @return jdvd
+     */
+    public static boolean removeBook(Book book){
+        return false;
+    }
+
+    /**
+     * jfnjnf
+     * @param author jdfvh
+     * @return jdfv
+     */
+    public static List<Book> getBooksByAuthor(String author){
+        return new ArrayList<>();
+    }
 
 }
