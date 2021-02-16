@@ -58,13 +58,10 @@ public class Book {
 
     public boolean buy(Person buyer) {
         if (buyer == null) {
-            if(bookOwner==null){
-                return false;
-            }
-            else{
+
             bookOwner.setPersonMoney(bookOwner.getMoney() + bookPrice);
             bookOwner = null;
-            return true;}
+            return true;
         } else if (bookOwner.equals(buyer) || bookPrice> buyer.getMoney()) {
             return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
         } else {
