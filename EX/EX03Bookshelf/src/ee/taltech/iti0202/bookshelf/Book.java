@@ -152,7 +152,8 @@ public class Book {
 //        } else {
 //            for (Book listBook : allOfBooks
 //            ) {
-//                if(listBook.getTitle().equals(title) && listBook.getAuthor().equals(author) && listBook.getYearOfPublishing()==yearOfPublishing){
+//                if(listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
+//                && listBook.getYearOfPublishing()==yearOfPublishing){
 //                    return listBook;
 //                }
 //
@@ -167,7 +168,8 @@ public class Book {
         withoutPrice.add(author);
         withoutPrice.add(Integer.toString(yearOfPublishing));
 
-        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet()); //võtab kõik staatilise mapi keyd list(list listidest)
+        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet());
+        //võtab kõik staatilise mapi keyd list(list listidest)
 
         if (!mapKeys.contains(withoutPrice)) {
             ofBooksMap.put(withoutPrice, book);
