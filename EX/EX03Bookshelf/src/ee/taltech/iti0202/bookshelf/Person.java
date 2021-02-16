@@ -15,10 +15,11 @@ public class Person {
     }
 
     public int getMoney() {
-        if(this == null || personMoney==0){
+        try{
+        return personMoney;}
+        catch (Exception e){
             return 0;
         }
-        return personMoney;
     }
 
     public String getName() {
