@@ -12,6 +12,7 @@ public class Book {
     private static int idCount = -1;
     private int bookId;
     private static List<Book> allBooks = new ArrayList<>();
+    private static List<Book> allOfBooks = new ArrayList<>();
 
     public static int getAndIncrementNextId() {
         idCount++;
@@ -57,9 +58,13 @@ public class Book {
 
     public boolean buy(Person buyer) {
         if (buyer == null) {
+            if(bookOwner==null){
+                return false;
+            }
+            else{
             bookOwner.setPersonMoney(bookOwner.getMoney() + bookPrice);
             bookOwner = null;
-            return true;
+            return true;}
         } else if (bookOwner.equals(buyer) || bookPrice> buyer.getMoney()) {
             return false; // ei õnnestunud - praegune omanik, kui raha pole(kontrollib buyBook),
         } else {
@@ -70,6 +75,12 @@ public class Book {
             return true; //õnnestus -
         }
     }
-
+//    public static Book of(String title, String author, int yearOfPublishing, int price){
+//
+//    }
+//    public static Book of(String title, int price){}
+//    public static List<Book> getBooksByOwner(Person owner){}
+//    public static boolean removeBook(Book book){}
+//    public static List<Book> getBooksByAuthor(String author)
 
 }

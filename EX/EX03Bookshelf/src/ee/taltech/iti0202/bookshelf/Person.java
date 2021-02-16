@@ -29,7 +29,8 @@ public class Person {
         try{
         if (book == null || book.getPrice() > personMoney || book.getOwner() != null) {
             return false;
-        } else {
+        }
+        else {
             personBooks.add(book);
             book.setBookOwner(this);
             setPersonMoney(getMoney()- book.getPrice());
