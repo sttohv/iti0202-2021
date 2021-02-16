@@ -14,7 +14,7 @@ public class Book {
     private int bookId;
     private static List<Book> allBooks = new ArrayList<>();
     private static List<Book> allOfBooks = new ArrayList<>();
-//    private static HashMap<List<String>, Book> ofBooksMap = new HashMap<>();
+    private static HashMap<List<String>, Book> ofBooksMap = new HashMap<>();
 
     public static int getAndIncrementNextId() {
         idCount++;
@@ -91,45 +91,54 @@ public class Book {
 
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book book = new Book(title, author, yearOfPublishing, price);
-        if (allOfBooks.isEmpty()) {
+//        if (allOfBooks.isEmpty()) {
+//            allOfBooks.add(book);
+//            return book;
+//        } else {
+//            for (Book listBook : allOfBooks
+//            ) {
+//                if(listBook.getTitle().equals(title) && listBook.getAuthor().equals(author) && listBook.getYearOfPublishing()==yearOfPublishing){
+//                    return listBook;
+//                }
+//
+//            }
+//            allOfBooks.add(book);
+//            return book;
+//        }
+
+
+        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
+        withoutPrice.add(title);
+        withoutPrice.add(author);
+        withoutPrice.add(Integer.toString(yearOfPublishing));
+
+        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet()); //võtab kõik staatilise mapi keyd list(list listidest)
+
+        if (!mapKeys.contains(withoutPrice)) {
+            ofBooksMap.put(withoutPrice, book);
             allOfBooks.add(book);
             return book;
         } else {
-            for (Book listBook : allOfBooks
-            ) {
-                if(listBook.getTitle().equals(title) && listBook.getAuthor().equals(author) && listBook.getYearOfPublishing()==yearOfPublishing){
-                    return listBook;
-                }
-
-            }
-            allOfBooks.add(book);
-            return book;
+            allOfBooks.add(ofBooksMap.get(withoutPrice));
+            return ofBooksMap.get(withoutPrice);
         }
-
-
-//        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
-//        withoutPrice.add(title);
-//        withoutPrice.add(author);
-//        withoutPrice.add(Integer.toString(yearOfPublishing));
-//
-//        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet()); //võtab kõik staatilise mapi keyd list(list listidest)
-//
-//        if (!mapKeys.contains(withoutPrice)) {
-//            List<Book> bookList = new ArrayList<>();
-//            bookList.add(book);
-//            ofBooksMap.put(withoutPrice, book);
-//            return book;
-//        } else {
-//            return ofBooksMap.get(withoutPrice);
-//        }
 
     }
 
-//    public static Book of(String title, int price) {
-//        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet());
-//
-//        if()
-//    }
+    public static Book of(String title, int price) {
+//        if(!allOfBooks.isEmpty() || allOfBooks.get(allBooks.size()-1).getTitle().equals(title)){
+        for (Book book : allOfBooks
+        ) {
+            if (book.getTitle().equals(title) && book.getPrice() == price) {
+                Book newBook = new Book(title, book.bookAuthor, book.getYearOfPublishing(), price);
+                allOfBooks.add(newBook);
+                return newBook;
+//            }
+            }
+        }return null;
+
+
+    }
 //    public static List<Book> getBooksByOwner(Person owner){}
 //    public static boolean removeBook(Book book){}
 //    public static List<Book> getBooksByAuthor(String author)
