@@ -93,4 +93,7 @@ public class Person {
     public void setPersonBooks(Book book) {
         this.personBooks.add(book);
     }
+    public List<Book> getBooks(){
+        return new ArrayList<>();
+    }
 }
