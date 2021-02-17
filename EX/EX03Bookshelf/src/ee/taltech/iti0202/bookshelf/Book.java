@@ -168,20 +168,20 @@ public class Book {
             ) {
                 if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
                         && listBook.getYearOfPublishing() == yearOfPublishing && listBook.getPrice() == price) {
-                    lastBook=listBook;
+                    lastBook = listBook;
                     return listBook;
                 }
                 if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
                         && listBook.getYearOfPublishing() == yearOfPublishing) {
                     allOfBooks.add(listBook);
-                    lastBook=listBook;
+                    lastBook = listBook;
                     return listBook;
                 }
 
             }
         }
         allOfBooks.add(book);
-        lastBook=book;
+        lastBook = book;
         return book;
     }
 
@@ -213,7 +213,7 @@ public class Book {
      * @return dfv
      */
     public static Book of(String title, int price) {
-        if (allOfBooks.size() > 0) {
+        if (lastBook != null) {
             Book newBook = new Book(title, lastBook.getAuthor(), lastBook.getYearOfPublishing(), price);
             allOfBooks.add(newBook);
             return newBook;
@@ -268,6 +268,11 @@ public class Book {
         return result;
     }
 
+    /**
+     * jfi
+     *
+     * @return dsfhfs
+     */
     public static List<Book> getAllOfBooks() {
         return allOfBooks;
     }
