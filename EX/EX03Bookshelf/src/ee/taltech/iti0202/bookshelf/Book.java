@@ -201,19 +201,17 @@ public class Book {
      * @return dfv
      */
     public static Book of(String title, int price) {
-//        if(!allOfBooks.isEmpty() || allOfBooks.get(allBooks.size()-1).getTitle().equals(title)){
-        for (Book book : allOfBooks
-        ) {
-            if (book.getTitle().equals(title) && book.getPrice() == price) {
-                Book newBook = new Book(title, book.bookAuthor, book.getYearOfPublishing(), price);
-                allOfBooks.add(newBook);
-                return newBook;
-//            }
+        if (!allOfBooks.isEmpty()) {
+            for (Book book : allOfBooks
+            ) {
+                if (book.getTitle().equals(title) && book.getPrice() == price) {
+                    Book newBook = new Book(title, book.bookAuthor, book.getYearOfPublishing(), price);
+                    allOfBooks.add(newBook);
+                    return newBook;
+                }
             }
         }
         return null;
-
-
     }
 
     /**
@@ -223,7 +221,7 @@ public class Book {
      * @return dfvdf
      */
     public static List<Book> getBooksByOwner(Person owner) {
-        return new ArrayList<>();
+        return owner.getBooks();
     }
 
     /**

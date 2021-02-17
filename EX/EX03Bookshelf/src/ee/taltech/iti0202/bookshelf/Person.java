@@ -107,6 +107,6 @@ public class Person {
      * @return lgblgkrj
      */
     public List<Book> getBooks() {
-        return new ArrayList<>();
+        return personBooks;
     }
 }
