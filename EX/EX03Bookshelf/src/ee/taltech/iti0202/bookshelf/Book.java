@@ -18,6 +18,7 @@ public class Book {
     private int bookId;
     private static List<Book> allBooks = new ArrayList<>();
     private static List<Book> allOfBooks = new ArrayList<>();
+    private static Book lastBook;
     private static HashMap<List<String>, Book> ofBooksMap = new HashMap<>();
 
     /**
@@ -167,17 +168,20 @@ public class Book {
             ) {
                 if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
                         && listBook.getYearOfPublishing() == yearOfPublishing && listBook.getPrice() == price) {
+                    lastBook=listBook;
                     return listBook;
                 }
                 if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
                         && listBook.getYearOfPublishing() == yearOfPublishing) {
                     allOfBooks.add(listBook);
+                    lastBook=listBook;
                     return listBook;
                 }
 
             }
         }
         allOfBooks.add(book);
+        lastBook=book;
         return book;
     }
 
@@ -210,8 +214,7 @@ public class Book {
      */
     public static Book of(String title, int price) {
         if (allOfBooks.size() > 0) {
-            Book a = allOfBooks.get(allOfBooks.size() - 1);
-            Book newBook = new Book(title, a.getAuthor(), a.getYearOfPublishing(), price);
+            Book newBook = new Book(title, lastBook.getAuthor(), lastBook.getYearOfPublishing(), price);
             allOfBooks.add(newBook);
             return newBook;
         }
