@@ -3,6 +3,7 @@ package ee.taltech.iti0202.bookshelf;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Constructor
@@ -61,7 +62,11 @@ public class Book {
      * @return jfdc
      */
     public String getAuthor() {
-        return bookAuthor;
+        try{
+        return bookAuthor;}
+        catch (Exception e){
+            return "";
+        }
     }
 
     /**
@@ -157,41 +162,40 @@ public class Book {
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book book = new Book(title, author, yearOfPublishing, price);
-//        if (allOfBooks.isEmpty()) {
+        if (allOfBooks.size()>0) {
+            for (Book listBook : allOfBooks
+            ) {
+                if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
+                        && listBook.getYearOfPublishing() == yearOfPublishing) {
+                    allOfBooks.add(listBook);
+                    return listBook;
+                }
+
+            }
+        }
+        allOfBooks.add(book);
+        return book;
+    }
+
+
+//        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
+//        withoutPrice.add(title);
+//        withoutPrice.add(author);
+//        withoutPrice.add(Integer.toString(yearOfPublishing));
+//
+//        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet());
+//        //võtab kõik staatilise mapi keyd list(list listidest)
+//
+//        if (!mapKeys.contains(withoutPrice)) {
+//            ofBooksMap.put(withoutPrice, book);
 //            allOfBooks.add(book);
 //            return book;
 //        } else {
-//            for (Book listBook : allOfBooks
-//            ) {
-//                if(listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
-//                && listBook.getYearOfPublishing()==yearOfPublishing){
-//                    return listBook;
-//                }
-//
-//            }
-//            allOfBooks.add(book);
-//            return book;
+//            allOfBooks.add(ofBooksMap.get(withoutPrice));
+//            return ofBooksMap.get(withoutPrice);
 //        }
 
-
-        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
-        withoutPrice.add(title);
-        withoutPrice.add(author);
-        withoutPrice.add(Integer.toString(yearOfPublishing));
-
-        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet());
-        //võtab kõik staatilise mapi keyd list(list listidest)
-
-        if (!mapKeys.contains(withoutPrice)) {
-            ofBooksMap.put(withoutPrice, book);
-            allOfBooks.add(book);
-            return book;
-        } else {
-            allOfBooks.add(ofBooksMap.get(withoutPrice));
-            return ofBooksMap.get(withoutPrice);
-        }
-
-    }
+//    }
 
     /**
      * dmfv
@@ -201,15 +205,11 @@ public class Book {
      * @return dfv
      */
     public static Book of(String title, int price) {
-        if (!allOfBooks.isEmpty()) {
-            for (Book book : allOfBooks
-            ) {
-                if (book.getTitle().equals(title) && book.getPrice() == price) {
-                    Book newBook = new Book(title, book.bookAuthor, book.getYearOfPublishing(), price);
-                    allOfBooks.add(newBook);
-                    return newBook;
-                }
-            }
+        if (allOfBooks.size()>0) {
+            Book a = allOfBooks.get(allOfBooks.size()-1);
+            Book newBook = new Book(title, a.getAuthor(),a.getYearOfPublishing(), price);
+            allOfBooks.add(newBook);
+            return newBook;
         }
         return null;
     }
@@ -248,7 +248,14 @@ public class Book {
      * @return jdfv
      */
     public static List<Book> getBooksByAuthor(String author) {
-        return new ArrayList<>();
+        List<Book> result = new ArrayList<>();
+        for (Book book:allOfBooks
+             ) {
+            if(book.bookAuthor.toLowerCase(Locale.ROOT).equals(author.toLowerCase(Locale.ROOT))){
+                result.add(book);
+            }
+        }
+        return result;
     }
 
 }
