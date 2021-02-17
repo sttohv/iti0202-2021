@@ -265,4 +265,7 @@ public class Book {
         return result;
     }
 
+    public static List<Book> getAllOfBooks() {
+        return allOfBooks;
+    }
 }
