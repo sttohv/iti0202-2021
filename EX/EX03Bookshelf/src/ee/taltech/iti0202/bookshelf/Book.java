@@ -62,9 +62,9 @@ public class Book {
      * @return jfdc
      */
     public String getAuthor() {
-        try{
-        return bookAuthor;}
-        catch (Exception e){
+        try {
+            return bookAuthor;
+        } catch (Exception e) {
             return "";
         }
     }
@@ -162,7 +162,7 @@ public class Book {
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book book = new Book(title, author, yearOfPublishing, price);
-        if (allOfBooks.size()>0) {
+        if (allOfBooks.size() > 0) {
             for (Book listBook : allOfBooks
             ) {
                 if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
@@ -205,9 +205,9 @@ public class Book {
      * @return dfv
      */
     public static Book of(String title, int price) {
-        if (allOfBooks.size()>0) {
-            Book a = allOfBooks.get(allOfBooks.size()-1);
-            Book newBook = new Book(title, a.getAuthor(),a.getYearOfPublishing(), price);
+        if (allOfBooks.size() > 0) {
+            Book a = allOfBooks.get(allOfBooks.size() - 1);
+            Book newBook = new Book(title, a.getAuthor(), a.getYearOfPublishing(), price);
             allOfBooks.add(newBook);
             return newBook;
         }
@@ -231,9 +231,12 @@ public class Book {
      * @return jdvd
      */
     public static boolean removeBook(Book book) {
-        if(book!=null && allOfBooks.contains(book)){
-            if(book.bookOwner!=null){
-                book.bookOwner.setPersonMoney(book.bookOwner.getMoney()+ book.bookPrice);
+        if (book != null && allOfBooks.contains(book)) {
+            if (book.bookOwner != null) {
+                book.bookOwner.setPersonMoney(book.bookOwner.getMoney() + book.bookPrice);
+                book.bookOwner.removePersonBooks(book);
+                book.setBookOwner(null);
+
             }
             allOfBooks.remove(book);
             return true;
@@ -249,9 +252,9 @@ public class Book {
      */
     public static List<Book> getBooksByAuthor(String author) {
         List<Book> result = new ArrayList<>();
-        for (Book book:allOfBooks
-             ) {
-            if(book.bookAuthor.toLowerCase(Locale.ROOT).equals(author.toLowerCase(Locale.ROOT))){
+        for (Book book : allOfBooks
+        ) {
+            if (book.bookAuthor.toLowerCase(Locale.ROOT).equals(author.toLowerCase(Locale.ROOT))) {
                 result.add(book);
             }
         }

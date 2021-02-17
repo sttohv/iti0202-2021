@@ -102,6 +102,16 @@ public class Person {
     }
 
     /**
+     * jfc
+     * @param book dfjvfd
+     */
+    public void removePersonBooks(Book book) {
+        if (personBooks.contains(book)) {
+            personBooks.remove(book);
+        }
+    }
+
+    /**
      * itg
      *
      * @return lgblgkrj

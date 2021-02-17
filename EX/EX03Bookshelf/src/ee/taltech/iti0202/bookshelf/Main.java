@@ -8,6 +8,7 @@ import java.util.List;
 public class Main {
     /**
      * efcnvjn
+     *
      * @param args jdnfvj
      */
     public static void main(String[] args) {
@@ -54,9 +55,9 @@ public class Main {
         Book b0 = Book.of("Java EX00", 1);
         System.out.println(b0); // null
         Book b1 = Book.of("Java EX01", "Ago Luberg", 2018, 3);
-        Book b2 = Book.of("Java EX02",4);
+        Book b2 = Book.of("Java EX02", 4);
         System.out.println(b2.getAuthor()); // Ago Luberg
-        Book b3 = Book.of("Java EX03",7);
+        Book b3 = Book.of("Java EX03", 7);
         Book b4 = Book.of("Java EX01", 11);
         System.out.println(b1 == b4); // true
         Book harry1 = Book.of("Harry Potter: The Philosopher's Stone", "J. K. rowling", 1997, 1000);
@@ -78,6 +79,11 @@ public class Main {
 
         Book.removeBook(b1);
         personBooks = Book.getBooksByOwner(bonusPerson);
+        for (Book book : personBooks
+        ) {
+            System.out.println(book.getTitle());
+
+        }
         System.out.println(personBooks.size()); // 1
         System.out.println(personBooks.contains(b1)); // false
         System.out.println(bonusPerson.getMoney()); // 9000
