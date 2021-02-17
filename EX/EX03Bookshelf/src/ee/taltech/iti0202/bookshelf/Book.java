@@ -166,6 +166,10 @@ public class Book {
             for (Book listBook : allOfBooks
             ) {
                 if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
+                        && listBook.getYearOfPublishing() == yearOfPublishing && listBook.getPrice() == price) {
+                    return listBook;
+                }
+                if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
                         && listBook.getYearOfPublishing() == yearOfPublishing) {
                     allOfBooks.add(listBook);
                     return listBook;
