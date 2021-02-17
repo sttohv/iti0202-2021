@@ -6,17 +6,33 @@ import java.util.List;
  * ekjfckje
  */
 public class Main {
+
+    public static final int YEAR_OF_PUBLISHING = 1926;
+    public static final int PRICE = 100;
+    public static final int YEAR_OF_PUBLISHING1 = 1976;
+    public static final int PRICE1 = 200;
+    public static final int MATIMONEY = 200;
+    public static final int KATIMONEY = 300;
+    public static final int JAVA03EXPRICE = 7;
+    public static final int JAVAEX01PRICE = 11;
+    public static final int YEAR_OF_PUBLISHING2 = 2018;
+    public static final int YEAR_OF_PUBLISHING3 = 1997;
+    public static final int YEAR_OF_PUBLISHING4 = 1998;
+    public static final int PRICE3 = 1000;
+    public static final int PRICE2 = 1000;
+    public static final int MONEY = 10000;
+
     /**
      * efcnvjn
      *
      * @param args jdnfvj
      */
     public static void main(String[] args) {
-        Book tammsaare = new Book("Truth and Justice", "Tammsaare", 1926, 100);
-        Book meri = new Book("Silverwhite", "Meri", 1976, 200);
+        Book tammsaare = new Book("Truth and Justice", "Tammsaare", YEAR_OF_PUBLISHING, PRICE);
+        Book meri = new Book("Silverwhite", "Meri", YEAR_OF_PUBLISHING1, PRICE1);
 
-        Person mati = new Person("Mati", 200);
-        Person kati = new Person("Kati", 300);
+        Person mati = new Person("Mati", MATIMONEY);
+        Person kati = new Person("Kati", KATIMONEY);
 
         System.out.println(mati.buyBook(tammsaare)); // true
         System.out.println(mati.getMoney());  // 100
@@ -54,20 +70,22 @@ public class Main {
         // second part
         Book b0 = Book.of("Java EX00", 1);
         System.out.println(b0); // null
-        Book b1 = Book.of("Java EX01", "Ago Luberg", 2018, 3);
+        Book b1 = Book.of("Java EX01", "Ago Luberg", YEAR_OF_PUBLISHING2, 3);
         Book b2 = Book.of("Java EX02", 4);
         System.out.println(b2.getAuthor()); // Ago Luberg
-        Book b3 = Book.of("Java EX03", 7);
-        Book b4 = Book.of("Java EX01", 11);
+        Book b3 = Book.of("Java EX03", JAVA03EXPRICE);
+        Book b4 = Book.of("Java EX01", JAVAEX01PRICE);
         System.out.println(b1 == b4); // true
-        Book harry1 = Book.of("Harry Potter: The Philosopher's Stone", "J. K. rowling", 1997, 1000);
-        Book harry2 = Book.of("Harry Potter: The Chamber of Secrets", "J. K. Rowling", 1998, 1000);
+        Book harry1 = Book.of("Harry Potter: The Philosopher's Stone", "J. K. rowling",
+                YEAR_OF_PUBLISHING3, PRICE2);
+        Book harry2 = Book.of("Harry Potter: The Chamber of Secrets", "J. K. Rowling",
+                YEAR_OF_PUBLISHING4, PRICE3);
         List<Book> rowlingBooks = Book.getBooksByAuthor("j. k. rowling");
         System.out.println(rowlingBooks.size()); // 2
         System.out.println(rowlingBooks.get(0).getTitle()); // Harry Potter: The Philosopher's Stone
         System.out.println(rowlingBooks.get(1).getAuthor()); // J. K. Rowling
 
-        Person bonusPerson = new Person("Joonas Boonus", 10000);
+        Person bonusPerson = new Person("Joonas Boonus", MONEY);
         b1.buy(bonusPerson);
         bonusPerson.buyBook(harry1);
 
