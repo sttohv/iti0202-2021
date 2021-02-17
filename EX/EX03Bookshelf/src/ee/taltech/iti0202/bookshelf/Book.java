@@ -157,39 +157,39 @@ public class Book {
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book book = new Book(title, author, yearOfPublishing, price);
-        if (allOfBooks.isEmpty()) {
-            allOfBooks.add(book);
-            return book;
-        } else {
-            for (Book listBook : allOfBooks
-            ) {
-                if(listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
-                && listBook.getYearOfPublishing()==yearOfPublishing){
-                    return listBook;
-                }
-
-            }
-            allOfBooks.add(book);
-            return book;
-        }
-
-
-//        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
-//        withoutPrice.add(title);
-//        withoutPrice.add(author);
-//        withoutPrice.add(Integer.toString(yearOfPublishing));
-//
-//        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet());
-//        //võtab kõik staatilise mapi keyd list(list listidest)
-//
-//        if (!mapKeys.contains(withoutPrice)) {
-//            ofBooksMap.put(withoutPrice, book);
+//        if (allOfBooks.isEmpty()) {
 //            allOfBooks.add(book);
 //            return book;
 //        } else {
-//            allOfBooks.add(ofBooksMap.get(withoutPrice));
-//            return ofBooksMap.get(withoutPrice);
+//            for (Book listBook : allOfBooks
+//            ) {
+//                if(listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
+//                && listBook.getYearOfPublishing()==yearOfPublishing){
+//                    return listBook;
+//                }
+//
+//            }
+//            allOfBooks.add(book);
+//            return book;
 //        }
+
+
+        List<String> withoutPrice = new ArrayList<>(); //list raamatu elementidest ilma hinnata
+        withoutPrice.add(title);
+        withoutPrice.add(author);
+        withoutPrice.add(Integer.toString(yearOfPublishing));
+
+        List<List<String>> mapKeys = new ArrayList<>(ofBooksMap.keySet());
+        //võtab kõik staatilise mapi keyd list(list listidest)
+
+        if (!mapKeys.contains(withoutPrice)) {
+            ofBooksMap.put(withoutPrice, book);
+            allOfBooks.add(book);
+            return book;
+        } else {
+            allOfBooks.add(ofBooksMap.get(withoutPrice));
+            return ofBooksMap.get(withoutPrice);
+        }
 
     }
 
@@ -231,6 +231,13 @@ public class Book {
      * @return jdvd
      */
     public static boolean removeBook(Book book) {
+        if(book!=null && allOfBooks.contains(book)){
+            if(book.bookOwner!=null){
+                book.bookOwner.setPersonMoney(book.bookOwner.getMoney()+ book.bookPrice);
+            }
+            allOfBooks.remove(book);
+            return true;
+        }
         return false;
     }
 
