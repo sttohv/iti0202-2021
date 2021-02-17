@@ -168,7 +168,6 @@ public class Book {
             ) {
                 if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
                         && listBook.getYearOfPublishing() == yearOfPublishing && listBook.getPrice() == price) {
-                    lastBook = listBook;
                     return listBook;
                 }
                 if (listBook.getTitle().equals(title) && listBook.getAuthor().equals(author)
@@ -216,6 +215,7 @@ public class Book {
         if (lastBook != null) {
             Book newBook = new Book(title, lastBook.getAuthor(), lastBook.getYearOfPublishing(), price);
             allOfBooks.add(newBook);
+            lastBook = newBook;
             return newBook;
         }
         return null;
