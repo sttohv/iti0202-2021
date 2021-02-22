@@ -19,11 +19,7 @@ public class Product {
      */
     public Product(String name, int price) throws StockException {
         if (price <= 0) {
-            try {
-                throw new StockException(StockException.Reason.NEGATIVE_PRICE);
-            } catch (StockException ex) {
-                System.out.println(ex.getReason());
-            }
+            throw new StockException(StockException.Reason.NEGATIVE_PRICE);
         } else {
             productName = name;
             productPrice = price;
