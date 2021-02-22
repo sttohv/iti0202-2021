@@ -43,7 +43,7 @@ public class StockDemo {
         }
 
         Optional<Product> removedMango = fruitStock.removeProduct("mango"); // Optional.of(mango)
-        removedMango.ifPresent(System.out::println);
+        removedMango.ifPresent(x -> System.out.println(x.getName()));
 
         System.out.println(fruitStock.removeProduct("apple")); // Optional[cheapApple]
         System.out.println(fruitStock.removeProduct("apple").get()); // Optional[]

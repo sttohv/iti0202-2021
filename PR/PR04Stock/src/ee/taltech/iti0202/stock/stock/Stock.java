@@ -63,7 +63,16 @@ public class Stock {
                 System.out.println(ex.getReason());
             }
         } else {
-            stockProducts.add(product);
+            if(product.getPrice()>=0){
+            stockProducts.add(product);}
+            else{
+                try {
+                    throw new StockException(StockException.Reason.NEGATIVE_PRICE);
+                }
+                catch (StockException ex){
+                    System.out.println(ex.getReason());
+                }
+            }
         }
     }
 
