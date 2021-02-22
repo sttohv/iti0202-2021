@@ -120,7 +120,6 @@ public class Stock {
             stockProducts.remove(namedProduct);
             return Optional.of(namedProduct);
         }
-
         return Optional.empty();
     }
 
@@ -145,6 +144,7 @@ public class Stock {
         return stockProducts
                 .stream()
                 .filter(s -> s.getName().equals(name))
+                .sorted(Comparator.comparing(Product::getPrice))
                 .sorted(Comparator.comparing(Product::getId))
                 .collect(Collectors.toList());
     }
