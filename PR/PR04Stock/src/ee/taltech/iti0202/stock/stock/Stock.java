@@ -144,8 +144,8 @@ public class Stock {
         return stockProducts
                 .stream()
                 .filter(s -> s.getName().equals(name))
-                .sorted(Comparator.comparing(Product::getPrice))
                 .sorted(Comparator.comparing(Product::getId))
+                .sorted(Comparator.comparing(Product::getPrice))
                 .collect(Collectors.toList());
     }
 
