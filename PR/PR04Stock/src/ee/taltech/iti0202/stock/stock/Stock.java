@@ -95,7 +95,7 @@ public class Stock {
         } else if (sameNameProducts.size() == 1) {
             return Optional.of(sameNameProducts.get(0));
         } else {
-            Product lowestPriceProduct = Collections.min(sameNameProducts, Comparator.comparing(Product::getPrice));
+            Product lowestPriceProduct = Collections.min(sameNameProducts, Comparator.comparing(Product::getId));
             return Optional.of(lowestPriceProduct);
         }
 
