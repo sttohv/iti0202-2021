@@ -56,14 +56,14 @@ public class Stock {
             } catch (StockException ex) {
                 System.out.println(ex.getReason());
             }
-        } else if (stockProducts.size() == stockMaxCapacity) {
+        } else if (isFull()) {
             try {
                 throw new StockException(StockException.Reason.STOCK_IS_FULL);
             } catch (StockException ex) {
                 System.out.println(ex.getReason());
             }
         } else {
-            if(product.getPrice()>=0){
+            if(product.getPrice()>0){
             stockProducts.add(product);}
             else{
                 try {
@@ -95,7 +95,7 @@ public class Stock {
         } else if (sameNameProducts.size() == 1) {
             return Optional.of(sameNameProducts.get(0));
         } else {
-            Product lowestPriceProduct = Collections.min(sameNameProducts, Comparator.comparing(s -> s.getPrice()));
+            Product lowestPriceProduct = Collections.min(sameNameProducts, Comparator.comparing(Product::getPrice));
             return Optional.of(lowestPriceProduct);
         }
 
