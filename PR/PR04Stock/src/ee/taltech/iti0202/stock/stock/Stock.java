@@ -51,27 +51,20 @@ public class Stock {
 
     public void addProduct(Product product) throws StockException {
         if (stockProducts.contains(product)) {
-            try {
-                throw new StockException(StockException.Reason.STOCK_ALREADY_CONTAINS_PRODUCT);
-            } catch (StockException ex) {
-                System.out.println(ex.getReason());
-            }
+
+            throw new StockException(StockException.Reason.STOCK_ALREADY_CONTAINS_PRODUCT);
+
         } else if (isFull()) {
-            try {
-                throw new StockException(StockException.Reason.STOCK_IS_FULL);
-            } catch (StockException ex) {
-                System.out.println(ex.getReason());
-            }
+
+            throw new StockException(StockException.Reason.STOCK_IS_FULL);
+
         } else {
-            if(product.getPrice()>0){
-            stockProducts.add(product);}
-            else{
-                try {
-                    throw new StockException(StockException.Reason.NEGATIVE_PRICE);
-                }
-                catch (StockException ex){
-                    System.out.println(ex.getReason());
-                }
+            if (product.getPrice() > 0) {
+                stockProducts.add(product);
+            } else {
+
+                throw new StockException(StockException.Reason.NEGATIVE_PRICE);
+
             }
         }
     }
