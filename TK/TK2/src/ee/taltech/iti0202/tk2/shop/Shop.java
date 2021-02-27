@@ -6,13 +6,25 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * sdcjn
+ */
 public class Shop {
     private List<Product> allProducts;
 
+    /**
+     * sdcj
+     */
     public Shop() {
         allProducts = new ArrayList<>();
     }
 
+    /**
+     * jc
+     *
+     * @param product c
+     * @return dj
+     */
     public boolean addProduct(Product product) {
         if (product.getPrice() > 0 && !allProducts.contains(product)) {
             allProducts.add(product);
@@ -21,6 +33,13 @@ public class Shop {
         return false;
     }
 
+    /**
+     * scnjn
+     *
+     * @param name     djf
+     * @param maxPrice kjdf
+     * @return jdf
+     */
     public Optional<Product> sellProduct(String name, int maxPrice) {
         List<Product> productsUnderMaxPrice = allProducts
                 .stream()
@@ -33,6 +52,11 @@ public class Shop {
         }
     }
 
+    /**
+     * sdcnj
+     *
+     * @return ijdf
+     */
     public List<Product> getProducts() {
         return allProducts;
     }
