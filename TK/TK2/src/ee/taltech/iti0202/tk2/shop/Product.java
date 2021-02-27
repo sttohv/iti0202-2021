@@ -53,7 +53,7 @@ public class Product {
      */
     @Override
     public String toString() {
-        if (this == null && productName.equals(null)) {
+        if (this == null || productName.equals(null)) {
             return "(" + productPrice + ")";
         } else {
             return productName + " (" + productPrice + ")";
