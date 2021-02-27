@@ -15,10 +15,8 @@ public class Product {
      * @param price dfj jf
      */
     public Product(String name, int price) {
-        if (!name.equals("")) {
-            productName = name;
-            productPrice = price;
-        }
+        productName = name;
+        productPrice = price;
     }
 
     /**

@@ -43,7 +43,7 @@ public class Shop {
     public Optional<Product> sellProduct(String name, int maxPrice) {
         List<Product> productsUnderMaxPrice = allProducts
                 .stream()
-                .filter(n -> n.getPrice() < maxPrice && n.getName().equals(name))
+                .filter(n -> n.getPrice() <= maxPrice && n.getName().equals(name))
                 .sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
         if (productsUnderMaxPrice.isEmpty()) {
             return Optional.empty();
