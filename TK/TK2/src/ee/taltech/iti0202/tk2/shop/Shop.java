@@ -26,7 +26,7 @@ public class Shop {
      * @return dj
      */
     public boolean addProduct(Product product) {
-        if (product.getPrice() > 0 && !allProducts.contains(product)) {
+        if (product.getPrice() >= 0 && !allProducts.contains(product)) {
             allProducts.add(product);
             return true;
         }
