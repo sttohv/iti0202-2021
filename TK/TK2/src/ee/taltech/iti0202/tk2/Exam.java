@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.tk2;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Exam {
 
@@ -19,7 +16,18 @@ public class Exam {
      * sum67([1, 1, 6, 7, 2]) => 4
      */
     public static int sum67(List<Integer> numbers) {
-        return -1;
+        int result = 0;
+        boolean sixChecker = false;
+        for (int num : numbers) {
+            if (num == 6) {
+                sixChecker = true;
+            } else if (num == 7) {
+                sixChecker = false;
+            } else if (!sixChecker) {
+                result += num;
+            }
+        }
+        return result;
     }
 
     /**
@@ -58,9 +66,23 @@ public class Exam {
      * oneTwo("abcd") => "bca"
      * oneTwo("a") => ""
      */
+
     public static String oneTwo(String str) {
-        return null;
+        String resultString = "";
+        List<String> almostResult = new ArrayList<>();
+        for (int i = 0; i < str.length(); i += 3) {
+            if (i + 3 > str.length()) {
+                break;
+            }
+            almostResult.add(str.substring(i, i + 3));
+        }
+        for (String xd : almostResult) {
+            xd = xd.substring(1) + xd.charAt(0);
+            resultString += xd;
+        }
+        return resultString;
     }
+
 
     /**
      * Modify and return the given map as follows:
@@ -73,10 +95,9 @@ public class Exam {
      */
     public static Map<String, String> mapAXorB(Map<String, String> map) {
         Set<String> keys = map.keySet();
-        if(keys.contains("a")&& !keys.contains("b")){
+        if (keys.contains("a") && !keys.contains("b")) {
             map.put("b", map.get("a"));
-        }
-        else if(keys.contains("b")&&!keys.contains("a")){
+        } else if (keys.contains("b") && !keys.contains("a")) {
             map.put("a", map.get("b"));
         }
         return map;
