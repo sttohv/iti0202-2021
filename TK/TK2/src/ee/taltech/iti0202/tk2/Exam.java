@@ -73,12 +73,18 @@ public class Exam {
      */
     public static Map<String, String> mapAXorB(Map<String, String> map) {
         Set<String> keys = map.keySet();
-        if (keys.contains("a") && keys.contains("b") || !(keys.contains("a") && keys.contains("b"))) {
-            return map;
-        } else {
-            map.putIfAbsent("a", map.get("b"));
-            map.putIfAbsent("b", map.get("c"));
+        if(keys.contains("a")&& !keys.contains("b")){
+            map.put("b", map.get("a"));
+        }
+        else if(keys.contains("b")&&!keys.contains("a")){
+            map.put("a", map.get("b"));
         }
         return map;
+//        if (keys.contains("a") && keys.contains("b") || !(keys.contains("a") && keys.contains("b"))) {
+//            return map;
+//        } else {
+//            map.putIfAbsent("a", map.get("b"));
+//            map.putIfAbsent("b", map.get("c"));
+//        }
     }
 }
