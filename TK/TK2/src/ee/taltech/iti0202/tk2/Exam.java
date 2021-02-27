@@ -21,10 +21,10 @@ public class Exam {
         for (int num : numbers) {
             if (num == 6) {
                 sixChecker = true;
-            } else if (num == 7) {
-                sixChecker = false;
             } else if (!sixChecker) {
                 result += num;
+            } else if (num == 7) {
+                sixChecker = false;
             }
         }
         return result;
