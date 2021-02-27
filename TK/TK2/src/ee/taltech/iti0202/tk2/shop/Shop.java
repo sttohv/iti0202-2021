@@ -48,7 +48,9 @@ public class Shop {
         if (productsUnderMaxPrice.isEmpty()) {
             return Optional.empty();
         } else {
-            return Optional.of(productsUnderMaxPrice.get(productsUnderMaxPrice.size() - 1));
+            Product product = productsUnderMaxPrice.get(productsUnderMaxPrice.size() - 1);
+            allProducts.remove(product);
+            return Optional.of(product);
         }
     }
 
