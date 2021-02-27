@@ -16,11 +16,11 @@ public class Product {
         productPrice = price;
     }
 
-    public int getProductPrice() {
+    public int getPrice() {
         return productPrice;
     }
 
-    public String getProductName() {
+    public String getName() {
         return productName;
     }
     @Override

@@ -14,7 +14,7 @@ public class Shop {
     }
 
     public boolean addProduct(Product product) {
-        if (product.getProductPrice() > 0 && !allProducts.contains(product)) {
+        if (product.getPrice() > 0 && !allProducts.contains(product)) {
             allProducts.add(product);
             return true;
         }
@@ -24,8 +24,8 @@ public class Shop {
     public Optional<Product> sellProduct(String name, int maxPrice) {
         List<Product> productsUnderMaxPrice = allProducts
                 .stream()
-                .filter(n -> n.getProductPrice() < maxPrice && n.getProductName().equals(name))
-                .sorted(Comparator.comparing(Product::getProductPrice)).collect(Collectors.toList());
+                .filter(n -> n.getPrice() < maxPrice && n.getName().equals(name))
+                .sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
         if (productsUnderMaxPrice.isEmpty()) {
             return Optional.empty();
         } else {
