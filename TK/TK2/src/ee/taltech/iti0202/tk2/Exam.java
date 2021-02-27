@@ -1,7 +1,9 @@
 package ee.taltech.iti0202.tk2;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Exam {
 
@@ -70,6 +72,13 @@ public class Exam {
      * mapAXorB({"a": "aaa", "b": "bbb", "c": "cake"}) => {"a": "aaa", "b": "bbb", "c": "cake"}
      */
     public static Map<String, String> mapAXorB(Map<String, String> map) {
-        return null;
+        Set<String> keys = map.keySet();
+        if (keys.contains("a") && keys.contains("b") || !(keys.contains("a") && keys.contains("b"))) {
+            return map;
+        } else {
+            map.putIfAbsent("a", map.get("b"));
+            map.putIfAbsent("b", map.get("c"));
+        }
+        return map;
     }
 }
