@@ -16,7 +16,7 @@ public class MagicOven extends Oven implements Fixable {
     public MagicOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
         untilBroken = TIMES_BEFORE_BROKEN;
-        fixCount = 1;
+        fixCount = 0;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class MagicOven extends Oven implements Fixable {
             CreatedOrbsAmount++; //1
             Storage.takeResource("gold", 1);
             Storage.takeResource("dust", dustAmount);
-            if (CreatedOrbsAmount == 1|| CreatedOrbsAmount % 2 == 1) {
+            if (CreatedOrbsAmount == 1 || CreatedOrbsAmount % 2 == 1) {
                 Orb justOrb = new Orb(Name);
                 justOrb.charge("gold", 1);
                 justOrb.charge("dust", dustAmount);
@@ -46,9 +46,9 @@ public class MagicOven extends Oven implements Fixable {
 
     @Override
     public void fix() throws CannotFixException {
-        int clayNeeded = 25 * fixCount;
-        int frPowderNeeded = 100 * fixCount;
-        if (isBroken() && fixCount <= 10 && Storage.hasEnoughResource("clay", clayNeeded)
+        int clayNeeded = 25 * (fixCount + 1);
+        int frPowderNeeded = 100 * (fixCount + 1);
+        if (isBroken() && fixCount < 10 && Storage.hasEnoughResource("clay", clayNeeded)
                 && Storage.hasEnoughResource("freezing powder", frPowderNeeded)) {
             untilBroken += TIMES_BEFORE_BROKEN;
             //Annab kasutuskordi juurde ühe terve tsükli võrra, magicOvenil on see 5 enne katki minemist
@@ -58,11 +58,9 @@ public class MagicOven extends Oven implements Fixable {
         } else {
             if (!isBroken()) {
                 throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
-            }
-            else if(fixCount == 11){
+            } else if (fixCount == 10) {
                 throw new CannotFixException(this, CannotFixException.Reason.FIXED_MAXIMUM_TIMES);
-            }
-            else{
+            } else {
                 throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
             }
         }

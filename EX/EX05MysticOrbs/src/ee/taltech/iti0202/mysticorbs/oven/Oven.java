@@ -15,6 +15,7 @@ public class Oven implements Comparable<Oven>, Fixable{
     public Oven(String name, ResourceStorage resourceStorage) {
         Name = name;
         Storage = resourceStorage;
+        CreatedOrbsAmount = 0;
     }
 
     public String getName() {
@@ -57,12 +58,14 @@ public class Oven implements Comparable<Oven>, Fixable{
             String className1 = this.getClass().getSimpleName();
             String className2 = o.getClass().getSimpleName();
 
-            boolean areBothMagic = className1.equals("MagicOven") && className2.equals("InfinityMagicOven")
-                    || className2.equals("MagicOven") && className1.equals("InfinityMagicOven")
-                    || className1.equals("MagicOven") && className1.equals(className2)
-                    || className1.equals("InfinityMagicOven") && className1.equals(className2);
+//            boolean areBothMagic = className1.equals("MagicOven") && className2.equals("InfinityMagicOven")
+//                    || className2.equals("MagicOven") && className1.equals("InfinityMagicOven")
+//                    || className1.equals("MagicOven") && className1.equals(className2)
+//                    || className1.equals("InfinityMagicOven") && className1.equals(className2);
+
+            boolean areBothMagic = className1.contains("Magic") && className2.contains("Magic");
             if (!className1.equals(className2) && !(areBothMagic)) {
-                //nimed pole võrdsed ega kumbki pole magic
+                //nimed pole võrdsed ja kumbki pole magic
 
                 if (className1.equals("SpaceOven")) {
                     // kui o1 on Space Oven siis see on suurem
@@ -83,7 +86,7 @@ public class Oven implements Comparable<Oven>, Fixable{
                     //kui o1 on järgmine kuul maagiline, aga o2 pole  -> o1>o2
                     return 1;
                 } else if (CreatedOrbsAmount + 1 % 2 == 1 && o.CreatedOrbsAmount + 1 % 2 == 0) {
-                    //kui ühel on järgmine maagiline kuul, aga teisel pole
+                    //kui o2 on järgmine kuul maagiline, aga o1 pole
                     return -1;
                 } else if (CreatedOrbsAmount == o.CreatedOrbsAmount) {
                     //mõlemal sama palju kuule
@@ -97,10 +100,10 @@ public class Oven implements Comparable<Oven>, Fixable{
                 }
             } else if (CreatedOrbsAmount > o.CreatedOrbsAmount) {
                 //kui o1-ga on rohkem kuule loodud
-                return 1;
+                return -1;
             } else if (o.CreatedOrbsAmount > CreatedOrbsAmount) {
                 //kui o2-ga on rohkem kuule loodud
-                return -1;
+                return 1;
             } else if (Name.length() > o.Name.length()) {
                 // kui o1 nimi on pikem kui o2 oma
                 return 1;
@@ -121,6 +124,12 @@ public class Oven implements Comparable<Oven>, Fixable{
     @Override
     public int getTimesFixed() {
         return 0;
+    }
+
+    private boolean isNextMagicOrb(Oven o){
+        int nextOrb = CreatedOrbsAmount + 1;
+        //if(nextOrb)
+        return true;
     }
 
 }

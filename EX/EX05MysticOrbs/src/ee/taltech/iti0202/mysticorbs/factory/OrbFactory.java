@@ -52,8 +52,6 @@ public class OrbFactory {
                 } catch (CannotFixException ex) {
                     if (ex.getReason().equals(CannotFixException.Reason.FIXED_MAXIMUM_TIMES)) {
                         unfixableOvens.add(oven);
-                    } else {
-                        //muud põhjused ehk ei tee midagi vaid saab lihtsalt errori
                     }
                 }
                 Optional<Orb> optionalOrb = oven.craftOrb();
