@@ -139,7 +139,7 @@ public class OrbFactory {
      */
     public void optimizeOvensOrder() {
         Collections.sort(ovens);
-        Collections.reverse(ovens);
+        //Collections.reverse(ovens);
 
     }
 
