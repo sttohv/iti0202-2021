@@ -18,6 +18,6 @@ public class MagicOrb extends Orb {
 
     @Override
     public String toString() {
-        return "MagicOrb by " + Creator;
+        return "MagicOrb by " + creator;
     }
 }

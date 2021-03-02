@@ -8,9 +8,9 @@ import java.util.Optional;
 
 public class Oven implements Comparable<Oven>, Fixable {
     public int untilBroken = 15;
-    protected String Name;
-    protected ResourceStorage Storage;
-    protected int CreatedOrbsAmount;
+    protected String name;
+    protected ResourceStorage storage;
+    protected int createdOrbsAmount;
 
     /**
      * Constructor
@@ -19,9 +19,9 @@ public class Oven implements Comparable<Oven>, Fixable {
      * @param resourceStorage where stores resources
      */
     public Oven(String name, ResourceStorage resourceStorage) {
-        Name = name;
-        Storage = resourceStorage;
-        CreatedOrbsAmount = 0;
+        this.name = name;
+        storage = resourceStorage;
+        createdOrbsAmount = 0;
     }
 
     /**
@@ -30,7 +30,7 @@ public class Oven implements Comparable<Oven>, Fixable {
      * @return oven name
      */
     public String getName() {
-        return Name;
+        return name;
     }
 
     /**
@@ -39,7 +39,7 @@ public class Oven implements Comparable<Oven>, Fixable {
      * @return storage
      */
     public ResourceStorage getResourceStorage() {
-        return Storage;
+        return storage;
     }
 
     /**
@@ -48,7 +48,7 @@ public class Oven implements Comparable<Oven>, Fixable {
      * @return amount of absorbed orbs
      */
     public int getCreatedOrbsAmount() {
-        return CreatedOrbsAmount;
+        return createdOrbsAmount;
     }
 
     /**
@@ -57,7 +57,7 @@ public class Oven implements Comparable<Oven>, Fixable {
      * @return if oven is broken
      */
     public boolean isBroken() {
-        return CreatedOrbsAmount >= untilBroken;
+        return createdOrbsAmount >= untilBroken;
     }
 
     /**
@@ -66,14 +66,14 @@ public class Oven implements Comparable<Oven>, Fixable {
      * @return orb if could be made
      */
     public Optional<Orb> craftOrb() {
-        if (!isBroken() && Storage.hasEnoughResource("pearl", 1)
-                && Storage.hasEnoughResource("silver", 1)) {
-            CreatedOrbsAmount++;
-            Orb newOrb = new Orb(Name);
+        if (!isBroken() && storage.hasEnoughResource("pearl", 1)
+                && storage.hasEnoughResource("silver", 1)) {
+            createdOrbsAmount++;
+            Orb newOrb = new Orb(name);
             newOrb.charge("pearl", 1);
             newOrb.charge("silver", 1);
-            Storage.takeResource("pearl", 1);
-            Storage.takeResource("silver", 1);
+            storage.takeResource("pearl", 1);
+            storage.takeResource("silver", 1);
             return Optional.of(newOrb);
         }
         return Optional.empty();
@@ -113,13 +113,13 @@ public class Oven implements Comparable<Oven>, Fixable {
                 }
             } else if (areBothMagic) {
                 //kui mõlemad on magicud
-                if (CreatedOrbsAmount + 1 % 2 == 0 && o.CreatedOrbsAmount + 1 % 2 == 1) {
+                if (createdOrbsAmount + 1 % 2 == 0 && o.createdOrbsAmount + 1 % 2 == 1) {
                     //kui o1 on järgmine kuul maagiline, aga o2 pole  -> o1>o2
                     return 1;
-                } else if (CreatedOrbsAmount + 1 % 2 == 1 && o.CreatedOrbsAmount + 1 % 2 == 0) {
+                } else if (createdOrbsAmount + 1 % 2 == 1 && o.createdOrbsAmount + 1 % 2 == 0) {
                     //kui o2 on järgmine kuul maagiline, aga o1 pole
                     return -1;
-                } else if (CreatedOrbsAmount == o.CreatedOrbsAmount) {
+                } else if (createdOrbsAmount == o.createdOrbsAmount) {
                     //mõlemal sama palju kuule
 
                     if (className1.equals("InfinityMagicOven") && className2.equals("MagicOven")) {
@@ -129,16 +129,16 @@ public class Oven implements Comparable<Oven>, Fixable {
                         return -1;
                     }
                 }
-            } else if (CreatedOrbsAmount > o.CreatedOrbsAmount) {
+            } else if (createdOrbsAmount > o.createdOrbsAmount) {
                 //kui o1-ga on rohkem kuule loodud
                 return -1;
-            } else if (o.CreatedOrbsAmount > CreatedOrbsAmount) {
+            } else if (o.createdOrbsAmount > createdOrbsAmount) {
                 //kui o2-ga on rohkem kuule loodud
                 return 1;
-            } else if (Name.compareTo(o.Name) > 0) {
+            } else if (name.compareTo(o.name) > 0) {
                 // kui o1 nimi on pikem kui o2 oma
                 return 1;
-            } else if (Name.compareTo(o.Name) < 0) {
+            } else if (name.compareTo(o.name) < 0) {
                 //kui o2 nimi on pikem kui o1 oma
                 return -1;
             }

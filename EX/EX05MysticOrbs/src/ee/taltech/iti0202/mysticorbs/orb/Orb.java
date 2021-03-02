@@ -3,8 +3,8 @@ package ee.taltech.iti0202.mysticorbs.orb;
 import java.util.Locale;
 
 public class Orb {
-    public String Creator;
-    protected int Energy;
+    public String creator;
+    protected int energy;
 
     /**
      * Constructor
@@ -12,8 +12,8 @@ public class Orb {
      * @param creator creator name
      */
     public Orb(String creator) {
-        Creator = creator;
-        Energy = 0;
+        this.creator = creator;
+        energy = 0;
     }
 
     /**
@@ -25,7 +25,7 @@ public class Orb {
     public void charge(String resource, int amount) {
         resource = capitalize(resource);
         if (!(resource.equals("Dust") || resource.isBlank()) && amount >= 0) {
-            Energy += resource.length() * Math.abs(amount);
+            energy += resource.length() * Math.abs(amount);
         }
     }
 
@@ -35,12 +35,12 @@ public class Orb {
      * @return orb energy
      */
     public int getEnergy() {
-        return Energy;
+        return energy;
     }
 
     @Override
     public String toString() {
-        return "Orb by " + Creator;
+        return "Orb by " + creator;
     }
 
     /**

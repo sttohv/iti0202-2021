@@ -8,7 +8,7 @@ public class SpaceOrb extends Orb {
      */
     public SpaceOrb(String creator) {
         super(creator);
-        Energy = 100;
+        energy = 100;
     }
 
     @Override
@@ -17,7 +17,7 @@ public class SpaceOrb extends Orb {
 
     @Override
     public String toString() {
-        return "SpaceOrb by " + Creator;
+        return "SpaceOrb by " + creator;
     }
 
     /**
@@ -27,9 +27,9 @@ public class SpaceOrb extends Orb {
      * @return if entered orb can be absorbed by current one
      */
     public boolean absorb(Orb orb) {
-        if (Energy > orb.Energy) {
-            Energy += orb.Energy;
-            orb.Energy = 0;
+        if (energy > orb.energy) {
+            energy += orb.energy;
+            orb.energy = 0;
             return true;
         }
         return false;

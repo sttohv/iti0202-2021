@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class OrbFactory {
-    public ResourceStorage Storage;
+    public ResourceStorage storage;
     private List<Oven> ovens;
     private List<Orb> orbs;
     private List<Oven> unfixableOvens;
@@ -21,7 +21,7 @@ public class OrbFactory {
      * @param resourceStorage Storage where all resources are taken
      */
     public OrbFactory(ResourceStorage resourceStorage) {
-        Storage = resourceStorage;
+        storage = resourceStorage;
         ovens = new ArrayList<>();
         orbs = new ArrayList<>();
         unfixableOvens = new ArrayList<>();
@@ -33,7 +33,7 @@ public class OrbFactory {
      * @param oven oven
      */
     public void addOven(Oven oven) {
-        if (oven.getResourceStorage().equals(Storage) && !ovens.contains(oven)) {
+        if (oven.getResourceStorage().equals(storage) && !ovens.contains(oven)) {
             ovens.add(oven);
         }
     }

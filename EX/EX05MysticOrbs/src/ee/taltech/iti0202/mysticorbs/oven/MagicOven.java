@@ -9,8 +9,10 @@ import java.util.Optional;
 
 public class MagicOven extends Oven implements Fixable {
 
-    public static final int dustAmount = 3;
-    public final int TIMES_BEFORE_BROKEN = 5;
+    public static final int DUST_AMOUNT = 3;
+    public static final int CLAY_AMOUNT = 25;
+    public static final int FR_POWDER_AMOUNT = 100;
+    public final int timesBeforeBroken = 5;
     private int timesFixed;
 
     /**
@@ -21,28 +23,28 @@ public class MagicOven extends Oven implements Fixable {
      */
     public MagicOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
-        untilBroken = TIMES_BEFORE_BROKEN;
+        untilBroken = timesBeforeBroken;
         timesFixed = 0;
     }
 
     @Override
     public Optional<Orb> craftOrb() {
         //CreatedOrbsAmmount
-        if (!isBroken() && Storage.hasEnoughResource("gold", 1)
-                && Storage.hasEnoughResource("dust", dustAmount)) {
-            CreatedOrbsAmount++; //1
-            Storage.takeResource("gold", 1);
-            Storage.takeResource("dust", dustAmount);
-            if (CreatedOrbsAmount == 1 || CreatedOrbsAmount % 2 == 1) {
-                Orb justOrb = new Orb(Name);
+        if (!isBroken() && storage.hasEnoughResource("gold", 1)
+                && storage.hasEnoughResource("dust", DUST_AMOUNT)) {
+            createdOrbsAmount++; //1
+            storage.takeResource("gold", 1);
+            storage.takeResource("dust", DUST_AMOUNT);
+            if (createdOrbsAmount == 1 || createdOrbsAmount % 2 == 1) {
+                Orb justOrb = new Orb(name);
                 justOrb.charge("gold", 1);
-                justOrb.charge("dust", dustAmount);
+                justOrb.charge("dust", DUST_AMOUNT);
 
                 return Optional.of(justOrb);
             } else {
-                MagicOrb magicOrb = new MagicOrb(Name);
+                MagicOrb magicOrb = new MagicOrb(name);
                 magicOrb.charge("gold", 1);
-                magicOrb.charge("dust", dustAmount);
+                magicOrb.charge("dust", DUST_AMOUNT);
                 return Optional.of(magicOrb);
             }
         }
@@ -52,15 +54,15 @@ public class MagicOven extends Oven implements Fixable {
 
     @Override
     public void fix() throws CannotFixException {
-        int clayNeeded = 25 * (timesFixed + 1);
-        int frPowderNeeded = 100 * (timesFixed + 1);
-        if (isBroken() && timesFixed < 10 && Storage.hasEnoughResource("clay", clayNeeded)
-                && Storage.hasEnoughResource("freezing powder", frPowderNeeded)) {
-            untilBroken += TIMES_BEFORE_BROKEN;
+        int clayNeeded = CLAY_AMOUNT * (timesFixed + 1);
+        int frPowderNeeded = FR_POWDER_AMOUNT * (timesFixed + 1);
+        if (isBroken() && timesFixed < 10 && storage.hasEnoughResource("clay", clayNeeded)
+                && storage.hasEnoughResource("freezing powder", frPowderNeeded)) {
+            untilBroken += timesBeforeBroken;
             //Annab kasutuskordi juurde ühe terve tsükli võrra, magicOvenil on see 5 enne katki minemist
             timesFixed++;
-            Storage.takeResource("clay", clayNeeded);
-            Storage.takeResource("freezing powder", frPowderNeeded);
+            storage.takeResource("clay", clayNeeded);
+            storage.takeResource("freezing powder", frPowderNeeded);
         } else {
             if (!isBroken()) {
                 throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
