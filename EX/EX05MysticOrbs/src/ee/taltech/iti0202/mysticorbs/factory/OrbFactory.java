@@ -15,6 +15,11 @@ public class OrbFactory {
     private List<Orb> orbs;
     private List<Oven> unfixableOvens;
 
+    /**
+     * Constructor
+     *
+     * @param resourceStorage Storage where all resources are taken
+     */
     public OrbFactory(ResourceStorage resourceStorage) {
         Storage = resourceStorage;
         ovens = new ArrayList<>();
@@ -22,22 +27,40 @@ public class OrbFactory {
         unfixableOvens = new ArrayList<>();
     }
 
+    /**
+     * Add oven to all ovens if it isn't added already
+     *
+     * @param oven oven
+     */
     public void addOven(Oven oven) {
         if (oven.getResourceStorage().equals(Storage) && !ovens.contains(oven)) {
             ovens.add(oven);
         }
     }
 
+    /**
+     * @return all Ovens
+     */
     public List<Oven> getOvens() {
         return ovens;
     }
 
+    /**
+     * returns all orbs and then empties the list
+     *
+     * @return all old orbs
+     */
     public List<Orb> getAndClearProducedOrbsList() {
         List<Orb> oldOrbs = new ArrayList<>(orbs);
         orbs = new ArrayList<>();
         return oldOrbs;
     }
 
+    /**
+     * Produces orbs until it can't from all ovens and fixes them if possible
+     *
+     * @return how many orbs were made
+     */
     public int produceOrbs() {
         int count = 0;
         for (Oven oven : ovens
@@ -76,6 +99,12 @@ public class OrbFactory {
         return count;
     }
 
+    /**
+     * produces orbs times cycles
+     *
+     * @param cycles how many times do you have to produce orbs
+     * @return how many orbs were made
+     */
     public int produceOrbs(int cycles) {
         int sum = 0;
         for (int i = 0; i < cycles; i++) {
@@ -84,10 +113,18 @@ public class OrbFactory {
         return sum;
     }
 
+    /**
+     * Gets ovens that can't be fixed
+     *
+     * @return list of unfixable ovens
+     */
     public List<Oven> getOvensThatCannotBeFixed() {
         return unfixableOvens;
     }
 
+    /**
+     * Removes ovens that can't be fixed from all ovens list
+     */
     public void getRidOfOvensThatCannotBeFixed() {
         for (Oven oven : unfixableOvens
         ) {
@@ -95,10 +132,19 @@ public class OrbFactory {
         }
     }
 
+    /**
+     * Sorts ovens by compareTo method
+     */
     public void optimizeOvensOrder() {
         ovens.sort(Oven::compareTo);
     }
 
+    /**
+     * Checks if oven is Fixable
+     *
+     * @param oven oven that could possibly be fixed
+     * @return if it's possible to fix oven
+     */
     public boolean isFixable(Oven oven) {
         String ovenName = oven.getClass().getSimpleName();
         if (oven.isBroken()) {

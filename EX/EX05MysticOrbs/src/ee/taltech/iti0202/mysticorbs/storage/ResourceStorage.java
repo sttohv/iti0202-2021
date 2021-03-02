@@ -1,10 +1,19 @@
 package ee.taltech.iti0202.mysticorbs.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class ResourceStorage {
     Map<String, Integer> resources = new HashMap<>();
 
+    /**
+     * Checks if there aren't any resources left
+     *
+     * @return if is empty
+     */
     public boolean isEmpty() {
         List<Integer> amount = new ArrayList<>(resources.values());
         if (amount.isEmpty() || amount.stream().mapToInt(Integer::intValue).sum() == 0) {
@@ -13,6 +22,12 @@ public class ResourceStorage {
         return false;
     }
 
+    /**
+     * Adds resources
+     *
+     * @param resource resource name
+     * @param amount   resource ammount
+     */
     public void addResource(String resource, int amount) {
 
         if ((resource != null || !resource.equals("")) && amount >= 0) {
@@ -29,6 +44,12 @@ public class ResourceStorage {
 
     }
 
+    /**
+     * Gets resource amount
+     *
+     * @param resource resource name
+     * @return returns resource amount
+     */
     public int getResourceAmount(String resource) {
         resource = capitalize(resource);
         if (resources.containsKey(resource)) {
@@ -37,6 +58,13 @@ public class ResourceStorage {
         return 0;
     }
 
+    /**
+     * Checks if there are enough resources
+     *
+     * @param resource resource name
+     * @param amount   resource amount
+     * @return if has enough
+     */
     public boolean hasEnoughResource(String resource, int amount) {
         resource = capitalize(resource);
         if (amount < 1) {
@@ -47,6 +75,13 @@ public class ResourceStorage {
         return false;
     }
 
+    /**
+     * If has enough resources then take away from all resources
+     *
+     * @param resource resource name
+     * @param amount   resource amount
+     * @return if can take resource
+     */
     public boolean takeResource(String resource, int amount) {
         resource = capitalize(resource);
         if (isEmpty() || !hasEnoughResource(resource, amount)) {
@@ -57,6 +92,12 @@ public class ResourceStorage {
         }
     }
 
+    /**
+     * Makes the String capitalized
+     *
+     * @param str some string
+     * @return string capitalized
+     */
     private String capitalize(String str) {
         if (str == null || str.isEmpty()) {
             return str;

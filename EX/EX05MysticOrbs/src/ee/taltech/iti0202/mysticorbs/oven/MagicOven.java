@@ -13,6 +13,12 @@ public class MagicOven extends Oven implements Fixable {
     public final int TIMES_BEFORE_BROKEN = 5;
     private int timesFixed;
 
+    /**
+     * Constructor
+     *
+     * @param name            oven name
+     * @param resourceStorage where stores resources
+     */
     public MagicOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
         untilBroken = TIMES_BEFORE_BROKEN;

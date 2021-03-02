@@ -15,6 +15,12 @@ public class SpaceOven extends Oven implements Fixable {
     public final int TIMES_BEFORE_BROKEN = 25;
     private int fixCount;
 
+    /**
+     * Constructor
+     *
+     * @param name            oven name
+     * @param resourceStorage oven storage where are all the resources
+     */
     public SpaceOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
         untilBroken = TIMES_BEFORE_BROKEN;

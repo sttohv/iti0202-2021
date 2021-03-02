@@ -12,28 +12,59 @@ public class Oven implements Comparable<Oven>, Fixable {
     protected ResourceStorage Storage;
     protected int CreatedOrbsAmount;
 
+    /**
+     * Constructor
+     *
+     * @param name            oven name
+     * @param resourceStorage where stores resources
+     */
     public Oven(String name, ResourceStorage resourceStorage) {
         Name = name;
         Storage = resourceStorage;
         CreatedOrbsAmount = 0;
     }
 
+    /**
+     * Get oven name
+     *
+     * @return oven name
+     */
     public String getName() {
         return Name;
     }
 
+    /**
+     * Get where oven resources storage
+     *
+     * @return storage
+     */
     public ResourceStorage getResourceStorage() {
         return Storage;
     }
 
+    /**
+     * Get absorbed orbs amount
+     *
+     * @return amount of absorbed orbs
+     */
     public int getCreatedOrbsAmount() {
         return CreatedOrbsAmount;
     }
 
+    /**
+     * Breaks after oven is used 15 times
+     *
+     * @return if oven is broken
+     */
     public boolean isBroken() {
         return CreatedOrbsAmount >= untilBroken;
     }
 
+    /**
+     * Crafts an orb
+     *
+     * @return orb if could be made
+     */
     public Optional<Orb> craftOrb() {
         if (!isBroken() && Storage.hasEnoughResource("pearl", 1)
                 && Storage.hasEnoughResource("silver", 1)) {

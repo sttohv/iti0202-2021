@@ -14,7 +14,8 @@ public class CannotFixException extends Exception {
 
     /**
      * Constructor
-     * @param oven oven
+     *
+     * @param oven   oven
      * @param reason reason why cannot fix
      */
     public CannotFixException(Oven oven, Reason reason) {
