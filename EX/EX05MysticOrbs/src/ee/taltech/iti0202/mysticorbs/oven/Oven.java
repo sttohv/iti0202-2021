@@ -114,10 +114,10 @@ public class Oven implements Comparable<Oven>, Fixable {
                 }
             } else if (areBothMagic) {
                 //kui mõlemad on magicud
-                if (createdOrbsAmount + 1 % 2 == 0 && o.createdOrbsAmount + 1 % 2 == 1) {
+                if ((createdOrbsAmount + 1) % 2 == 0 && (o.createdOrbsAmount + 1) % 2 == 1) {
                     //kui o1 on järgmine kuul maagiline, aga o2 pole  -> o1>o2
                     return 1;
-                } else if (createdOrbsAmount + 1 % 2 == 1 && o.createdOrbsAmount + 1 % 2 == 0) {
+                } else if ((createdOrbsAmount + 1) % 2 == 1 && (o.createdOrbsAmount + 1) % 2 == 0) {
                     //kui o2 on järgmine kuul maagiline, aga o1 pole
                     return -1;
                 } else if (createdOrbsAmount == o.createdOrbsAmount) {
