@@ -130,6 +130,7 @@ public class OrbFactory {
         ) {
             ovens.remove(oven);
         }
+        unfixableOvens = new ArrayList<>();
     }
 
     /**
