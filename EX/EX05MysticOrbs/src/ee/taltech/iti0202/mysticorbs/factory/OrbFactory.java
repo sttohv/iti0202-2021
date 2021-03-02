@@ -6,6 +6,7 @@ import ee.taltech.iti0202.mysticorbs.oven.Oven;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -138,6 +139,8 @@ public class OrbFactory {
      */
     public void optimizeOvensOrder() {
         ovens.sort(Oven::compareTo);
+        Collections.reverse(ovens);
+
     }
 
     /**
