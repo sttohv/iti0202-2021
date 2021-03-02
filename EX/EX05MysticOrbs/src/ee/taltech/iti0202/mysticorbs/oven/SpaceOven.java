@@ -2,6 +2,7 @@ package ee.taltech.iti0202.mysticorbs.oven;
 
 import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixException;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
+import ee.taltech.iti0202.mysticorbs.orb.SpaceOrb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
 import java.util.Optional;
@@ -25,7 +26,7 @@ public class SpaceOven extends Oven implements Fixable {
         if (!isBroken() && Storage.hasEnoughResource("meteorite stone", 1)
                 && Storage.hasEnoughResource("star fragment", starFragAmount)) {
             CreatedOrbsAmount++;
-            Orb newOrb = new Orb(Name);
+            Orb newOrb = new SpaceOrb(Name);
             Storage.takeResource("meteorite stone", 1);
             Storage.takeResource("star fragment", starFragAmount);
             return Optional.of(newOrb);
