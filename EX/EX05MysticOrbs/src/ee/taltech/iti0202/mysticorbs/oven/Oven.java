@@ -6,7 +6,7 @@ import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
 import java.util.Optional;
 
-public class Oven implements Comparable<Oven>, Fixable{
+public class Oven implements Comparable<Oven>, Fixable {
     public int untilBroken = 15;
     protected String Name;
     protected ResourceStorage Storage;
@@ -118,7 +118,7 @@ public class Oven implements Comparable<Oven>, Fixable{
 
     @Override
     public void fix() throws CannotFixException {
-       // throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
+        // throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
     }
 
     @Override

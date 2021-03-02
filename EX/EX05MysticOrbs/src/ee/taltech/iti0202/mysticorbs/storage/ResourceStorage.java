@@ -15,7 +15,7 @@ public class ResourceStorage {
 
     public void addResource(String resource, int amount) {
 
-        if ((resource != null || !resource.equals("") )&& amount >= 0) {
+        if ((resource != null || !resource.equals("")) && amount >= 0) {
             resource = capitalize(resource);
             //System.out.println(resource);
             if (isEmpty() || !resources.containsKey(resource)) {

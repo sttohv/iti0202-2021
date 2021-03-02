@@ -8,17 +8,25 @@ public class CannotFixException extends Exception {
         FIXED_MAXIMUM_TIMES,
         NOT_ENOUGH_RESOURCES
     }
+
     private Oven oven;
     private Reason reason;
-    //Konstruktorist kaks muutujat puudu
-    public CannotFixException(Oven oven, Reason reason){
+
+    /**
+     * Constructor
+     * @param oven oven
+     * @param reason reason why cannot fix
+     */
+    public CannotFixException(Oven oven, Reason reason) {
         this.oven = oven;
         this.reason = reason;
     }
-    public Oven getOven(){
+
+    public Oven getOven() {
         return oven;
     }
-    public Reason getReason(){
+
+    public Reason getReason() {
         return reason;
     }
 }
