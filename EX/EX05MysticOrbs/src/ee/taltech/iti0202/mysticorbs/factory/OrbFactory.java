@@ -138,8 +138,8 @@ public class OrbFactory {
      * Sorts ovens by compareTo method
      */
     public void optimizeOvensOrder() {
-        Collections.sort(ovens);
-        //Collections.reverse(ovens);
+        ovens.sort(Oven::compareTo);
+        Collections.reverse(ovens);
 
     }
 
