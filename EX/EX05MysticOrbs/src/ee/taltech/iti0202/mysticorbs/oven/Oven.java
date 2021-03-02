@@ -135,10 +135,10 @@ public class Oven implements Comparable<Oven>, Fixable {
             } else if (o.CreatedOrbsAmount > CreatedOrbsAmount) {
                 //kui o2-ga on rohkem kuule loodud
                 return 1;
-            } else if (Name.length() > o.Name.length()) {
+            } else if (Name.compareTo(o.Name) > 0) {
                 // kui o1 nimi on pikem kui o2 oma
                 return 1;
-            } else if (o.Name.length() > Name.length()) {
+            } else if (Name.compareTo(o.Name) < 0) {
                 //kui o2 nimi on pikem kui o1 oma
                 return -1;
             }
