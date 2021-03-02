@@ -15,12 +15,15 @@ public class ResourceStorage {
 
     public void addResource(String resource, int amount) {
 
-        if (resource != null || !resource.equals("")) {
+        if ((resource != null || !resource.equals("") )&& amount >= 0) {
             resource = capitalize(resource);
+            //System.out.println(resource);
             if (isEmpty() || !resources.containsKey(resource)) {
                 resources.put(resource, amount);
+                //System.out.println(resource + amount);
             } else {
                 resources.put(resource, resources.get(resource) + amount);
+                //System.out.println(resource +  amount);
             }
         }
 
@@ -38,7 +41,7 @@ public class ResourceStorage {
         resource = capitalize(resource);
         if (amount < 1) {
             return false;
-        } else if (resources.get(resource) <= amount) {
+        } else if (resources.get(resource) >= amount) {
             return true;
         }
         return false;
@@ -58,6 +61,6 @@ public class ResourceStorage {
         if (str == null || str.isEmpty()) {
             return str;
         }
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase(Locale.ROOT);
     }
 }
