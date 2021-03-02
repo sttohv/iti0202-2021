@@ -118,7 +118,7 @@ public class Oven implements Comparable<Oven>, Fixable{
 
     @Override
     public void fix() throws CannotFixException {
-        throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
+       // throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
     }
 
     @Override
@@ -126,10 +126,5 @@ public class Oven implements Comparable<Oven>, Fixable{
         return 0;
     }
 
-    private boolean isNextMagicOrb(Oven o){
-        int nextOrb = CreatedOrbsAmount + 1;
-        //if(nextOrb)
-        return true;
-    }
 
 }

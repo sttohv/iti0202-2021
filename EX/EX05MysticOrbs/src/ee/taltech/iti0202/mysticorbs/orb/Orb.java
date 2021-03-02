@@ -14,7 +14,7 @@ public class Orb {
     public void charge(String resource, int amount) {
         resource = capitalize(resource);
         if (!(resource.equals("Dust") || resource.isBlank())) {
-            Energy += resource.length() * amount;
+            Energy += resource.length() * Math.abs(amount);
         }
     }
 
