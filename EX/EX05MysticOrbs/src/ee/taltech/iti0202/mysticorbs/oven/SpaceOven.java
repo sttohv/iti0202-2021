@@ -59,7 +59,7 @@ public class SpaceOven extends Oven implements Fixable {
             fixCount++;
             Storage.takeResource("star essence", starEsAmmount);
         } else {
-            if (isBroken()) {
+            if (!isBroken()) {
                 throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
             } else {
                 throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
