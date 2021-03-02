@@ -22,7 +22,7 @@ public class Oven implements Comparable<Oven>, Fixable{
         return Name;
     }
 
-    public ResourceStorage getStorage() {
+    public ResourceStorage getResourceStorage() {
         return Storage;
     }
 
