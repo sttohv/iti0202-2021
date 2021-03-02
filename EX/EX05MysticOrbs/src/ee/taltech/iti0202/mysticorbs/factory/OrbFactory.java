@@ -44,20 +44,25 @@ public class OrbFactory {
         ) {
             //kui on Magic- või SpaceOven, siis proovi fixida
             //kui on teised Ovenid siis ei pea seda checkima vaid saab kohe seda alumist sektsiooni katsetada
-            if (oven.getClass().getSimpleName().equals("MagicOven")
-                    || oven.getClass().getSimpleName().equals("SpaceOven")) {
-                try {
-                    oven.fix();
+            if (oven.isBroken()) {
+                if (isFixable(oven)) {
+                    try {
+                        oven.fix();
+                        //proovib fixida katkis magic v space ovenit (teisi ovened ei saa isegi fixida
 
-                } catch (CannotFixException ex) {
-                    if (ex.getReason().equals(CannotFixException.Reason.FIXED_MAXIMUM_TIMES)) {
-                        unfixableOvens.add(oven);
+                    } catch (CannotFixException ex) {
+                        if (ex.getReason().equals(CannotFixException.Reason.FIXED_MAXIMUM_TIMES)) {
+                            unfixableOvens.add(oven);
+                        }
+                        continue;
                     }
-                }
-                Optional<Orb> optionalOrb = oven.craftOrb();
-                if (optionalOrb.isPresent()) {
-                    orbs.add(optionalOrb.get());
-                    count++;
+                    Optional<Orb> optionalOrb = oven.craftOrb();
+                    if (optionalOrb.isPresent()) {
+                        orbs.add(optionalOrb.get());
+                        count++;
+                    }
+                } else {
+                    unfixableOvens.add(oven);
                 }
             } else {
                 Optional<Orb> optionalOrb = oven.craftOrb();
@@ -65,8 +70,8 @@ public class OrbFactory {
                     orbs.add(optionalOrb.get());
                     count++;
                 }
-
             }
+
         }
         return count;
     }
@@ -89,8 +94,19 @@ public class OrbFactory {
             ovens.remove(oven);
         }
     }
-    public void optimizeOvensOrder(){
+
+    public void optimizeOvensOrder() {
         ovens.sort(Oven::compareTo);
+    }
+
+    public boolean isFixable(Oven oven) {
+        String ovenName = oven.getClass().getSimpleName();
+        if (oven.isBroken()) {
+            if (ovenName.equals("MagicOven") || ovenName.equals("SpaceOven")) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

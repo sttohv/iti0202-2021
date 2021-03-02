@@ -11,12 +11,12 @@ public class MagicOven extends Oven implements Fixable {
 
     public static final int dustAmount = 3;
     public final int TIMES_BEFORE_BROKEN = 5;
-    private int fixCount;
+    private int timesFixed;
 
     public MagicOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
         untilBroken = TIMES_BEFORE_BROKEN;
-        fixCount = 0;
+        timesFixed = 0;
     }
 
     @Override
@@ -46,19 +46,19 @@ public class MagicOven extends Oven implements Fixable {
 
     @Override
     public void fix() throws CannotFixException {
-        int clayNeeded = 25 * (fixCount + 1);
-        int frPowderNeeded = 100 * (fixCount + 1);
-        if (isBroken() && fixCount < 10 && Storage.hasEnoughResource("clay", clayNeeded)
+        int clayNeeded = 25 * (timesFixed + 1);
+        int frPowderNeeded = 100 * (timesFixed + 1);
+        if (isBroken() && timesFixed < 10 && Storage.hasEnoughResource("clay", clayNeeded)
                 && Storage.hasEnoughResource("freezing powder", frPowderNeeded)) {
             untilBroken += TIMES_BEFORE_BROKEN;
             //Annab kasutuskordi juurde ühe terve tsükli võrra, magicOvenil on see 5 enne katki minemist
-            fixCount++;
+            timesFixed++;
             Storage.takeResource("clay", clayNeeded);
             Storage.takeResource("freezing powder", frPowderNeeded);
         } else {
             if (!isBroken()) {
                 throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
-            } else if (fixCount == 10) {
+            } else if (timesFixed == 10) {
                 throw new CannotFixException(this, CannotFixException.Reason.FIXED_MAXIMUM_TIMES);
             } else {
                 throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
@@ -68,6 +68,6 @@ public class MagicOven extends Oven implements Fixable {
 
     @Override
     public int getTimesFixed() {
-        return fixCount;
+        return timesFixed;
     }
 }
