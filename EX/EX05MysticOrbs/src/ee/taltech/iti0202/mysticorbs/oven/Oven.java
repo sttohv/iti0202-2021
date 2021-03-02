@@ -7,7 +7,8 @@ import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 import java.util.Optional;
 
 public class Oven implements Comparable<Oven>, Fixable {
-    public int untilBroken = 15;
+    public final int UNTIL_BROKEN = 15;
+    public int untilBroken = UNTIL_BROKEN;
     protected String name;
     protected ResourceStorage storage;
     protected int createdOrbsAmount;
