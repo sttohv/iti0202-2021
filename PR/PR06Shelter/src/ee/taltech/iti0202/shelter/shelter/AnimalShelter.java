@@ -38,15 +38,17 @@ public class AnimalShelter {
      */
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
         List<Animal> animals = provider.provide(animalType);
+        List<Animal> correctAnimals = new ArrayList<>();
         while (!animals.isEmpty()) {
             for (Animal animal : animals
             ) {
-                if (!allAnimals.contains(animal) && animal.getColor().equals(color)) {
-                    allAnimals.add(animal);
+                if (!correctAnimals.contains(animal) && animal.getColor().equals(color)&& count>1) {
+                    correctAnimals.add(animal);
+                    count--;
                 }
             }
             animals = provider.provide(animalType);
         }
-        return allAnimals;
+        return correctAnimals;
     }
 }
