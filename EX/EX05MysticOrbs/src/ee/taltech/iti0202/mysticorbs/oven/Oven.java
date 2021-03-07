@@ -129,14 +129,7 @@ public class Oven implements Comparable<Oven>, Fixable {
                     } else if (className2.equals("InfinityMagicOven") && className1.equals("MagicOven")) {
                         return -1;
                     }
-                } else if (createdOrbsAmount > o.createdOrbsAmount) {
-                    //kui o1-ga on rohkem kuule loodud
-                    return -1;
-                } else if (o.createdOrbsAmount > createdOrbsAmount) {
-                    //kui o2-ga on rohkem kuule loodud
-                    return 1;
                 }
-
             } else if (createdOrbsAmount > o.createdOrbsAmount) {
                 //kui o1-ga on rohkem kuule loodud
                 return -1;
