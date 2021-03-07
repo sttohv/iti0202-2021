@@ -39,7 +39,7 @@ public class AnimalShelter {
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
         List<Animal> animals = provider.provide(animalType);
         List<Animal> correctAnimals = new ArrayList<>();
-        while (!animals.isEmpty()) {
+        while (!animals.isEmpty() && count != 0) {
             for (Animal animal : animals
             ) {
                 if (!correctAnimals.contains(animal) && animal.getColor().equals(color) && count > 0) {
@@ -48,11 +48,11 @@ public class AnimalShelter {
 
                 }
             }
-            if (count != 0) {
-                animals = provider.provide(animalType);
-            } else {
-                break;
-            }
+//            if (count != 0) {
+            animals = provider.provide(animalType);
+//            } else {
+//                break;
+//            }
         }
         return correctAnimals;
     }
