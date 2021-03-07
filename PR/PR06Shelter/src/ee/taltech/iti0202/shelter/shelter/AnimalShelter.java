@@ -45,14 +45,16 @@ public class AnimalShelter {
                 if (!correctAnimals.contains(animal) && animal.getColor().equals(color) && count > 0) {
                     correctAnimals.add(animal);
                     count--;
-
+                }
+                if (count == 0) {
+                    break;
                 }
             }
-            if (count != 0) {
-                animals = provider.provide(animalType);
-            } else {
-                break;
-            }
+//            if (count != 0) {
+            animals = provider.provide(animalType);
+//            } else {
+//                break;
+//            }
         }
         return correctAnimals;
     }
