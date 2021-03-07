@@ -42,12 +42,17 @@ public class AnimalShelter {
         while (!animals.isEmpty()) {
             for (Animal animal : animals
             ) {
-                if (!correctAnimals.contains(animal) && animal.getColor().equals(color)&& count>0) {
+                if (!correctAnimals.contains(animal) && animal.getColor().equals(color) && count > 0) {
                     correctAnimals.add(animal);
                     count--;
+
                 }
             }
-            animals = provider.provide(animalType);
+            if (count != 0) {
+                animals = provider.provide(animalType);
+            } else {
+                break;
+            }
         }
         return correctAnimals;
     }
