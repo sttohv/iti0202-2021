@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputFilesLines implements InputFilesReader{
+public class InputFilesLines implements InputFilesReader {
     @Override
     public List<String> readTextFromFile(String filename) {
         List<String> lines = new ArrayList<>();

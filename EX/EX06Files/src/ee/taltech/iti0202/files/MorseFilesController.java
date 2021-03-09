@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.files;
+
 import ee.taltech.iti0202.files.input.InputFilesBufferReader;
 import ee.taltech.iti0202.files.input.InputFilesScanner;
 import ee.taltech.iti0202.files.morse.MorseTranslator;
