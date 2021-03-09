@@ -22,7 +22,7 @@ public class OutputFilesWriter {
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (String line : lines
             ) {
-                writer.write(line);
+                writer.write(line + "\n");
             }
             return true;
         } catch (IOException e) {
