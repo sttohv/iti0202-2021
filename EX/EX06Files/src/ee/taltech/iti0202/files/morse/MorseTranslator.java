@@ -39,7 +39,7 @@ public class MorseTranslator {
         List<String> result = new ArrayList<>();
         for (String line : lines
         ) {
-            result.add(translateLineToMorse(line.toLowerCase(Locale.ROOT)));
+            result.add(translateLineToMorse(line.toLowerCase()));
         }
         String last = result.get(result.size()-1);
         String lastWithoutSpace = last.substring(0, last.length()-1);
