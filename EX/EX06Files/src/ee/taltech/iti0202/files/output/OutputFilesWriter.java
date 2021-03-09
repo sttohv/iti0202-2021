@@ -20,26 +20,16 @@ public class OutputFilesWriter {
      */
     public boolean writeLinesToFile(List<String> lines, String filename) {
         Path path = Path.of(filename);
-        if (!Files.exists(path)) {
-            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-                for (String line : lines
-                ) {
-                    writer.write(line);
-                }
-                return true;
-            } catch (IOException e) {
-                return false;
+
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+            for (String line : lines
+            ) {
+                writer.write(line);
             }
-        } else {
-            try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
-                for (String line : lines
-                ) {
-                    writer.write(line);
-                }
-                return true;
-            } catch (IOException e) {
-                return false;
-            }
+            return true;
+        } catch (IOException e) {
+            return false;
         }
+
     }
 }
