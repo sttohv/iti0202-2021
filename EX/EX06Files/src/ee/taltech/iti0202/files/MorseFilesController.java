@@ -16,6 +16,7 @@ public class MorseFilesController {
         List<String> lines = scanner.readTextFromFile("morse.txt");
         lines.forEach(System.out::println); //lines in morse.txt which contains Morse codes
 
+
         System.out.println(System.getProperty("user.dir"));
         InputFilesBufferReader bufferReader = new InputFilesBufferReader();
         List<String> lines2 = bufferReader.readTextFromFile("morse.txt");

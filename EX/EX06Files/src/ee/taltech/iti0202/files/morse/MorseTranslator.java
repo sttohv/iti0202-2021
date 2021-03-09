@@ -41,12 +41,12 @@ public class MorseTranslator {
         ) {
             result.add(translateLineToMorse(line.toLowerCase()));
         }
-//        if (!result.isEmpty()) {
-//            String last = result.get(result.size() - 1);
-//            String lastWithoutSpace = last.substring(0, last.length() - 1);
-//            result.remove(result.size() - 1);
-//            result.add(lastWithoutSpace);
-//        }
+        if (!result.isEmpty()) {
+            String last = result.get(result.size() - 1);
+            String lastWithoutSpace = last.substring(0, last.length() - 1);
+            result.remove(result.size() - 1);
+            result.add(lastWithoutSpace);
+        }
         return result;
     }
 
@@ -73,16 +73,16 @@ public class MorseTranslator {
      * @param line text line
      * @return translated line
      */
-    private String translateLineToMorse(String line) {
+    private String translateLineToMorse(String line) { //"su ema on xd"
         String result = "";
-        for (String letter : line.toLowerCase().split("")
+        for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
         ) {
-            if (letter.equals(" ")) {
-                result+="\t";
+            for (String letter : word.split("")) {
 
-            } else {
-                result+=(morseLetter.get(letter) + " ");
+                    result += (morseLetter.get(letter) + " ");
+
             }
+            result += "\t";
         }
         return result;
     }
