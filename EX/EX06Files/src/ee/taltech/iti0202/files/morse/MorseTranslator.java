@@ -41,6 +41,10 @@ public class MorseTranslator {
         ) {
             result.add(translateLineToMorse(line.toLowerCase(Locale.ROOT)));
         }
+        String last = result.get(result.size()-1);
+        String lastWithoutSpace = last.substring(0, last.length()-1);
+        result.remove(result.size()-1);
+        result.add(lastWithoutSpace);
         return result;
     }
 
