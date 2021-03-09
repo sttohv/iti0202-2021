@@ -118,8 +118,9 @@ public class MorseTranslator {
         }
         if (!result.equals("")) {
             return result.substring(0, result.length() - 1);
+            //kui rida pole tühi, siis eemaldab viimase sõna lõpust tühiku
         }
-        return "";
+        return result;
     }
 
     /**
@@ -138,6 +139,6 @@ public class MorseTranslator {
                 }
             }
         }
-        return result + " ";
+        return result + " "; //lisab iga sõna järgi tühiku
     }
 }
