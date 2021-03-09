@@ -69,16 +69,14 @@ public class MorseTranslator {
      */
     private String translateLineToMorse(String line) { //"su ema on xd"
         String result = "";  //tühi vastuse string
-
         for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
         ) {
             result += translateWordToMorse(word);
         }
 
-        if (!result.isEmpty()) {
-            return result.substring(0, result.length() - 1);
-        }
-        return "";
+        return result.substring(0, result.length() - 1);
+//        }
+//        return "";
 
     }
 
@@ -91,12 +89,13 @@ public class MorseTranslator {
     private String translateWordToMorse(String word) {
         String result = "";
         for (int i = 0; i <= (word.length() - 1); i++) { //su length on 2
-            if (i != (word.length() - 1)) { //kui pole sõna lõpp, siis tühik
-                result += morseLetter.get(String.valueOf(word.charAt(i))) + " ";
-            } else { //kui on sõna lõpp, siis lisa tab
-                result += morseLetter.get(String.valueOf(word.charAt(i))) + "\t";
-            }
+            //if (i != (word.length() - 1)) { //kui pole sõna lõpp, siis tühik
+            result += morseLetter.get(String.valueOf(word.charAt(i))) + " ";
+//            } else { //kui on sõna lõpp, siis lisa tab
+//                result += morseLetter.get(String.valueOf(word.charAt(i))) + "\t";
+//            }
         }
+        result = result.substring(0, result.length() - 1) + "\t";
         return result;
     }
 
