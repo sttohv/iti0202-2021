@@ -69,12 +69,12 @@ public class MorseTranslator {
      */
     private String translateLineToMorse(String line) { //"su ema on xd"
         String result = "";  //tühi vastuse string
-        if (line != null) {
-            for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
-            ) {
-                result += translateWordToMorse(word);
-            }
+
+        for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
+        ) {
+            result += translateWordToMorse(word);
         }
+
         if (!result.isEmpty()) {
             return result.substring(0, result.length() - 1);
         }
