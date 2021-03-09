@@ -29,6 +29,7 @@ public class MorseFilesController {
 
         List<String> input = scanner.readTextFromFile("input.txt");
         input.forEach(System.out::println); //your input lines
+        System.out.println();
 //
         List<String> morseLines = translator.translateLinesToMorse(input);
         morseLines.forEach(System.out::println); //your input lines in Morse

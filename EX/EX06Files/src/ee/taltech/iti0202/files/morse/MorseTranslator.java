@@ -39,18 +39,16 @@ public class MorseTranslator {
         List<String> result = new ArrayList<>();
         for (String line : lines
         ) {
-            if(!(line.equals("") || line==null)){
-            result.add(translateLineToMorse(line.toLowerCase()));}
-            else{
-                result.add("");
-            }
+
+            result.add(translateLineToMorse(line.toLowerCase()));
+
         }
-        if (!result.isEmpty()) {
-            String last = result.get(result.size() - 1);
-            String lastWithoutSpace = last.substring(0, last.length() - 1);
-            result.remove(result.size() - 1);
-            result.add(lastWithoutSpace);
-        }
+//        if (!result.isEmpty()) {
+//            String last = result.get(result.size() - 1);
+//            String lastWithoutSpace = last.substring(0, last.length() - 1);
+//            result.remove(result.size() - 1);
+//            result.add(lastWithoutSpace);
+//        }
         return result;
     }
 
@@ -79,19 +77,29 @@ public class MorseTranslator {
      */
     private String translateLineToMorse(String line) { //"su ema on xd"
         String result = "";
-        if (line != null || !line.equals("")) {
-            for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
-            ) {
-                for (String letter : word.split("")) {
-
-                    result += (morseLetter.get(letter) + " ");
-
-                }
-                result += "\t";
-            }
+        for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
+        ) {
+            result += translateWordToMorse(word);
+        }
+        if (!result.isEmpty()) {
             return result.substring(0, result.length() - 1);
         }
         return "";
+
+    }
+
+    private String translateWordToMorse(String word) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i <= (word.length()-1); i++) { //su length on 2
+            if (i != (word.length() - 1)) { //kui pole sõna lõpp, siis tühik
+                result.append(morseLetter.get(String.valueOf(word.charAt(i)))).append(" ");
+            }
+            else{ //kui on sõna lõpp, siis lisa tab
+                result.append(morseLetter.get(String.valueOf(word.charAt(i))));
+                result.append("\t");
+            }
+        }
+        return result.toString();
     }
 
     /**
