@@ -35,18 +35,18 @@ public class MorseTranslator {
      * @param lines text lines
      * @return list of translated lines that are in Morse
      */
-    public List<String> translateLinesToMorse(List<String> lines) {
+    public List<String> translateLinesToMorse(List<String> lines) { //["Su ema on traktor", "",  "traktor on automaat"]
         List<String> result = new ArrayList<>();
         for (String line : lines
         ) {
             result.add(translateLineToMorse(line.toLowerCase()));
         }
-//        if (!result.isEmpty()) {
-//            String last = result.get(result.size() - 1);
-//            String lastWithoutSpace = last.substring(0, last.length() - 1);
-//            result.remove(result.size() - 1);
-//            result.add(lastWithoutSpace);
-//        }
+        if (!result.isEmpty()) {
+            String last = result.get(result.size() - 1);
+            String lastWithoutSpace = last.substring(0, last.length() - 1);
+            result.remove(result.size() - 1);
+            result.add(lastWithoutSpace);
+        }
         return result;
     }
 
@@ -79,12 +79,12 @@ public class MorseTranslator {
         ) {
             for (String letter : word.split("")) {
 
-                    result += (morseLetter.get(letter) + " ");
+                result += (morseLetter.get(letter) + " ");
 
             }
             result += "\t";
         }
-        return result.substring(0, result.length()-1);
+        return result.substring(0, result.length() - 1);
     }
 
     /**
@@ -101,13 +101,18 @@ public class MorseTranslator {
         ) {
             for (String letter : word.split(" ")
             ) {
-                result.append(morseLetter
+                Optional<String> string = morseLetter
                         .entrySet()
                         .stream()
                         .filter(entry -> letter.equals(entry.getValue()))
                         .map(Map.Entry::getKey)
-                        .findFirst()
-                        .get());
+                        .findFirst();
+                if (string.isPresent()) {
+                    result.append(string.get());
+                }
+                else{
+                    result.append("");
+                }
             }
             if (!words[words.length - 1].equals(word)) {
                 result.append(" ");
