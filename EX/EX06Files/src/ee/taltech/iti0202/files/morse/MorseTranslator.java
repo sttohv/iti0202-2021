@@ -39,7 +39,11 @@ public class MorseTranslator {
         List<String> result = new ArrayList<>();
         for (String line : lines
         ) {
-            result.add(translateLineToMorse(line.toLowerCase()));
+            if(!(line.equals("") || line==null)){
+            result.add(translateLineToMorse(line.toLowerCase()));}
+            else{
+                result.add("");
+            }
         }
         if (!result.isEmpty()) {
             String last = result.get(result.size() - 1);
@@ -75,16 +79,19 @@ public class MorseTranslator {
      */
     private String translateLineToMorse(String line) { //"su ema on xd"
         String result = "";
-        for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
-        ) {
-            for (String letter : word.split("")) {
+        if (line != null || !line.equals("")) {
+            for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
+            ) {
+                for (String letter : word.split("")) {
 
-                result += (morseLetter.get(letter) + " ");
+                    result += (morseLetter.get(letter) + " ");
 
+                }
+                result += "\t";
             }
-            result += "\t";
+            return result.substring(0, result.length() - 1);
         }
-        return result.substring(0, result.length() - 1);
+        return "";
     }
 
     /**
@@ -109,8 +116,7 @@ public class MorseTranslator {
                         .findFirst();
                 if (string.isPresent()) {
                     result.append(string.get());
-                }
-                else{
+                } else {
                     result.append("");
                 }
             }
