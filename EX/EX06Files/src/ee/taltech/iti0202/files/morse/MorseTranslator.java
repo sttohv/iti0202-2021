@@ -115,11 +115,11 @@ public class MorseTranslator {
             result += translateWordFromMorse(word);
 
         }
-        if (!result.equals("")) {
-            return result.substring(0, result.length() - 1);
-            //kui rida pole tühi, siis eemaldab viimase sõna lõpust tühiku
-        }
-        return result;
+        //if (!result.equals("")) {
+        return result.substring(0, result.length() - 1);
+        //kui rida pole tühi, siis eemaldab viimase sõna lõpust tühiku
+        //}
+        // return result;
     }
 
     /**
@@ -131,9 +131,9 @@ public class MorseTranslator {
     private String translateWordFromMorse(String word) {
         String result = "";
         String[] wordLetters = word.split(" "); // tühikute järgi sest iga tähe vahel on morses tühik
-        for (int i = 0; i < wordLetters.length; i++) {
+        for (String wordLetter : wordLetters) {
             for (Map.Entry<String, String> morse : morseLetter.entrySet()) {
-                if (wordLetters[i].equals(morse.getValue())) {
+                if (wordLetter.equals(morse.getValue())) {
                     result += morse.getKey();
                 }
             }
