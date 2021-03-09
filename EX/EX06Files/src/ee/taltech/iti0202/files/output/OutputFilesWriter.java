@@ -20,7 +20,6 @@ public class OutputFilesWriter {
      */
     public boolean writeLinesToFile(List<String> lines, String filename) {
         Path path = Path.of(filename);
-
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (String line : lines
             ) {

@@ -80,7 +80,8 @@ public class MorseTranslator {
             if (!letter.equals(" ")) {
                 result.append(morseLetter.get(letter)).append(" ");
             } else {
-                result.append("\t");
+
+                result.append(" \t");
             }
         }
         return result.toString();
