@@ -15,9 +15,11 @@ public class InputFilesScanner implements InputFilesReader {
             while (scanner.hasNext()) {
                 lines.add(scanner.nextLine());
             }
+            lines.add("");
         } catch (IOException e) {
             throw new FileReaderException("No such file", e);
         }
+        lines.remove(lines.size()-1);
         return lines;
     }
 }
