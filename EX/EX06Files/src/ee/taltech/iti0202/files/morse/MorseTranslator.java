@@ -84,7 +84,7 @@ public class MorseTranslator {
             }
             result += "\t";
         }
-        return result;
+        return result.substring(0, result.length()-1);
     }
 
     /**
