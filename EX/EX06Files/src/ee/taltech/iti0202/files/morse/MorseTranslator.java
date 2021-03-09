@@ -54,7 +54,7 @@ public class MorseTranslator {
     public List<String> translateLinesFromMorse(List<String> lines) {
         List<String> result = new ArrayList<>();
         for (String line : lines
-        ){
+        ) {
             result.add(translateLineFromMorse(line));
         }
         return result;
@@ -89,11 +89,11 @@ public class MorseTranslator {
      */
     private String translateLineFromMorse(String line) {
         StringBuilder result = new StringBuilder();
-        String[]words = line.split("\t");
-        for (String word:words
-             ) {
-            for (String letter:word.split(" ")
-                 ) {
+        String[] words = line.split("\t");
+        for (String word : words
+        ) {
+            for (String letter : word.split(" ")
+            ) {
                 result.append(morseLetter
                         .entrySet()
                         .stream()
@@ -102,7 +102,10 @@ public class MorseTranslator {
                         .findFirst()
                         .get());
             }
-            result.append(" ");
-        }return String.valueOf(result);
+            if (!words[words.length - 1].equals(word)) {
+                result.append(" ");
+            }
+        }
+        return String.valueOf(result);
     }
 }
