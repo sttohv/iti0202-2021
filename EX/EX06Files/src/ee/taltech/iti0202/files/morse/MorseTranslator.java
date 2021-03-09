@@ -4,11 +4,10 @@ package ee.taltech.iti0202.files.morse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class MorseTranslator {
-    private Map<String, String> morseLetter;
+    private Map<String, String> morseLetter = new HashMap<>();
 
     /**
      * meetod, mis lisab failist sisse loetud Morse koodide read Map'i nii,
@@ -21,14 +20,12 @@ public class MorseTranslator {
      * @return map containing letters and morse code
      */
     public Map<String, String> addMorseCodes(List<String> lines) {
-        Map<String, String> result = new HashMap<>();
         for (String line : lines
         ) {
             String[] lineS = line.toLowerCase().split(" ");
-            result.putIfAbsent(lineS[0], lineS[1]);
+            morseLetter.putIfAbsent(lineS[0], lineS[1]);
         }
-        morseLetter = result;
-        return result;
+        return morseLetter;
     }
 
     /**
