@@ -5,7 +5,6 @@ import ee.taltech.iti0202.files.input.InputFilesScanner;
 import ee.taltech.iti0202.files.morse.MorseTranslator;
 import ee.taltech.iti0202.files.output.OutputFilesWriter;
 
-import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
