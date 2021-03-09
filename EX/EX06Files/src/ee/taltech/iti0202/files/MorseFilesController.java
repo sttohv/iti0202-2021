@@ -32,11 +32,11 @@ public class MorseFilesController {
         List<String> morseLines = translator.translateLinesToMorse(input);
         morseLines.forEach(System.out::println); //your input lines in Morse
 
-//        List<String> normalLines = translator.translateLinesFromMorse(morseLines);
-//        normalLines.forEach(System.out::println); //your input lines in regular text
+        List<String> normalLines = translator.translateLinesFromMorse(morseLines);
+        normalLines.forEach(System.out::println); //your input lines in regular text
 
-//        OutputFilesWriter writer = new OutputFilesWriter();
-//        System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true
+        OutputFilesWriter writer = new OutputFilesWriter();
+        System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true
         //This should also create a new file/ write in an existing file
     }
 }

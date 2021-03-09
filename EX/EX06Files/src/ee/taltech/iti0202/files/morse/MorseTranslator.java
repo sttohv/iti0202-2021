@@ -52,7 +52,12 @@ public class MorseTranslator {
      * @return list of latin letters
      */
     public List<String> translateLinesFromMorse(List<String> lines) {
-        return null;
+        List<String> result = new ArrayList<>();
+        for (String line : lines
+        ){
+            result.add(translateLineFromMorse(line));
+        }
+        return result;
     }
 
     /**
@@ -83,8 +88,21 @@ public class MorseTranslator {
      * @return translated line
      */
     private String translateLineFromMorse(String line) {
-
-
-        return null;
+        StringBuilder result = new StringBuilder();
+        String[]words = line.split("\t");
+        for (String word:words
+             ) {
+            for (String letter:word.split(" ")
+                 ) {
+                result.append(morseLetter
+                        .entrySet()
+                        .stream()
+                        .filter(entry -> letter.equals(entry.getValue()))
+                        .map(Map.Entry::getKey)
+                        .findFirst()
+                        .get());
+            }
+            result.append(" ");
+        }return String.valueOf(result);
     }
 }
