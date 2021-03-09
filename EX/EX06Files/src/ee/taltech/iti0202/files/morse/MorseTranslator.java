@@ -89,16 +89,15 @@ public class MorseTranslator {
      * @return tõlgitud sõna
      */
     private String translateWordToMorse(String word) {
-        StringBuilder result = new StringBuilder();
+        String result = "";
         for (int i = 0; i <= (word.length() - 1); i++) { //su length on 2
             if (i != (word.length() - 1)) { //kui pole sõna lõpp, siis tühik
-                result.append(morseLetter.get(String.valueOf(word.charAt(i)))).append(" ");
+                result += morseLetter.get(String.valueOf(word.charAt(i))) + " ";
             } else { //kui on sõna lõpp, siis lisa tab
-                result.append(morseLetter.get(String.valueOf(word.charAt(i))));
-                result.append("\t");
+                result += morseLetter.get(String.valueOf(word.charAt(i))) + "\t";
             }
         }
-        return result.toString();
+        return result;
     }
 
     /**
