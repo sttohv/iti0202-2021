@@ -24,7 +24,7 @@ public class MorseTranslator {
         Map<String, String> result = new HashMap<>();
         for (String line : lines
         ) {
-            String[] lineS = line.toLowerCase(Locale.ROOT).split(" ");
+            String[] lineS = line.toLowerCase().split(" ");
             result.putIfAbsent(lineS[0], lineS[1]);
         }
         morseLetter = result;
