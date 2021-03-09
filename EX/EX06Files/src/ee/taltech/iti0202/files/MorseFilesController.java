@@ -23,7 +23,7 @@ public class MorseFilesController {
 
         System.out.println();
         MorseTranslator translator = new MorseTranslator();
-        Map<String, String> codes = translator.addMorseCodes(lines);
+        Map<String, String> codes = translator.addMorseCodes(lines2);
         codes.forEach((key, value) -> System.out.println(key + " " + value)); //key and value
 
         List<String> input = scanner.readTextFromFile("input.txt");
