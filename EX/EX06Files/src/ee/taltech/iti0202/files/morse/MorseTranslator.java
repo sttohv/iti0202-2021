@@ -39,7 +39,7 @@ public class MorseTranslator {
         List<String> result = new ArrayList<>();
         for (String line : lines
         ) {
-            result.add(translateLineToMorse(line.toLowerCase()));
+            result.add(translateLineToMorse(line.toLowerCase())+" ");
         }
         if (!result.isEmpty()) {
             String last = result.get(result.size() - 1);
@@ -80,7 +80,6 @@ public class MorseTranslator {
             if (!letter.equals(" ")) {
                 result.append(morseLetter.get(letter)).append(" ");
             } else {
-                result.append(" ");
                 result.append("\t");
             }
         }
