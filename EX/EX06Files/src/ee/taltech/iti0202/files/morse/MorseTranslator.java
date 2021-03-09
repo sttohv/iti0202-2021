@@ -69,14 +69,16 @@ public class MorseTranslator {
      */
     private String translateLineToMorse(String line) { //"su ema on xd"
         String result = "";  //tühi vastuse string
+
         for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
         ) {
             result += translateWordToMorse(word);
         }
 
-        return result.substring(0, result.length() - 1);
-//        }
-//        return "";
+        if (!result.isEmpty()) {
+            return result.substring(0, result.length() - 1);
+        }
+        return "";
 
     }
 
@@ -87,16 +89,16 @@ public class MorseTranslator {
      * @return tõlgitud sõna
      */
     private String translateWordToMorse(String word) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i <= (word.length() - 1); i++) { //su length on 2
-            //if (i != (word.length() - 1)) { //kui pole sõna lõpp, siis tühik
-            result += morseLetter.get(String.valueOf(word.charAt(i))) + " ";
-//            } else { //kui on sõna lõpp, siis lisa tab
-//                result += morseLetter.get(String.valueOf(word.charAt(i))) + "\t";
-//            }
+            if (i != (word.length() - 1)) { //kui pole sõna lõpp, siis tühik
+                result.append(morseLetter.get(String.valueOf(word.charAt(i)))).append(" ");
+            } else { //kui on sõna lõpp, siis lisa tab
+                result.append(morseLetter.get(String.valueOf(word.charAt(i))));
+                result.append("\t");
+            }
         }
-        result = result.substring(0, result.length() - 1) + "\t";
-        return result;
+        return result.toString();
     }
 
     /**
@@ -114,11 +116,11 @@ public class MorseTranslator {
             result += translateWordFromMorse(word);
 
         }
-        //if (!result.equals("")) {
-        return result.substring(0, result.length() - 1);
-        //kui rida pole tühi, siis eemaldab viimase sõna lõpust tühiku
-        //}
-        // return result;
+        if (!result.equals("")) {
+            return result.substring(0, result.length() - 1);
+            //kui rida pole tühi, siis eemaldab viimase sõna lõpust tühiku
+        }
+        return result;
     }
 
     /**
@@ -130,9 +132,9 @@ public class MorseTranslator {
     private String translateWordFromMorse(String word) {
         String result = "";
         String[] wordLetters = word.split(" "); // tühikute järgi sest iga tähe vahel on morses tühik
-        for (String wordLetter : wordLetters) {
+        for (int i = 0; i < wordLetters.length; i++) {
             for (Map.Entry<String, String> morse : morseLetter.entrySet()) {
-                if (wordLetter.equals(morse.getValue())) {
+                if (wordLetters[i].equals(morse.getValue())) {
                     result += morse.getKey();
                 }
             }
