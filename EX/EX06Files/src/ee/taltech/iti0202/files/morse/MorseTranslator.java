@@ -39,16 +39,8 @@ public class MorseTranslator {
         List<String> result = new ArrayList<>();
         for (String line : lines
         ) {
-
             result.add(translateLineToMorse(line.toLowerCase()));
-
         }
-//        if (!result.isEmpty()) {
-//            String last = result.get(result.size() - 1);
-//            String lastWithoutSpace = last.substring(0, last.length() - 1);
-//            result.remove(result.size() - 1);
-//            result.add(lastWithoutSpace);
-//        }
         return result;
     }
 
@@ -76,10 +68,12 @@ public class MorseTranslator {
      * @return translated line
      */
     private String translateLineToMorse(String line) { //"su ema on xd"
-        String result = "";
-        for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
-        ) {
-            result += translateWordToMorse(word);
+        String result = "";  //tühi vastuse string
+        if (line != null) {
+            for (String word : line.toLowerCase().split(" ")  //[su,ema,on,xd]
+            ) {
+                result += translateWordToMorse(word);
+            }
         }
         if (!result.isEmpty()) {
             return result.substring(0, result.length() - 1);
@@ -88,13 +82,18 @@ public class MorseTranslator {
 
     }
 
+    /**
+     * tõlgib sõna morse koodi
+     *
+     * @param word sõna mida tõlgitakse
+     * @return tõlgitud sõna
+     */
     private String translateWordToMorse(String word) {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i <= (word.length()-1); i++) { //su length on 2
+        for (int i = 0; i <= (word.length() - 1); i++) { //su length on 2
             if (i != (word.length() - 1)) { //kui pole sõna lõpp, siis tühik
                 result.append(morseLetter.get(String.valueOf(word.charAt(i)))).append(" ");
-            }
-            else{ //kui on sõna lõpp, siis lisa tab
+            } else { //kui on sõna lõpp, siis lisa tab
                 result.append(morseLetter.get(String.valueOf(word.charAt(i))));
                 result.append("\t");
             }
@@ -110,28 +109,35 @@ public class MorseTranslator {
      * @return translated line
      */
     private String translateLineFromMorse(String line) {
-        StringBuilder result = new StringBuilder();
-        String[] words = line.split("\t");
+        String result = "";
+        String[] words = line.split("\t");  //sõnad on eraldatud tabiga ja splitides eraldab sõnad
         for (String word : words
         ) {
-            for (String letter : word.split(" ")
-            ) {
-                Optional<String> string = morseLetter
-                        .entrySet()
-                        .stream()
-                        .filter(entry -> letter.equals(entry.getValue()))
-                        .map(Map.Entry::getKey)
-                        .findFirst();
-                if (string.isPresent()) {
-                    result.append(string.get());
-                } else {
-                    result.append("");
+            result += translateWordFromMorse(word);
+
+        }
+        if (!result.equals("")) {
+            return result.substring(0, result.length() - 1);
+        }
+        return "";
+    }
+
+    /**
+     * tõlgib morse koodist sõna tavatähtedesse
+     *
+     * @param word sõna, mis on morse koodis ja mida tõlkima hakatakse
+     * @return tõlgitud sõna
+     */
+    private String translateWordFromMorse(String word) {
+        String result = "";
+        String[] wordLetters = word.split(" "); // tühikute järgi sest iga tähe vahel on morses tühik
+        for (int i = 0; i < wordLetters.length; i++) {
+            for (Map.Entry<String, String> morse : morseLetter.entrySet()) {
+                if (wordLetters[i].equals(morse.getValue())) {
+                    result += morse.getKey();
                 }
             }
-            if (!words[words.length - 1].equals(word)) {
-                result.append(" ");
-            }
         }
-        return String.valueOf(result);
+        return result + " ";
     }
 }
