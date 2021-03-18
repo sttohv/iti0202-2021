@@ -18,7 +18,7 @@ public class Exam {
      * @return Whether the list contains adjacent numbers.
      */
     public static boolean tripleUp(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size() + (-1 - 2); i++) {
+        for (int i = 0; i < numbers.size() + (-1 - 1); i++) {
             int first = numbers.get(i);
             int second = numbers.get(i + 1);
             int third = numbers.get(i + 2);
@@ -81,7 +81,9 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        System.out.println(zipZap("zzzopzop"));
+        System.out.println(tripleUp(List.of(1, 4, 5, 6, 2)) ); // => true
+        System.out.println( tripleUp(List.of(1, 2, 3)));// => true
+        System.out.println( tripleUp(List.of(1, 2, 4)));
 
 
     }
