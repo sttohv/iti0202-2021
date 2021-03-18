@@ -23,9 +23,8 @@ public class CoffeeMachine {
         //kui sama nimega ressurssi pole masinal
         if (!resources.containsKey(name)) {
             resources.put(name, amount);
-        }
-        //kui on sama nimega
-        else {
+        } else {
+            //kui on sama nimega
             resources.put(name, resources.get(name) + amount);
         }
 
