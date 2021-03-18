@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class Exam {
     /**
      * Return true if the array contains, somewhere, three increasing adjacent numbers like .... 4, 5, 6, ... or 23, 24, 25.
-     *
+     * <p>
      * tripleUp(List.of(1, 4, 5, 6, 2)) => true
      * tripleUp(List.of(1, 2, 3)) => true
      * tripleUp(List.of(1, 2, 4)) => false
@@ -19,7 +19,10 @@ public class Exam {
      */
     public static boolean tripleUp(List<Integer> numbers) {
         for (int i = 0; i < numbers.size() + (-1 - 2); i++) {
-            if (numbers.get(i) + 1 == numbers.get(i + 1) && numbers.get(i + 1) == numbers.get(i + 2)) {
+            int first = numbers.get(i);
+            int second = numbers.get(i + 1);
+            int third = numbers.get(i + 2);
+            if (first + 1 == second && second + 1 == third) {
                 return true;
             }
         }
@@ -28,10 +31,10 @@ public class Exam {
 
     /**
      * Given three ints, a b c, one of them is small, one is medium and one is large.
-     *
+     * <p>
      * Return true if the three values are evenly spaced,
      * so the difference between small and medium is the same as the difference between medium and large.
-     *
+     * <p>
      * evenlySpaced(2, 4, 6) => true
      * evenlySpaced(4, 6, 2) => true
      * evenlySpaced(4, 6, 3) => false
@@ -48,9 +51,9 @@ public class Exam {
     /**
      * Look for patterns like "zip" and "zap" in the string --
      * length-3, starting with 'z' and ending with 'p'.
-     *
+     * <p>
      * Return a string where for all such words, the middle letter is gone, so "zipXzap" yields "zpXzp".
-     *
+     * <p>
      * zipZap("zipXzap") => "zpXzp"
      * zipZap("zopzop") => "zpzp"
      * zipZap("zzzopzop") => "zzzpzp"
@@ -67,9 +70,9 @@ public class Exam {
 
     /**
      * Create a new map and switch keys and values in the input map.
-     *
+     * <p>
      * If the key and value of an entry are the same, then this entry is skipped.
-     *
+     * <p>
      * mapSwitchKeysAndValues({"a": "b", "c": "d"}) => {"b": "a", "d": "c"}
      * mapSwitchKeysAndValues({"a": "a", "e": "e"}) => {}
      */
