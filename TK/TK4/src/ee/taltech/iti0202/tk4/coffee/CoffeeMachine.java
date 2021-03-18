@@ -1,6 +1,10 @@
 package ee.taltech.iti0202.tk4.coffee;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class CoffeeMachine {
     private Map<String, Integer> resources = new HashMap<>();

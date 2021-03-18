@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Exam {
     /**
-     * Return true if the array contains, somewhere, three increasing adjacent numbers like .... 4, 5, 6, ... or 23, 24, 25.
+     * Return true if the array contains, somewhere, three increasing adjacent numbers like .... 4, 5, 6, ... or
+     * 23, 24, 25.
      * <p>
      * tripleUp(List.of(1, 4, 5, 6, 2)) => true
      * tripleUp(List.of(1, 2, 3)) => true
@@ -91,7 +91,7 @@ public class Exam {
     public static void main(String[] args) {
         //  Map<String, String> you =
         //System.out.println(mapSwitchKeysAndValues({"a": "b", "c": "d"}); // => true
-        System.out.println(tripleUp(List.of(1, 2, 3)));// => true
+        System.out.println(tripleUp(List.of(1, 2, 3))); // => true
         System.out.println(tripleUp(List.of(1, 2, 4)));
 
 
