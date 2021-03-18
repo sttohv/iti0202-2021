@@ -59,7 +59,7 @@ public class Exam {
      * zipZap("zzzopzop") => "zzzpzp"
      */
     public static String zipZap(String str) {
-        for (int i = 0; i < str.length() - (1 + 2); i++) {
+        for (int i = 0; i < str.length() - (1 + 1); i++) {
             if (str.charAt(i) == 'z' && str.charAt(i + 2) == 'p') {
                 str = str.substring(0, i + 1) + str.substring(i + 2);
             }
@@ -81,9 +81,8 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        System.out.println(zipZap("zipazupa"));
+        System.out.println(zipZap("zzzopzop"));
 
-        System.out.println();
 
     }
 }
