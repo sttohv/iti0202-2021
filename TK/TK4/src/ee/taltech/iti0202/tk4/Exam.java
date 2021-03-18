@@ -77,13 +77,22 @@ public class Exam {
      * mapSwitchKeysAndValues({"a": "a", "e": "e"}) => {}
      */
     public static Map<String, String> mapSwitchKeysAndValues(Map<String, String> map) {
-        return null;
+        Map<String, String> result = new HashMap<>();
+        for (String key : map.keySet()
+        ) {
+            //kui key ja value on erinevad
+            if (!key.equals(map.get(key))) {
+                result.put(map.get(key), key);
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {
-        System.out.println(tripleUp(List.of(1, 4, 5, 6, 2)) ); // => true
-        System.out.println( tripleUp(List.of(1, 2, 3)));// => true
-        System.out.println( tripleUp(List.of(1, 2, 4)));
+        //  Map<String, String> you =
+        //System.out.println(mapSwitchKeysAndValues({"a": "b", "c": "d"}); // => true
+        System.out.println(tripleUp(List.of(1, 2, 3)));// => true
+        System.out.println(tripleUp(List.of(1, 2, 4)));
 
 
     }
