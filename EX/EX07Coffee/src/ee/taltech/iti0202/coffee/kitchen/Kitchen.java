@@ -23,7 +23,7 @@ public class Kitchen {
      * @param drinkOrdered drink ordered
      * @param machine      machine that has to make it
      */
-    public Kitchen(Drink drinkOrdered, CoffeeMachine machine){
+    public Kitchen(Drink drinkOrdered, CoffeeMachine machine) {
         coffeeMachines = new ArrayList<>();
         addCoffeeMachine(machine);
         drinksOrdered = new HashMap<>();
@@ -57,8 +57,8 @@ public class Kitchen {
     }
 
     public void makeOrderedDrinks() throws NoDrinkException {
-        for (Drink drink: drinksOrdered.keySet()
-             ) {
+        for (Drink drink : drinksOrdered.keySet()
+        ) {
             drinksOrdered.get(drink).start(drink);
             drinksMade.add(drink);
 

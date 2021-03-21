@@ -41,6 +41,7 @@ public class WaterTankTests {
         tank.refillTank();
         Assert.assertEquals(8, tank.getWaterLeft());
     }
+
     @Test
     public void useWaterIfEmpty() {
         WaterTank tank = new WaterTank(5);
@@ -52,7 +53,7 @@ public class WaterTankTests {
     }
 
     @Test
-    public void useWaterHalfEmpty(){
+    public void useWaterHalfEmpty() {
         WaterTank tank = new WaterTank(5);
         for (int i = 0; i < 3; i++) {
             tank.useWater();

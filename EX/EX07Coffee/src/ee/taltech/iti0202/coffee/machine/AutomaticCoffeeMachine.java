@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 public class AutomaticCoffeeMachine extends CoffeeMachine {
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
     /**
      * Makes a coffee machine that has always enough resources
      *
@@ -20,7 +21,8 @@ public class AutomaticCoffeeMachine extends CoffeeMachine {
     }
 
     @Override
-    protected void takeResources(Drink drink){}
+    protected void takeResources(Drink drink) {
+    }
 
     @Override
     protected boolean hasResources(Drink drink) {

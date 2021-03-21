@@ -29,7 +29,12 @@ public abstract class CoffeeMachine {
         log("creating a " + this.getClass().getSimpleName());
     }
 
-    protected void log(String message){
+    /**
+     * log actions
+     *
+     * @param message message to be logged
+     */
+    protected void log(String message) {
         LOGGER.info(message);
     }
 
@@ -172,6 +177,7 @@ public abstract class CoffeeMachine {
 
     /**
      * get known drinks list
+     *
      * @return list of known drinks
      */
     public List<Drink> getKnownDrinks() {

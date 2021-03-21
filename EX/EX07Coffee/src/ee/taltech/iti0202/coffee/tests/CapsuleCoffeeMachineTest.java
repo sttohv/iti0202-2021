@@ -56,7 +56,7 @@ public class CapsuleCoffeeMachineTest {
     }
 
     @Test
-    public void testAddCapsuleWhenCapsuleAlreadyIn(){
+    public void testAddCapsuleWhenCapsuleAlreadyIn() {
         WaterTank tank = new WaterTank(5);
         CapsuleCoffeeMachine capsuleMachine = new CapsuleCoffeeMachine(tank);
 
@@ -74,7 +74,7 @@ public class CapsuleCoffeeMachineTest {
     }
 
     @Test
-    public void testAddCapsuleWhenResourcesDoesntHaveCapsule(){
+    public void testAddCapsuleWhenResourcesDoesntHaveCapsule() {
         WaterTank tank = new WaterTank(5);
         CapsuleCoffeeMachine capsuleMachine = new CapsuleCoffeeMachine(tank);
 
@@ -90,7 +90,7 @@ public class CapsuleCoffeeMachineTest {
     }
 
     @Test
-    public void testAddCapsuleWithDifferentCase(){
+    public void testAddCapsuleWithDifferentCase() {
         WaterTank tank = new WaterTank(5);
         CapsuleCoffeeMachine capsuleMachine = new CapsuleCoffeeMachine(tank);
 

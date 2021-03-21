@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class DrinkTest {
     @Test
-    public void testMakeDrink(){
+    public void testMakeDrink() {
         Map<String, Integer> resources = new HashMap<>();
         resources.put("beans", 1);
         Drink drink = new Drink("coffee", resources);

@@ -24,6 +24,7 @@ public class WaterTank {
 
     /**
      * log info
+     *
      * @param message message to be logged
      */
     public void log(String message) {
