@@ -46,5 +46,6 @@ public class SocialNetworkDemo {
         System.out.println(socialNetwork.getGroups()); // [group1, newGroup]
 
         System.out.println(socialNetwork.getFeedForUser(user2)); // [title1]
+//        System.out.println("nifty".getClass().getSimpleName() == "String");
     }
 }
