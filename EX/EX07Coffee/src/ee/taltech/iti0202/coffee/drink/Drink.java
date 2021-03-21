@@ -13,7 +13,7 @@ public class Drink {
      * @param resources resources needed to make the drink
      */
     public Drink(String name, Map<String, Integer> resources) {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.resourcesNeeded = resources;
     }
 

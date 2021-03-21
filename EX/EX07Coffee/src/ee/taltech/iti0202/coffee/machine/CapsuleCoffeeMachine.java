@@ -12,6 +12,11 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
     private String capsuleName;
     private boolean isCapsuleIn;
 
+    /**
+     * Constructor
+     *
+     * @param tank watertank
+     */
     public CapsuleCoffeeMachine(WaterTank tank) {
         super(tank);
         trashCapacity = 10;
@@ -68,6 +73,9 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
         }
     }
 
+    /**
+     * removes capsule from socket
+     */
     public void removeCapsule() {
         if (isCapsuleIn) {
             isCapsuleIn = false;

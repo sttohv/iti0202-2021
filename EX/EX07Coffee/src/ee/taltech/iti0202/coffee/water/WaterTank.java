@@ -43,9 +43,13 @@ public class WaterTank {
         if (!isEmpty()) {
             waterLeft--;
         }
-        //Excpetion mis ütleb, et vee tank on tühi
     }
 
+    /**
+     * get water left
+     *
+     * @return amount of water left
+     */
     public int getWaterLeft() {
         return waterLeft;
     }

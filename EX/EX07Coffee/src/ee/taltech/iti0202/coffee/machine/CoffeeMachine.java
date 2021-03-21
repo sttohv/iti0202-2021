@@ -2,13 +2,9 @@ package ee.taltech.iti0202.coffee.machine;
 
 import ee.taltech.iti0202.coffee.drink.Drink;
 import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
-import ee.taltech.iti0202.coffee.kitchen.Kitchen;
 import ee.taltech.iti0202.coffee.water.WaterTank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class CoffeeMachine {
     protected Map<String, Integer> resources;
@@ -76,6 +72,7 @@ public abstract class CoffeeMachine {
      * @param amount   the amount of the resource
      */
     protected void takeResource(String resource, Integer amount) {
+        resource = resource.toLowerCase();
         resources.put(resource, resources.get(resource) - amount);
     }
 
@@ -105,6 +102,7 @@ public abstract class CoffeeMachine {
      * @return if resource storage has enough resources
      */
     protected boolean hasResource(String resource, Integer amount) {
+        resource = resource.toLowerCase();
         return resources.containsKey(resource) && resources.get(resource) >= amount;
     }
 
@@ -121,7 +119,7 @@ public abstract class CoffeeMachine {
     /**
      * Empties the trash
      */
-    protected void emptyTrash() {
+    public void emptyTrash() {
         trashCount = 0;
     }
 
@@ -153,6 +151,7 @@ public abstract class CoffeeMachine {
      * @param amount   the amount of the resource to be added
      */
     public void addResource(String resource, Integer amount) {
+        resource = resource.toLowerCase();
         if (hasResource(resource, amount)) {
             resources.put(resource, resources.get(resource) + amount);
         } else {
