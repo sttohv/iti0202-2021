@@ -4,13 +4,13 @@ import ee.taltech.iti0202.coffee.drink.Drink;
 import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
 import ee.taltech.iti0202.coffee.water.WaterTank;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.logging.Logger;
 
 public class CapsuleCoffeeMachine extends CoffeeMachine {
     private String capsuleName;
     private boolean isCapsuleIn;
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Constructor
@@ -40,10 +40,12 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
         } else if (waterTank.isEmpty()) {
             throw new NoDrinkException(this, NoDrinkException.Reason.NOT_ENOUGH_WATER);
         } else if (!isCapsuleIn || capsuleName.equals("empty")) {
+            log("made water instead of ordered" + drink.getName() + " because capsule was empty or not entered");
             waterTank.useWater();
             trashCount++;
             return new Drink("water", new HashMap<>());
         } else {
+            log("made " + drink.getName());
             waterTank.useWater();
             takeResources(drink);
             trashCount++;
@@ -52,6 +54,7 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
         }
 
     }
+
 
     /**
      * Adds a capsule in the machine if the machine has the capsule in resources
@@ -62,11 +65,13 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
      * @throws NoDrinkException Reason why you can't add a capsule in
      */
     public void addCapsuleToMachine(String capsuleName) throws NoDrinkException {
+        capsuleName = capsuleName.toLowerCase();
         if (!(resources.containsKey(capsuleName) && resources.get(capsuleName) > 0)) {
             throw new NoDrinkException(this, NoDrinkException.Reason.NOT_ENOUGH_RESOURCES);
         } else if (isCapsuleIn) {
             throw new NoDrinkException(this, NoDrinkException.Reason.CAPSULE_ALREADY_IN);
         } else {
+            log("added " + capsuleName + " capsule to the machine");
             isCapsuleIn = true;
             this.capsuleName = capsuleName;
             resources.put(capsuleName, resources.get(capsuleName) - 1);
@@ -78,11 +83,14 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
      */
     public void removeCapsule() {
         if (isCapsuleIn) {
+            log("removed capsule from socket");
             isCapsuleIn = false;
             capsuleName = "empty";
         }
 
     }
 
-
+    public String getCapsuleName() {
+        return capsuleName;
+    }
 }

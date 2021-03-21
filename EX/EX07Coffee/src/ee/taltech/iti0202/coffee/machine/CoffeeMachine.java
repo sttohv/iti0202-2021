@@ -5,6 +5,7 @@ import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
 import ee.taltech.iti0202.coffee.water.WaterTank;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 public abstract class CoffeeMachine {
     protected Map<String, Integer> resources;
@@ -12,6 +13,7 @@ public abstract class CoffeeMachine {
     protected int trashCount;
     protected int trashCapacity;
     protected List<Drink> knownDrinks;
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Constructor
@@ -24,8 +26,12 @@ public abstract class CoffeeMachine {
         trashCapacity = 5;
         trashCount = 0;
         knownDrinks = new ArrayList<>();
+        log("creating a " + this.getClass().getSimpleName());
     }
 
+    protected void log(String message){
+        LOGGER.info(message);
+    }
 
     /**
      * Start button and when called takes water(if possible)
@@ -45,6 +51,7 @@ public abstract class CoffeeMachine {
         } else if (!isKnownDrink(drink)) {
             throw new NoDrinkException(this, NoDrinkException.Reason.UNKNOWN_COFFEE);
         } else {
+            log("Machine made a " + drink.getName());
             waterTank.useWater();
             takeResources(drink);
             trashCount++;
@@ -61,6 +68,7 @@ public abstract class CoffeeMachine {
         //Iterates all requirements for the drink
         for (String resource : drink.getResourcesNeeded().keySet()
         ) {
+            log("Machine used resource " + resource);
             takeResource(resource, drink.getResourcesNeeded().get(resource));
         }
     }
@@ -120,6 +128,7 @@ public abstract class CoffeeMachine {
      * Empties the trash
      */
     public void emptyTrash() {
+        log("trash thrown out");
         trashCount = 0;
     }
 
@@ -140,6 +149,7 @@ public abstract class CoffeeMachine {
      */
     public void addKnownDrink(Drink drink) {
         if (!isKnownDrink(drink)) {
+            log("machine learned a new drink recipe");
             knownDrinks.add(drink);
         }
     }
@@ -152,6 +162,7 @@ public abstract class CoffeeMachine {
      */
     public void addResource(String resource, Integer amount) {
         resource = resource.toLowerCase();
+        log(amount + " " + resource + " resources were added to the machine");
         if (hasResource(resource, amount)) {
             resources.put(resource, resources.get(resource) + amount);
         } else {
@@ -159,5 +170,15 @@ public abstract class CoffeeMachine {
         }
     }
 
+    /**
+     * get known drinks list
+     * @return list of known drinks
+     */
+    public List<Drink> getKnownDrinks() {
+        return knownDrinks;
+    }
 
+    public Map<String, Integer> getResources() {
+        return resources;
+    }
 }

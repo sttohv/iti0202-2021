@@ -5,11 +5,16 @@ import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
 import ee.taltech.iti0202.coffee.machine.CoffeeMachine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 public class Kitchen {
     private List<CoffeeMachine> coffeeMachines;
+    private Map<Drink, CoffeeMachine> drinksOrdered;
     private List<Drink> drinksMade;
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 
     /**
@@ -17,13 +22,15 @@ public class Kitchen {
      *
      * @param drinkOrdered drink ordered
      * @param machine      machine that has to make it
-     * @throws NoDrinkException if drink cannot be made then throws this error
      */
-    public Kitchen(Drink drinkOrdered, CoffeeMachine machine) throws NoDrinkException {
+    public Kitchen(Drink drinkOrdered, CoffeeMachine machine){
         coffeeMachines = new ArrayList<>();
+        addCoffeeMachine(machine);
+        drinksOrdered = new HashMap<>();
+        drinksOrdered.put(drinkOrdered, machine);
         drinksMade = new ArrayList<>();
-        coffeeMachines.add(machine);
-        drinksMade.add(machine.start(drinkOrdered));
+
+
     }
 
     /**
@@ -42,12 +49,31 @@ public class Kitchen {
      *
      * @param drinkOrdered drink ordered
      * @param machine      machine that makes the drink
-     * @return drink made (can be different to the one ordered)
      * @throws NoDrinkException throws an exception when drink cannot be made
      */
-    public Drink orderCoffee(Drink drinkOrdered, CoffeeMachine machine) throws NoDrinkException {
+    public void orderCoffee(Drink drinkOrdered, CoffeeMachine machine) throws NoDrinkException {
         Drink drinkMade = machine.start(drinkOrdered);
-        drinksMade.add(drinkMade);
-        return drinkMade;
+        drinksOrdered.put(drinkMade, machine);
+    }
+
+    public void makeOrderedDrinks() throws NoDrinkException {
+        for (Drink drink: drinksOrdered.keySet()
+             ) {
+            drinksOrdered.get(drink).start(drink);
+            drinksMade.add(drink);
+
+        }
+    }
+
+    public List<Drink> getDrinksMade() {
+        return drinksMade;
+    }
+
+    public List<CoffeeMachine> getCoffeeMachines() {
+        return coffeeMachines;
+    }
+
+    public Map<Drink, CoffeeMachine> getDrinksOrdered() {
+        return drinksOrdered;
     }
 }

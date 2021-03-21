@@ -1,7 +1,8 @@
 package ee.taltech.iti0202.coffee.exceptions;
 
-import ee.taltech.iti0202.coffee.drink.Drink;
 import ee.taltech.iti0202.coffee.machine.CoffeeMachine;
+
+import java.util.logging.Logger;
 
 public class NoDrinkException extends Exception {
     public enum Reason {
@@ -14,6 +15,7 @@ public class NoDrinkException extends Exception {
 
     private CoffeeMachine machine;
     private Reason reason;
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Constructor
@@ -24,5 +26,17 @@ public class NoDrinkException extends Exception {
     public NoDrinkException(CoffeeMachine machine, Reason reason) {
         this.machine = machine;
         this.reason = reason;
+        log(reason);
+    }
+
+    /**
+     * log exceptions
+     */
+    public void log(Reason reason) {
+        LOGGER.info(reason.name());
+    }
+
+    public Reason getReason() {
+        return reason;
     }
 }
