@@ -4,7 +4,7 @@ import ee.taltech.iti0202.coffee.drink.Drink;
 import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
 import ee.taltech.iti0202.coffee.machine.BasicCoffeeMachine;
 import ee.taltech.iti0202.coffee.machine.CoffeeMachine;
-import ee.taltech.iti0202.coffee.water.WaterTank;
+import ee.taltech.iti0202.coffee.resources.WaterTank;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,11 +38,12 @@ public class BasicCoffeeMachineTest {
         WaterTank tank = new WaterTank(5);
         CoffeeMachine basic = new BasicCoffeeMachine(tank);
 
-        basic.addResource("something", 1);
-        basic.addResource("something", 1);
+
+        basic.getStorage().addResource("something", 1);
+        basic.getStorage().addResource("something", 1);
 
 
-        Assert.assertEquals(2, basic.getResources().get("something").intValue());
+        Assert.assertEquals(2, basic.getStorage().getResources().get("something").intValue());
     }
 
     @Test
@@ -54,7 +55,7 @@ public class BasicCoffeeMachineTest {
         resourcesNeeded.put("something", 1);
         Drink drink = new Drink("something", resourcesNeeded);
 
-        basic.addResource("something", 1);
+        basic.getStorage().addResource("something", 1);
         basic.addKnownDrink(drink);
         basic.start(drink);
         Assert.assertEquals("something", drink.getName());

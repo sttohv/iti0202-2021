@@ -4,7 +4,7 @@ import ee.taltech.iti0202.coffee.drink.Drink;
 import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
 import ee.taltech.iti0202.coffee.machine.CapsuleCoffeeMachine;
 import ee.taltech.iti0202.coffee.machine.CoffeeMachine;
-import ee.taltech.iti0202.coffee.water.WaterTank;
+import ee.taltech.iti0202.coffee.resources.WaterTank;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,7 +45,7 @@ public class CapsuleCoffeeMachineTest {
 
         map.put("capsuleCoffee", 1);
         Drink capsuleCoffee = new Drink("capsuleCoffee", map);
-        capsuleMachine.addResource("capsulecoffee", 1);
+        capsuleMachine.getStorage().addResource("capsulecoffee", 1);
         capsuleMachine.addCapsuleToMachine("capsuleCoffee");
 
         for (int i = 0; i < 2; i++) {
@@ -60,7 +60,7 @@ public class CapsuleCoffeeMachineTest {
         WaterTank tank = new WaterTank(5);
         CapsuleCoffeeMachine capsuleMachine = new CapsuleCoffeeMachine(tank);
 
-        capsuleMachine.addResource("Capsulecoffee", 2);
+        capsuleMachine.getStorage().addResource("Capsulecoffee", 2);
 
         NoDrinkException.Reason cause = null;
         try {
@@ -94,7 +94,7 @@ public class CapsuleCoffeeMachineTest {
         WaterTank tank = new WaterTank(5);
         CapsuleCoffeeMachine capsuleMachine = new CapsuleCoffeeMachine(tank);
 
-        capsuleMachine.addResource("CapSuleCoFfEe", 2);
+        capsuleMachine.getStorage().addResource("CapSuleCoFfEe", 2);
 
         try {
             capsuleMachine.addCapsuleToMachine("capsulecoffee");

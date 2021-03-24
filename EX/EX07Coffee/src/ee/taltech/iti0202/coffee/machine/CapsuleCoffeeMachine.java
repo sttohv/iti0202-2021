@@ -2,15 +2,15 @@ package ee.taltech.iti0202.coffee.machine;
 
 import ee.taltech.iti0202.coffee.drink.Drink;
 import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
-import ee.taltech.iti0202.coffee.water.WaterTank;
+import ee.taltech.iti0202.coffee.resources.WaterTank;
+import ee.taltech.iti0202.coffee.trash.Trash;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
+import java.util.Map;
 
 public class CapsuleCoffeeMachine extends CoffeeMachine {
     private String capsuleName;
     private boolean isCapsuleIn;
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Constructor
@@ -19,7 +19,7 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
      */
     public CapsuleCoffeeMachine(WaterTank tank) {
         super(tank);
-        trashCapacity = 10;
+        trashCan = new Trash(10);
         capsuleName = "empty";
         isCapsuleIn = false;
     }
@@ -35,20 +35,20 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
      */
     @Override
     public Drink start(Drink drink) throws NoDrinkException {
-        if (isTrashFull()) {
+        if (trashCan.isTrashFull()) {
             throw new NoDrinkException(this, NoDrinkException.Reason.TRASH_FULL);
         } else if (waterTank.isEmpty()) {
             throw new NoDrinkException(this, NoDrinkException.Reason.NOT_ENOUGH_WATER);
         } else if (!isCapsuleIn || capsuleName.equals("empty")) {
             log("made water instead of ordered" + drink.getName() + " because capsule was empty or not entered");
             waterTank.useWater();
-            trashCount++;
+            trashCan.throwInTrash();
             return new Drink("water", new HashMap<>());
         } else {
             log("made " + drink.getName());
             waterTank.useWater();
-            takeResources(drink);
-            trashCount++;
+            storage.takeResources(drink);
+            trashCan.throwInTrash();
             capsuleName = "empty";
             return drink;
         }
@@ -66,7 +66,7 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
      */
     public void addCapsuleToMachine(String capsuleName) throws NoDrinkException {
         capsuleName = capsuleName.toLowerCase();
-        if (!(resources.containsKey(capsuleName) && resources.get(capsuleName) > 0)) {
+        if (!(storage.getResources().containsKey(capsuleName) && storage.getResources().get(capsuleName) > 0)) {
             throw new NoDrinkException(this, NoDrinkException.Reason.NOT_ENOUGH_RESOURCES);
         } else if (isCapsuleIn) {
             throw new NoDrinkException(this, NoDrinkException.Reason.CAPSULE_ALREADY_IN);
@@ -74,7 +74,9 @@ public class CapsuleCoffeeMachine extends CoffeeMachine {
             log("added " + capsuleName + " capsule to the machine");
             isCapsuleIn = true;
             this.capsuleName = capsuleName;
+            Map<String, Integer> resources = storage.getResources();
             resources.put(capsuleName, resources.get(capsuleName) - 1);
+            storage.setResources(resources);
         }
     }
 

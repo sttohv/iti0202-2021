@@ -4,7 +4,7 @@ import ee.taltech.iti0202.coffee.drink.Drink;
 import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
 import ee.taltech.iti0202.coffee.machine.AutomaticCoffeeMachine;
 import ee.taltech.iti0202.coffee.machine.CoffeeMachine;
-import ee.taltech.iti0202.coffee.water.WaterTank;
+import ee.taltech.iti0202.coffee.resources.WaterTank;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,7 +45,7 @@ public class AutomaticCoffeeMachineTest {
         for (int i = 0; i < 6; i++) {
             try {
                 automatic.start(automatic.getKnownDrinks().get(0));
-                automatic.emptyTrash();
+                automatic.getTrashCan().emptyTrash();
             } catch (NoDrinkException e) {
                 cause = e.getReason();
             }

@@ -13,8 +13,8 @@ public class NoDrinkException extends Exception {
         UNKNOWN_COFFEE
     }
 
-    private CoffeeMachine machine;
-    private Reason reason;
+    private final CoffeeMachine machine;
+    private final Reason reason;
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**

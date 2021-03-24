@@ -1,4 +1,4 @@
-package ee.taltech.iti0202.coffee.water;
+package ee.taltech.iti0202.coffee.resources;
 
 import java.util.logging.Logger;
 

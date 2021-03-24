@@ -1,14 +1,13 @@
 package ee.taltech.iti0202.coffee.machine;
 
 import ee.taltech.iti0202.coffee.drink.Drink;
-import ee.taltech.iti0202.coffee.water.WaterTank;
+import ee.taltech.iti0202.coffee.resources.AutoResources;
+import ee.taltech.iti0202.coffee.resources.WaterTank;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class AutomaticCoffeeMachine extends CoffeeMachine {
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Makes a coffee machine that has always enough resources
@@ -17,16 +16,8 @@ public class AutomaticCoffeeMachine extends CoffeeMachine {
      */
     public AutomaticCoffeeMachine(WaterTank tank) {
         super(tank);
+        storage = new AutoResources();
         changeKnownDrinks();
-    }
-
-    @Override
-    protected void takeResources(Drink drink) {
-    }
-
-    @Override
-    protected boolean hasResources(Drink drink) {
-        return true;
     }
 
     /**
@@ -35,7 +26,7 @@ public class AutomaticCoffeeMachine extends CoffeeMachine {
      * This method it later called out in the constructor
      */
     private void changeKnownDrinks() {
-        log("teached machine how to black coffee, hot chocolate, cappuccino and latte");
+        log("taught machine how to black coffee, hot chocolate, cappuccino and latte");
         Map<String, Integer> coffeeResources = new HashMap<>();
         coffeeResources.put("beans", 1);
         knownDrinks.add(new Drink("coffee", coffeeResources));

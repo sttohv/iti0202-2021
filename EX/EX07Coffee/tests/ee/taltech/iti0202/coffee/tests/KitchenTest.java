@@ -6,15 +6,13 @@ import ee.taltech.iti0202.coffee.kitchen.Kitchen;
 import ee.taltech.iti0202.coffee.machine.AutomaticCoffeeMachineBuilder;
 import ee.taltech.iti0202.coffee.machine.CapsuleCoffeeMachineBuilder;
 import ee.taltech.iti0202.coffee.machine.CoffeeMachine;
-import ee.taltech.iti0202.coffee.water.WaterTank;
+import ee.taltech.iti0202.coffee.resources.WaterTank;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class KitchenTest {
 

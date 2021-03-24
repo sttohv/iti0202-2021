@@ -2,16 +2,17 @@ package ee.taltech.iti0202.coffee.machine;
 
 import ee.taltech.iti0202.coffee.drink.Drink;
 import ee.taltech.iti0202.coffee.exceptions.NoDrinkException;
-import ee.taltech.iti0202.coffee.water.WaterTank;
+import ee.taltech.iti0202.coffee.resources.ResourceStorage;
+import ee.taltech.iti0202.coffee.resources.WaterTank;
+import ee.taltech.iti0202.coffee.trash.Trash;
 
 import java.util.*;
 import java.util.logging.Logger;
 
 public abstract class CoffeeMachine {
-    protected Map<String, Integer> resources;
+    protected ResourceStorage storage;
     protected final WaterTank waterTank;
-    protected int trashCount;
-    protected int trashCapacity;
+    protected Trash trashCan;
     protected List<Drink> knownDrinks;
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -21,10 +22,9 @@ public abstract class CoffeeMachine {
      * @param tank where the machine takes its water
      */
     public CoffeeMachine(WaterTank tank) {
-        resources = new HashMap<>();
+        storage = new ResourceStorage();
         waterTank = tank;
-        trashCapacity = 5;
-        trashCount = 0;
+        trashCan = new Trash(5);
         knownDrinks = new ArrayList<>();
         log("creating a " + this.getClass().getSimpleName());
     }
@@ -47,9 +47,9 @@ public abstract class CoffeeMachine {
      * @throws NoDrinkException exception why coffee can't be made
      */
     public Drink start(Drink drink) throws NoDrinkException {
-        if (isTrashFull()) {
+        if (trashCan.isTrashFull()) {
             throw new NoDrinkException(this, NoDrinkException.Reason.TRASH_FULL);
-        } else if (!hasResources(drink)) {
+        } else if (!storage.hasResources(drink)) {
             throw new NoDrinkException(this, NoDrinkException.Reason.NOT_ENOUGH_RESOURCES);
         } else if (waterTank.isEmpty()) {
             throw new NoDrinkException(this, NoDrinkException.Reason.NOT_ENOUGH_WATER);
@@ -58,83 +58,10 @@ public abstract class CoffeeMachine {
         } else {
             log("Machine made a " + drink.getName());
             waterTank.useWater();
-            takeResources(drink);
-            trashCount++;
+            storage.takeResources(drink);
+            trashCan.throwInTrash();
             return drink;
         }
-    }
-
-    /**
-     * Removes every resource from drink
-     *
-     * @param drink drink to be made
-     */
-    protected void takeResources(Drink drink) {
-        //Iterates all requirements for the drink
-        for (String resource : drink.getResourcesNeeded().keySet()
-        ) {
-            log("Machine used resource " + resource);
-            takeResource(resource, drink.getResourcesNeeded().get(resource));
-        }
-    }
-
-    /**
-     * takes a resource from resource storage
-     *
-     * @param resource resource to be taken
-     * @param amount   the amount of the resource
-     */
-    protected void takeResource(String resource, Integer amount) {
-        resource = resource.toLowerCase();
-        resources.put(resource, resources.get(resource) - amount);
-    }
-
-    /**
-     * Checks if machine has all the resources needed
-     *
-     * @param drink drink that has to be checked
-     * @return if machine has enough resources
-     */
-    protected boolean hasResources(Drink drink) {
-        for (String resource : drink.getResourcesNeeded().keySet()
-        ) {
-            //If storage doesn't have enough of some kind of a resource then returns false
-            if (!hasResource(resource, drink.getResourcesNeeded().get(resource))) {
-                return false;
-            }
-        }
-        return true;
-
-    }
-
-    /**
-     * Checks if resource storage has enough resources
-     *
-     * @param resource a
-     * @param amount   b
-     * @return if resource storage has enough resources
-     */
-    protected boolean hasResource(String resource, Integer amount) {
-        resource = resource.toLowerCase();
-        return resources.containsKey(resource) && resources.get(resource) >= amount;
-    }
-
-
-    /**
-     * Checks if the trash is full
-     *
-     * @return if the trash is full or not
-     */
-    protected boolean isTrashFull() {
-        return trashCount == trashCapacity;
-    }
-
-    /**
-     * Empties the trash
-     */
-    public void emptyTrash() {
-        log("trash thrown out");
-        trashCount = 0;
     }
 
     /**
@@ -160,22 +87,6 @@ public abstract class CoffeeMachine {
     }
 
     /**
-     * adds resources to the coffee machine
-     *
-     * @param resource resource to be added
-     * @param amount   the amount of the resource to be added
-     */
-    public void addResource(String resource, Integer amount) {
-        resource = resource.toLowerCase();
-        log(amount + " " + resource + " resources were added to the machine");
-        if (hasResource(resource, amount)) {
-            resources.put(resource, resources.get(resource) + amount);
-        } else {
-            resources.put(resource, amount);
-        }
-    }
-
-    /**
      * get known drinks list
      *
      * @return list of known drinks
@@ -184,7 +95,11 @@ public abstract class CoffeeMachine {
         return knownDrinks;
     }
 
-    public Map<String, Integer> getResources() {
-        return resources;
+    public ResourceStorage getStorage() {
+        return storage;
+    }
+
+    public Trash getTrashCan() {
+        return trashCan;
     }
 }

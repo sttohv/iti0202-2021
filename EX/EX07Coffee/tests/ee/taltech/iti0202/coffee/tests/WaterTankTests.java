@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.coffee.tests;
 
-import ee.taltech.iti0202.coffee.water.WaterTank;
+import ee.taltech.iti0202.coffee.resources.WaterTank;
 import org.junit.Assert;
 import org.junit.Test;
 
