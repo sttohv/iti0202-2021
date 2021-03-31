@@ -49,11 +49,7 @@ public class Regular {
      * @throws CannotBookException why can't be fixed
      */
     public void bookRoom() throws CannotBookException {
-        if (booked) {
-            throw new CannotBookException(CannotBookException.Reason.ROOM_ALREADY_BOOKED);
-        } else {
-            booked = true;
-        }
+        booked = true;
     }
 
     /**

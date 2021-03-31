@@ -111,4 +111,21 @@ class HotelTest {
 
         Assertions.assertEquals(CannotCancelException.Reason.SUITE_CANNOT_BE_CANCELED, ex.getReason());
     }
+
+    @Test
+    public void roomAlreadyBooked() throws CannotCreateNewRoom, CannotBookException {
+        Hotel hotel = new Hotel();
+        hotel.addRoom("suite", 2, 1);
+        hotel.addRoom("regular", 1, 2);
+        hotel.bookRoom("regular", 1);
+        CannotBookException ex = null;
+        try {
+            hotel.bookRoom("regular", 1);
+        } catch (CannotBookException e) {
+            ex = e;
+        }
+
+        Assertions.assertEquals(CannotBookException.Reason.NO_AVAILABLE_ROOMS, ex.getReason());
+
+    }
 }
