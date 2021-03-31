@@ -32,16 +32,16 @@ public class Hotel {
         }
     }
 
-    public Regular bookRoom(String type, int size) throws CannotBookException {
+    public int bookRoom(String type, int size) throws CannotBookException {
         Regular room = findRoomToBook(type, size);
         room.bookRoom();
-        return room;
+        return room.getRoomNumber();
     }
 
-    public Regular cancelRoom(int roomNumber) throws CannotCancelException {
+    public int cancelRoom(int roomNumber) throws CannotCancelException {
         Regular room = getRoomByNumber(roomNumber);
         room.cancelBooking();
-        return room;
+        return room.getRoomNumber();
     }
 
     public List<Regular> getRooms() {
