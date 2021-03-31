@@ -36,7 +36,7 @@ public class Exam {
     public static boolean prefixExistsAgain(String str, int n) {
         String prefix = str.substring(0, n);
         String check = str.substring(1, str.length());
-        if (check.contains(prefix)){
+        if (check.contains(prefix)) {
             return true;
         }
         return false;

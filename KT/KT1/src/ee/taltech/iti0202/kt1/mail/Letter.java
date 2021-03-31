@@ -6,11 +6,7 @@ public class Letter {
     private String address;
 
     /**
-     * Luuakse uus kiri adressaadi nimega, linna ja aadressiga
-     *
-     * @param recipient       adressaadi nimi
-     * @param destinationCity adressaadi linn
-     * @param address         adressaadi aadress
+     * Create a new letter with recipient, destination city and address.
      */
     public Letter(String recipient, String destinationCity, String address) {
         this.recipient = recipient;
@@ -18,20 +14,10 @@ public class Letter {
         this.address = address;
     }
 
-    /**
-     * Tagastab kirja linna
-     *
-     * @return linn
-     */
     public String getDestinationCity() {
         return city;
     }
 
-    /**
-     * Muudab linna
-     *
-     * @param destinationCity linn
-     */
     public void setDestinationCity(String destinationCity) {
         city = destinationCity;
     }
@@ -52,7 +38,10 @@ public class Letter {
         this.recipient = recipient;
     }
 
-    @Override
+    /**
+     * String representation of the letter.
+     * The format is: City: %s, Address: %s, Recipient: %s
+     */
     public String toString() {
         return "City: " + city + ", Address: " + address + ", Recipient: " + recipient;
     }
