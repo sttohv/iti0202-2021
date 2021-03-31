@@ -44,7 +44,6 @@ class InputFilesScannerTest {
         InputFilesScanner scanner = new InputFilesScanner();
         String a= "";
         try {
-
             List<String> result = scanner.readTextFromFile("aanput.txt");}
         catch (Exception e){
             a = e.getMessage();
