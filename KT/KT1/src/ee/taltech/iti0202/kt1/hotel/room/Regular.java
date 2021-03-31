@@ -9,6 +9,12 @@ public class Regular {
     protected boolean booked;
     protected String type;
 
+    /**
+     * new regular room
+     *
+     * @param roomNumber room number
+     * @param roomSize   room size
+     */
     public Regular(int roomNumber, int roomSize) {
         this.roomNumber = roomNumber;
         this.roomSize = roomSize;
@@ -16,6 +22,11 @@ public class Regular {
         type = "regular";
     }
 
+    /**
+     * Checks whether the room is booked or not
+     *
+     * @return
+     */
     public boolean isBooked() {
         return booked;
     }
@@ -52,8 +63,7 @@ public class Regular {
         if (booked) {
             booked = false;
             return true;
-        }
-        else{
+        } else {
             throw new CannotCancelException(CannotCancelException.Reason.SUITE_NOT_BOOKED);
         }
     }

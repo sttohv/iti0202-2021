@@ -6,8 +6,6 @@ import ee.taltech.iti0202.kt1.hotel.exceptions.CannotCreateNewRoom;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class HotelTest {
     @Test
     public void addCorrectRoomsToHotel() throws CannotCreateNewRoom {
@@ -113,6 +111,4 @@ class HotelTest {
 
         Assertions.assertEquals(CannotCancelException.Reason.SUITE_CANNOT_BE_CANCELED, ex.getReason());
     }
-
-
 }

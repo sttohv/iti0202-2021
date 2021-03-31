@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostOffice {
+    public static final int AGE = 40;
     private String location;
     private List<Letter> letters;
     private List<Postman> postmen;
@@ -85,7 +86,7 @@ public class PostOffice {
     public static void main(String[] args) {
         PostOffice postOffice = new PostOffice("Tallinn");
 
-        Postman postman = new Postman("Martin", 40);
+        Postman postman = new Postman("Martin", AGE);
 
         postOffice.addPostman(postman);
 
