@@ -25,6 +25,10 @@ public class Courier {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Strategy getStrategy() {
         return strategy;
     }
