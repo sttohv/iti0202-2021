@@ -11,11 +11,11 @@ public class Location {
     private List<Integer> distances;
 
 
-    public Location(String name, List<String> locations, List<Integer> distances) {
+    public Location(String name) {
         this.name = name;
         packets = new ArrayList<>();
-        this.locations = locations;
-        this.distances = distances;
+//        this.locations = locations;
+//        this.distances = distances;
 
     }
 
