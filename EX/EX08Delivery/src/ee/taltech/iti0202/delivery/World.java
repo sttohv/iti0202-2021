@@ -15,8 +15,14 @@ public class World {
     }
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-
-        return Optional.empty();
+        for (int i = 0; i < otherLocations.size(); i++) {
+            if(!containsName(otherLocations.get(i)) || containsName(name)){
+                return Optional.empty();
+            }
+        }
+        Location location = new Location(name);
+        locations.add(location);
+        return Optional.of(location);
     }
 
     public Optional<Courier> addCourier(String name, String to) {
@@ -28,5 +34,9 @@ public class World {
     }
 
     public void tick() {
+    }
+
+    private boolean containsName(String location){
+        return locations.stream().anyMatch(o -> o.getName().equals(location));
     }
 }
