@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.delivery;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ public class Courier {
         this.name = name;
         step = 0;
         strategy = null;
+        packets = new ArrayList<>();
     }
 
     public Optional<Location> getLocation() {
