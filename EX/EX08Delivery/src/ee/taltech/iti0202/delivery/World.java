@@ -15,23 +15,23 @@ public class World {
     }
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        if (otherLocations.size() == distances.size()) {
-            for (String otherLocation : otherLocations) {
-                if (!containsLocation(otherLocation) || containsLocation(name)) {
-                    return Optional.empty();
-                }
-            }
-            Location location = new Location(name);
-            locations.add(location);
-            if (locations.isEmpty()) {
-                location.addDistance("", 0);
-            } else {
-                addDistanceEveryLocation(location, otherLocations, distances);
-            }
-            return Optional.of(location);
-        } else {
+        if (otherLocations.size() == distances.size() || otherLocations.size() != locations.size()) {
+//            for (String otherLocation : otherLocations) {
+//                if (!containsLocation(otherLocation) || containsLocation(name)) {
             return Optional.empty();
+
         }
+
+        Location location = new Location(name);
+        locations.add(location);
+        if (locations.isEmpty()) {
+            location.addDistance("", 0);
+        } else {
+            addDistanceEveryLocation(location, otherLocations, distances);
+        }
+        return Optional.of(location);
+
+
     }
 
     public Optional<Courier> addCourier(String name, String to) {
