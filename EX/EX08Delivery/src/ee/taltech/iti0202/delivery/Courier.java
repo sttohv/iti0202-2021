@@ -85,7 +85,7 @@ public class Courier {
         for (Packet packet : packets
         ) {
             if (packet.getName().equals(name)) {
-
+                packets.remove(packet);
                 return Optional.of(packet);
             }
         }
