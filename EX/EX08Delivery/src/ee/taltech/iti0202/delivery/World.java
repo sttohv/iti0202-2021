@@ -15,7 +15,7 @@ public class World {
     }
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        if (otherLocations.size() != distances.size() || otherLocations.size() != locations.size()) {
+        if (otherLocations.size() != distances.size() || otherLocations.size() != locations.size() || !containsLocation(name)) {
             return Optional.empty();
         }
         Location location = new Location(name);
