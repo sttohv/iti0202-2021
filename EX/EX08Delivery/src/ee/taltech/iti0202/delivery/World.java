@@ -19,9 +19,7 @@ public class World {
 //            for (String otherLocation : otherLocations) {
 //                if (!containsLocation(otherLocation) || containsLocation(name)) {
             return Optional.empty();
-
         }
-
         Location location = new Location(name);
         locations.add(location);
         if (locations.isEmpty()) {
