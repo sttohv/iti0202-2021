@@ -36,12 +36,41 @@ public class Courier {
     public void setStrategy(Strategy strategy) {
         this.strategy = strategy;
     }
+    public void setLocation(Location location){
+        this.location = location;
+    }
 
     public Integer getStep() {
         return step;
     }
 
+    public void takeAStep() {
+        this.step = step - 1;
+    }
+
     public void setStep(Integer step) {
         this.step = step;
+    }
+
+    protected Packet getPacketByName(String name, List<Packet> packets) {
+        return packets.stream().filter(o -> o.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public List<Packet> getPackets() {
+        return packets;
+    }
+
+    protected void removePacket(Packet packet) {
+        if(packets.contains(packet)){
+            packets.remove(packet);
+        }
+
+    }
+
+    protected void addPacket(Packet packet) {
+        if(!packets.contains(packet)){
+            packets.add(packet);
+        }
+
     }
 }

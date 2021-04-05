@@ -49,6 +49,46 @@ public class World {
     }
 
     public void tick() {
+        for (Courier courier : couriers
+        ) {
+            if (courier.getLocation().isPresent()) {
+                Action action = courier.getStrategy().getAction();
+                Location locNow = courier.getLocation().get();
+                //pane pakid maha
+                leaveDeposit(courier, action);
+                //võta uued pakid peale
+                takePackage(courier, action);
+                //uus asukoht
+                Location newLoc = action.getGoTo();
+                int newStep = newLoc.getDistanceTo(locNow.getName());
+                courier.setStep(newStep);
+                courier.setLocation(newLoc);
+                courier.takeAStep();
+
+
+            } else {
+                courier.takeAStep();
+            }
+        }
+
+    }
+
+    private void leaveDeposit(Courier courier, Action action) {
+        for (String packet : action.getDeposit()
+        ) {
+            courier.removePacket(getPacketByName(packet, courier));
+        }
+    }
+
+    private void takePackage(Courier courier, Action action) {
+        for (String packet : action.getTake()
+        ) {
+            courier.addPacket(getPacketByName(packet, courier));
+        }
+    }
+
+    private Packet getPacketByName(String name, Courier courier) {
+        return courier.getPackets().stream().filter(o -> o.getName().equals(name)).findFirst().orElse(null);
     }
 
     private boolean containsLocation(String location) {
@@ -73,4 +113,5 @@ public class World {
             getLocation(otherLocations.get(i)).addDistance(loc.getName(), distances.get(i));
         }
     }
+
 }
