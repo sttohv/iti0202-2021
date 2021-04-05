@@ -35,7 +35,13 @@ public class World {
     }
 
     public boolean giveStrategy(String name, Strategy strategy) {
-        return false;
+        if (getCourier(name) == null) {
+            return false;
+        }
+        else{
+            getCourier(name).setStrategy(strategy);
+            return true;
+        }
     }
 
     public void tick() {
@@ -47,6 +53,10 @@ public class World {
 
     private boolean containsCourierWithName(String name){
         return couriers.stream().anyMatch(o->o.getName().equals(name));
+    }
+
+    private Courier getCourier(String name){
+        return  couriers.stream().filter(o->o.getName().equals(name)).findFirst().orElse(null);
     }
 
 
