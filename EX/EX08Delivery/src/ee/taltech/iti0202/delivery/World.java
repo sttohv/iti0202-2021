@@ -80,12 +80,9 @@ public class World {
     private void leaveDeposit(Courier courier, Action action) {
         for (String packet : action.getDeposit()
         ) {
-            if (courier.getPacket(packet).isPresent()) {
 
-                courier.removePacket(courier.getPacket(packet).get());
-            } else {
-                System.out.println("take packages probleem");
-            }
+            courier.removePacket(courier.getPacket(packet).get());
+
         }
     }
 
@@ -97,14 +94,11 @@ public class World {
                 Location loc = courier.getLocation().get();
                 System.out.println(loc.getName());
 
-                if (loc.getPacket(packet).isPresent()) {
-                    Packet packet1 = loc.getPacket(packet).get();
-                    courier.addPacket(packet1);
-                } else {
-                    System.out.println("locationil pole seda packi");
-                }
-            }
-            else{
+
+                Packet packet1 = loc.getPacket(packet).get();
+                courier.addPacket(packet1);
+
+            } else {
                 System.out.println("courieril pole locationit");
             }
         }

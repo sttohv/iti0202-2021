@@ -38,7 +38,7 @@ public class Location {
         for (Packet packet : packets
         ) {
             if (packet.getName().equals(name)) {
-
+                packets.remove(packet);
                 return Optional.of(packet);
             }
         }
