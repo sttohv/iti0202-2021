@@ -26,8 +26,7 @@ public class World {
             if (locations.isEmpty()) {
                 location.addDistance("", 0);
             } else {
-                //lisa otherlocations ja distances
-
+                addDistanceEveryLocation(location, otherLocations, distances);
             }
             return Optional.of(location);
         } else {
@@ -37,7 +36,7 @@ public class World {
 
     public Optional<Courier> addCourier(String name, String to) {
         if (!containsCourierWithName(name) && containsLocation(to)) {
-            Courier courier = new Courier(name, new Location(to));
+            Courier courier = new Courier(name, getLocation(to));
             couriers.add(courier);
             return Optional.of(courier);
         }
@@ -66,6 +65,10 @@ public class World {
 
     private Courier getCourier(String name) {
         return couriers.stream().filter(o -> o.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    private Location getLocation(String location) {
+        return locations.stream().filter(o -> o.getName().equals(location)).findFirst().get();
     }
 
     private void addDistanceEveryLocation(Location loc, List<String> otherLocations, List<Integer> distances) {
