@@ -15,18 +15,28 @@ public class World {
     }
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        for (int i = 0; i < otherLocations.size(); i++) {
-            if(!containsLocation(otherLocations.get(i)) || containsLocation(name)){
-                return Optional.empty();
+        if (otherLocations.size() != distances.size()) {
+            for (String otherLocation : otherLocations) {
+                if (!containsLocation(otherLocation) || containsLocation(name)) {
+                    return Optional.empty();
+                }
             }
+            Location location = new Location(name);
+            locations.add(location);
+            if (locations.isEmpty()) {
+                location.addDistance("", 0);
+            } else {
+                //lisa otherlocations ja distances
+
+            }
+            return Optional.of(location);
+        } else {
+            return Optional.empty();
         }
-        Location location = new Location(name);
-        locations.add(location);
-        return Optional.of(location);
     }
 
     public Optional<Courier> addCourier(String name, String to) {
-        if(!containsCourierWithName(name) && containsLocation(to)){
+        if (!containsCourierWithName(name) && containsLocation(to)) {
             Courier courier = new Courier(name, new Location(to));
             couriers.add(courier);
             return Optional.of(courier);
@@ -37,8 +47,7 @@ public class World {
     public boolean giveStrategy(String name, Strategy strategy) {
         if (getCourier(name) == null) {
             return false;
-        }
-        else{
+        } else {
             getCourier(name).setStrategy(strategy);
             return true;
         }
@@ -47,16 +56,22 @@ public class World {
     public void tick() {
     }
 
-    private boolean containsLocation(String location){
+    private boolean containsLocation(String location) {
         return locations.stream().anyMatch(o -> o.getName().equals(location));
     }
 
-    private boolean containsCourierWithName(String name){
-        return couriers.stream().anyMatch(o->o.getName().equals(name));
+    private boolean containsCourierWithName(String name) {
+        return couriers.stream().anyMatch(o -> o.getName().equals(name));
     }
 
-    private Courier getCourier(String name){
-        return  couriers.stream().filter(o->o.getName().equals(name)).findFirst().orElse(null);
+    private Courier getCourier(String name) {
+        return couriers.stream().filter(o -> o.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    private void addDistanceEveryLocation(Location loc, List<String> otherLocations, List<Integer> distances) {
+        for (int i = 0; i < otherLocations.size(); i++) {
+            loc.addDistance(otherLocations.get(i), distances.get(i));
+        }
     }
 
 

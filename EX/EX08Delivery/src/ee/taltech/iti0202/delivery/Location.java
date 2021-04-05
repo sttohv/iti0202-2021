@@ -14,8 +14,6 @@ public class Location {
     public Location(String name) {
         this.name = name;
         packets = new ArrayList<>();
-//        this.locations = locations;
-//        this.distances = distances;
 
     }
 
@@ -47,7 +45,11 @@ public class Location {
     }
 
     public void addDistance(String location, int distance) {
-        if (locations.contains(location)) {
+        if(location.equals("") && distance==0){
+            distances = new ArrayList<>();
+            locations = new ArrayList<>();
+        }
+        else if (locations.contains(location)) {
             distances.set(locations.indexOf(location), distance);
         } else {
             distances.add(distance);
