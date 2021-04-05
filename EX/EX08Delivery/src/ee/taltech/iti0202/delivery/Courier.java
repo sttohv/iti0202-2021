@@ -38,7 +38,8 @@ public class Courier {
     public void setStrategy(Strategy strategy) {
         this.strategy = strategy;
     }
-    public void setLocation(Location location){
+
+    public void setLocation(Location location) {
         this.location = location;
     }
 
@@ -47,6 +48,7 @@ public class Courier {
     }
 
     public void takeAStep() {
+        System.out.println("steps left:" + step);
         this.step = step - 1;
     }
 
@@ -63,16 +65,30 @@ public class Courier {
     }
 
     protected void removePacket(Packet packet) {
-        if(packets.contains(packet)){
+        if (packets.contains(packet)) {
             packets.remove(packet);
         }
 
     }
 
     protected void addPacket(Packet packet) {
-        if(!packets.contains(packet)){
+        if (!packets.contains(packet)) {
             packets.add(packet);
         }
+        else{
+            System.out.println("mingi jama add packetis");
+        }
 
+    }
+
+    Optional<Packet> getPacket(String name) {
+        for (Packet packet : packets
+        ) {
+            if (packet.getName().equals(name)) {
+
+                return Optional.of(packet);
+            }
+        }
+        return Optional.empty();
     }
 }

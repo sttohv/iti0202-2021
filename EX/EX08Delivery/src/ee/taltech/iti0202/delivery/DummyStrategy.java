@@ -1,15 +1,20 @@
 package ee.taltech.iti0202.delivery;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class DummyStrategy implements Strategy {
-
-    public DummyStrategy(List<Action> list, List<Action> list2){
-
+public class DummyStrategy implements Strategy{
+    private List<Action> actions;
+    private int index;
+    public DummyStrategy(List<Action> actions) {
+        this.actions = actions;
+        index = -1;
     }
 
     @Override
     public Action getAction() {
-        return null;
+        index++;
+        return actions.get(index);
     }
 }

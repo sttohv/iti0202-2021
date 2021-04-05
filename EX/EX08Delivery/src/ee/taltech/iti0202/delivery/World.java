@@ -54,10 +54,14 @@ public class World {
             if (courier.getLocation().isPresent()) {
                 Action action = courier.getStrategy().getAction();
                 Location locNow = courier.getLocation().get();
-                //pane pakid maha
-                leaveDeposit(courier, action);
+                //pane pakid maha, KUI ON PAKKE
+                if (!courier.getPackets().isEmpty()) {
+                    leaveDeposit(courier, action);
+                }
                 //võta uued pakid peale
-                takePackage(courier, action);
+                if (action.getTake().size() > 0) {
+                    takePackage(courier, action);
+                }
                 //uus asukoht
                 Location newLoc = action.getGoTo();
                 int newStep = newLoc.getDistanceTo(locNow.getName());
@@ -76,20 +80,36 @@ public class World {
     private void leaveDeposit(Courier courier, Action action) {
         for (String packet : action.getDeposit()
         ) {
-            courier.removePacket(getPacketByName(packet, courier));
+            if (courier.getPacket(packet).isPresent()) {
+
+                courier.removePacket(courier.getPacket(packet).get());
+            } else {
+                System.out.println("take packages probleem");
+            }
         }
     }
 
     private void takePackage(Courier courier, Action action) {
         for (String packet : action.getTake()
         ) {
-            courier.addPacket(getPacketByName(packet, courier));
+            if (courier.getLocation().isPresent()) {
+
+                Location loc = courier.getLocation().get();
+                System.out.println(loc.getName());
+
+                if (loc.getPacket(packet).isPresent()) {
+                    Packet packet1 = loc.getPacket(packet).get();
+                    courier.addPacket(packet1);
+                } else {
+                    System.out.println("locationil pole seda packi");
+                }
+            }
+            else{
+                System.out.println("courieril pole locationit");
+            }
         }
     }
 
-    private Packet getPacketByName(String name, Courier courier) {
-        return courier.getPackets().stream().filter(o -> o.getName().equals(name)).findFirst().orElse(null);
-    }
 
     private boolean containsLocation(String location) {
         return locations.stream().anyMatch(o -> o.getName().equals(location));
