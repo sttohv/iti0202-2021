@@ -8,14 +8,15 @@ import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Database {
+public final class Database {
     private static Database database = null;
-    private final Map<Integer, Component> components = new HashMap<>();
+    private final Map<Integer, Component> components;
 
     /**
      * Constructor
      */
     private Database() {
+        components = new HashMap<>();
     }
 
     /**
