@@ -54,12 +54,9 @@ public class Store {
         if (database.getComponents().containsKey(id)) {
             Component component = database.getComponentById(id);
             double componentRealPrice = component.getPrice() * profitMargin;
-            //if the customer doesn't enough money
             if (customer.getBalance() < componentRealPrice) {
                 throw new NotEnoughMoneyException();
-            }
-            //if the customer has enough money
-            else {
+            } else {
                 database.decreaseComponentStock(component.getId(), 1);
                 balance = balance + componentRealPrice;
                 customer.setBalance(customer.getBalance() - componentRealPrice);
