@@ -146,7 +146,7 @@ public class Database {
      * @param id component id
      * @return component
      */
-    private Component getComponentById(int id) {
+    public Component getComponentById(int id) {
         return components.get(id);
     }
 }
