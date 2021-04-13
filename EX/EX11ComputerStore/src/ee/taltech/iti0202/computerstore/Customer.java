@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.computerstore;
 
 import ee.taltech.iti0202.computerstore.components.Component;
-import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,5 +51,4 @@ public class Customer {
             components.add(component);
         }
     }
-
 }
