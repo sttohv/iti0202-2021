@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Database {
-    private final static Database database = new Database();
+    private static Database database = null;
     private final Map<Integer, Component> components;
 
     /**
@@ -25,6 +25,9 @@ public class Database {
      * @return database
      */
     public static Database getInstance() {
+        if (database == null) {
+            database = new Database();
+        }
         return database;
     }
 
