@@ -85,7 +85,7 @@ public class Store {
     public List<Component> filterByType(Component.Type type) {
         return new ArrayList<>(database.getComponents().values())
                 .stream()
-                .sorted(Comparator.comparing(Component::getType))
+                .filter(o->o.getType().equals(type))
                 .collect(Collectors.toList());
     }
 
