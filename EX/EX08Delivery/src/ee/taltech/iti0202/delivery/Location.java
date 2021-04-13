@@ -45,6 +45,17 @@ public class Location {
 
         return Optional.empty();
     }
+    Optional<Packet> getPacketByName(String name){
+        for (Packet packet : packets
+        ) {
+            if (packet.getName().equals(name)) {
+
+                return Optional.of(packet);
+            }
+        }
+
+        return Optional.empty();
+    }
 
     public void addDistance(String location, int distance) {
         if (!(location.equals("") && distance == 0)) {

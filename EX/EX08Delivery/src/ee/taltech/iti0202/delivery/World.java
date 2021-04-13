@@ -54,6 +54,7 @@ public class World {
             if (courier.getLocation().isPresent()) {
                 Action action = courier.getStrategy().getAction();
                 Location locNow = courier.getLocation().get();
+                System.out.println("old loc" + locNow.getName());
                 //pane pakid maha, KUI ON PAKKE
                 if (!courier.getPackets().isEmpty()) {
                     leaveDeposit(courier, action);
@@ -64,7 +65,9 @@ public class World {
                 }
                 //uus asukoht
                 Location newLoc = action.getGoTo();
+                System.out.println("new loc" + newLoc.getName());
                 int newStep = newLoc.getDistanceTo(locNow.getName());
+                System.out.println("new step is: " + newStep);
                 courier.setStep(newStep);
                 courier.setLocation(newLoc);
                 courier.takeAStep();
@@ -97,6 +100,7 @@ public class World {
 
                 Packet packet1 = loc.getPacket(packet).get();
                 courier.addPacket(packet1);
+                System.out.println(packet1.getName());
 
             } else {
                 System.out.println("courieril pole locationit");

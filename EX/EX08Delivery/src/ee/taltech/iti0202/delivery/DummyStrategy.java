@@ -9,12 +9,12 @@ public class DummyStrategy implements Strategy{
     private int index;
     public DummyStrategy(List<Action> actions) {
         this.actions = actions;
-        index = -1;
+        index = actions.size();
     }
 
     @Override
     public Action getAction() {
-        index++;
+        index--;
         return actions.get(index);
     }
 }
