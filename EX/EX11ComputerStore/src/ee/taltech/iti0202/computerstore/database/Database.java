@@ -5,8 +5,11 @@ import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -126,8 +129,9 @@ public final class Database {
      */
     public void saveToFile(String location) {
         Gson gson = new Gson();
-        try {
-            gson.toJson(database, new FileWriter(location));
+        try (BufferedWriter writer = Files.newBufferedWriter(Path.of(location)){
+            String jsonString = gson.toJson(database);
+            writer.write(jsonString);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -138,6 +142,7 @@ public final class Database {
      * @param location
      */
     public void loadFromFile(String location) {
+        Path path = Path.of(location);
     }
 
     /**
