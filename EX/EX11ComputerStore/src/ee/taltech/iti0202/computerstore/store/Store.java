@@ -5,7 +5,6 @@ import ee.taltech.iti0202.computerstore.components.Component;
 import ee.taltech.iti0202.computerstore.database.Database;
 import ee.taltech.iti0202.computerstore.exceptions.NotEnoughMoneyException;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
-import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
 import java.util.ArrayList;
@@ -13,12 +12,20 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class Store {
     private String name;
     private double balance;
     private double profitMargin;
     private Database database;
 
+    /**
+     * New store constructor
+     *
+     * @param name         store name
+     * @param balance      store balance
+     * @param profitMargin store profit margin
+     */
     public Store(String name, double balance, double profitMargin) {
         if (profitMargin < 1) {
             throw new IllegalArgumentException();
@@ -30,6 +37,16 @@ public class Store {
         }
     }
 
+    /**
+     * Purchase component if possible
+     *
+     * @param id       component id
+     * @param customer customer that wants to purchase it
+     * @return component to be purchased
+     * @throws OutOfStockException      if store doesn't have enough of the component
+     * @throws ProductNotFoundException if store doesn't have component
+     * @throws NotEnoughMoneyException  if the customer doesn't have enough money
+     */
     public Component purchaseComponent(int id, Customer customer) throws OutOfStockException,
             ProductNotFoundException,
             NotEnoughMoneyException {
@@ -54,6 +71,11 @@ public class Store {
         }
     }
 
+    /**
+     * Returns components that are in stock
+     *
+     * @return List of components
+     */
     public List<Component> getAvailableComponents() {
         return new ArrayList<>(database.getComponents().values())
                 .stream()
@@ -61,6 +83,11 @@ public class Store {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Get components sorted by amount in ascending order
+     *
+     * @return List of components
+     */
     public List<Component> getComponentsSortedByAmount() {
         return new ArrayList<>(database.getComponents().values())
                 .stream()
@@ -68,6 +95,11 @@ public class Store {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Return a list of components sorted by name in ascending order.
+     *
+     * @return List of components
+     */
     public List<Component> getComponentsSortedByName() {
         return new ArrayList<>(database.getComponents().values())
                 .stream()
@@ -75,6 +107,11 @@ public class Store {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Return a list of components sorted by price in ascending order.
+     *
+     * @return List of components
+     */
     public List<Component> getComponentsSortedByPrice() {
         return new ArrayList<>(database.getComponents().values())
                 .stream()
@@ -82,13 +119,24 @@ public class Store {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Return a list of components filtered by type (order does not matter).
+     *
+     * @param type component type to be filtered by
+     * @return found components
+     */
     public List<Component> filterByType(Component.Type type) {
         return new ArrayList<>(database.getComponents().values())
                 .stream()
-                .filter(o->o.getType().equals(type))
+                .filter(o -> o.getType().equals(type))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Return the total sum of stores inventory value including the profit margin.
+     *
+     * @return sum of value
+     */
     public double getInventoryValue() {
         return getAvailableComponents()
                 .stream()

@@ -5,7 +5,8 @@ import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Database {
     private static Database database;

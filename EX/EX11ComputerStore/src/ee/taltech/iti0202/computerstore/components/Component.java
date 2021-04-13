@@ -1,8 +1,5 @@
 package ee.taltech.iti0202.computerstore.components;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Component {
     private int id;
     private String name;
@@ -18,7 +15,18 @@ public class Component {
         CPU, GPU, RAM, MOTHERBOARD, HDD, SSD, PSU, KEYBOARD, TOUCHPAD, SCREEN, BATTERY, FAN
     }
 
-    public Component(String name, Type type, double price, String manufacturer, int performancePoints, int powerConsumption) {
+    /**
+     * New component constructor
+     *
+     * @param name              component name
+     * @param type              component type
+     * @param price             component price
+     * @param manufacturer      component manufacturer
+     * @param performancePoints component performance points
+     * @param powerConsumption  component power consumption
+     */
+    public Component(String name, Type type, double price, String manufacturer, int performancePoints,
+                     int powerConsumption) {
         this.id = getAndIncrementNextId();
         this.name = name;
         this.type = type;
@@ -27,11 +35,18 @@ public class Component {
         this.performancePoints = performancePoints;
         this.powerConsumption = powerConsumption;
     }
+
+    /**
+     * increases id by 1
+     *
+     * @return new id
+     */
     public static int getAndIncrementNextId() {
         idCount++;
         return idCount;
     }
-    public static void setIdCount(int newValue){
+
+    public static void setIdCount(int newValue) {
         idCount = newValue;
     }
 

@@ -11,6 +11,12 @@ public class Customer {
     private double balance;
     private final List<Component> components = new ArrayList<>();
 
+    /**
+     * New customer constructor
+     *
+     * @param name    customer name
+     * @param balance customer balance
+     */
     public Customer(String name, double balance) {
         this.name = name;
         this.balance = balance;
@@ -36,6 +42,11 @@ public class Customer {
         return components;
     }
 
+    /**
+     * add components to customer
+     *
+     * @param component component to be added
+     */
     public void addComponents(Component component) {
         if (!components.contains(component)) {
             components.add(component);
