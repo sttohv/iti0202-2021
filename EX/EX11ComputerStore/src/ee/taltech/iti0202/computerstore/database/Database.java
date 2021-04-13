@@ -10,13 +10,12 @@ import java.util.Map;
 
 public class Database {
     private static Database database = null;
-    private final Map<Integer, Component> components;
+    private final Map<Integer, Component> components = new HashMap<>();
 
     /**
      * Constructor
      */
     private Database() {
-        components = new HashMap<>();
     }
 
     /**
