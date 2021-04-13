@@ -36,14 +36,17 @@ public class Store {
         //if there is a component with the same id
         if (database.getComponents().containsKey(id)) {
             Component component = database.getComponentById(id);
+            double componentRealPrice = component.getPrice() * profitMargin;
             //if the customer doesn't enough money
-            if (customer.getBalance() < component.getPrice()) {
+            if (customer.getBalance() < componentRealPrice) {
                 throw new NotEnoughMoneyException();
             }
             //if the customer has enough money
             else {
+
                 database.decreaseComponentStock(component.getId(), 1);
-                balance = balance + component.getPrice();
+                balance = balance + componentRealPrice;
+                customer.setBalance(customer.getBalance()-componentRealPrice);
                 customer.addComponents(component);
                 return component;
             }
