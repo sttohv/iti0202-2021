@@ -129,7 +129,7 @@ public final class Database {
      */
     public void saveToFile(String location) {
         Gson gson = new Gson();
-        try (BufferedWriter writer = Files.newBufferedWriter(Path.of(location)){
+        try (BufferedWriter writer = Files.newBufferedWriter(Path.of(location))){
             String jsonString = gson.toJson(database);
             writer.write(jsonString);
         } catch (IOException e) {
