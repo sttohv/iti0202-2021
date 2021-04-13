@@ -41,7 +41,7 @@ public class Store {
                 throw new NotEnoughMoneyException();
             }
             //if the customer has enough money
-            else{
+            else {
                 database.decreaseComponentStock(component.getId(), 1);
                 balance = balance + component.getPrice();
                 customer.addComponents(component);
@@ -55,7 +55,7 @@ public class Store {
     public List<Component> getAvailableComponents() {
         return new ArrayList<>(database.getComponents().values())
                 .stream()
-                .filter(o->o.getAmount()>0)
+                .filter(o -> o.getAmount() > 0)
                 .collect(Collectors.toList());
     }
 

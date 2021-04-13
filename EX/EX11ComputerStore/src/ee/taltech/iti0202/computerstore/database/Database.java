@@ -16,8 +16,6 @@ public class Database {
      */
     private Database() {
         components = new HashMap<>();
-        database = getInstance();
-
     }
 
     /**
