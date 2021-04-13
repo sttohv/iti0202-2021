@@ -5,8 +5,12 @@ import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
 
 public final class Database {
     private static Database database = null;
@@ -121,6 +125,13 @@ public final class Database {
      * @param location
      */
     public void saveToFile(String location) {
+        Gson gson = new Gson();
+        try {
+            gson.toJson(database, new FileWriter(location));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
