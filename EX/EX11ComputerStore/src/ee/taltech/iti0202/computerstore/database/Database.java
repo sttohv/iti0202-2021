@@ -22,6 +22,7 @@ public class Database {
 
     /**
      * get database
+     *
      * @return database
      */
     public static Database getInstance() {
@@ -33,6 +34,7 @@ public class Database {
 
     /**
      * adds a new component to database
+     *
      * @param component component to be added
      * @throws ProductAlreadyExistsException if there is a component with the same id then throws this error
      */
@@ -46,6 +48,7 @@ public class Database {
 
     /**
      * Deletes an already existing component out of the database
+     *
      * @param id deleted component id
      * @throws ProductNotFoundException if database doesn't have the component then throws this error
      */
@@ -60,7 +63,8 @@ public class Database {
 
     /**
      * increase the amount of components in database
-     * @param id component id
+     *
+     * @param id     component id
      * @param amount amount to be increased
      * @throws ProductNotFoundException thrown when there isn't a product with such id
      */
@@ -79,23 +83,22 @@ public class Database {
 
     /**
      * decrease the amount of components in database
-     * @param id component id
+     *
+     * @param id     component id
      * @param amount amount to be decreased
-     * @throws OutOfStockException thrown when there isn't enough resources to be reduced
+     * @throws OutOfStockException      thrown when there isn't enough resources to be reduced
      * @throws ProductNotFoundException thrown when there isn't a product with such id
      */
     public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException {
         if (amount < 0) {
             if (containsComponent(id)) {
                 Component component = getComponentById(id);
-                if (component.getAmount()>= amount){
+                if (component.getAmount() >= amount) {
                     component.setAmount(component.getAmount() - amount);
-                }
-                else{
+                } else {
                     throw new OutOfStockException();
                 }
-            }
-            else{
+            } else {
                 throw new ProductNotFoundException();
             }
         } else {
@@ -116,19 +119,33 @@ public class Database {
     }
 
     /**
-     *
      * @param location
      */
     public void saveToFile(String location) {
     }
 
+    /**
+     * @param location
+     */
     public void loadFromFile(String location) {
     }
 
+    /**
+     * check if components contains id
+     *
+     * @param id component id
+     * @return boolean
+     */
     private boolean containsComponent(int id) {
         return database.components.containsKey(id);
     }
 
+    /**
+     * gets component by id
+     *
+     * @param id component id
+     * @return component
+     */
     private Component getComponentById(int id) {
         return components.get(id);
     }
