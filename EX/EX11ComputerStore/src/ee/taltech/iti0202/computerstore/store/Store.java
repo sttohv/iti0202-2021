@@ -43,10 +43,9 @@ public class Store {
             }
             //if the customer has enough money
             else {
-
                 database.decreaseComponentStock(component.getId(), 1);
                 balance = balance + componentRealPrice;
-                customer.setBalance(customer.getBalance()-componentRealPrice);
+                customer.setBalance(customer.getBalance() - componentRealPrice);
                 customer.addComponents(component);
                 return component;
             }

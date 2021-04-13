@@ -88,7 +88,7 @@ public class Database {
      * @throws ProductNotFoundException thrown when there isn't a product with such id
      */
     public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException {
-        if (amount < 0) {
+        if (amount > 0) {
             if (containsComponent(id)) {
                 Component component = getComponentById(id);
                 if (component.getAmount() >= amount) {
