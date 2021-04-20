@@ -6,7 +6,7 @@ public class Kitten {
     private String name;
     private int age;
 
-    public enum Gender {MALE, FEMALE}
+    public enum Gender { MALE, FEMALE }
 
     /**
      * something
