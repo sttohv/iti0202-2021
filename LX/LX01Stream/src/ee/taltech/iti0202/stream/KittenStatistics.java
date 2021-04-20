@@ -12,7 +12,7 @@ public class KittenStatistics {
     }
 
     public OptionalDouble findKittensAverageAge() {
-        return OptionalDouble.of(kittens.stream().mapToDouble(Kitten::getAge).average().getAsDouble());
+        return kittens.stream().mapToDouble(Kitten::getAge).average();
 
     }
 
@@ -39,7 +39,7 @@ public class KittenStatistics {
 
     public Optional<Kitten> findFirstKittenWithGivenName(String givenName) {
 
-        return kittens.stream().filter(i -> i.getName().equals(givenName)).findFirst();
+        return kittens.stream().filter(i -> i.getName().toUpperCase().equals(givenName.toUpperCase())).findFirst();
     }
 
     public List<Kitten> kittensSortedByAgeYoungerFirst() {
