@@ -28,8 +28,8 @@ public class CsvPersonMapper {
      * seda läheb statistika arvutamisel vaja.
      * Vea korral tuleb visata CsvToPersonMappingException.
      *
-     * @param path
-     * @return
+     * @param path oeh
+     * @return jah
      */
     public List<Person> mapToPersons(String path) throws CsvToPersonMappingException {
         List<Person> persons = new ArrayList<>();
@@ -42,7 +42,7 @@ public class CsvPersonMapper {
         } catch (IOException e) {
             throw new CsvToPersonMappingException();
         }
-        List<String> linesList = Arrays.asList(data.split("\n").clone());
+        String[] linesList = data.split("\n").clone();
         for (String line : linesList
         ) {
             List<String> list = Arrays.asList(line.split(","));
