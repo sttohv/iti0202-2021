@@ -137,7 +137,7 @@ public class PersonStatistics {
         return persons.stream().collect(Collectors.groupingBy(Person::getOccupation));
     }
 
-    public static void main(String[] args) throws CsvToPersonMappingException {
+    public static void main(String[] args)  {
         CsvPersonMapper mapper = new CsvPersonMapper();
         List<Person> persons = mapper.mapToPersons("persons.csv");
         PersonStatistics statistics = new PersonStatistics(persons);
