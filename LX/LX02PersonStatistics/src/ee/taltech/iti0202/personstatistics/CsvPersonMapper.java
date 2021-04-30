@@ -10,6 +10,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CsvPersonMapper {
+
+    public static final int AGE_INDEX = 2;
+    public static final int GENDER_INDEX = 3;
+    public static final int HEIGHT_INDEX = 4;
+    public static final int OCCUPATION_INDEX = 5;
+    public static final int NATIONALITY_INDEX = 6;
+    public static final int LAST_NAME_INDEX = 1;
+    public static final int FIRST_NAME_INDEX = 0;
+
     /**
      * meetod, mis saab sisendiks csv faili asukoha ning
      * loeb failist inimeste infot stream'i abil (vihje - Files.lines),
@@ -39,13 +48,13 @@ public class CsvPersonMapper {
             List<String> list = Arrays.asList(line.split(","));
 
             Person person = new PersonBuilder()
-                    .setFirstName(list.get(0))
-                    .setLastName(list.get(1))
-                    .setAge(Integer.parseInt(list.get(2)))
-                    .setGender(Gender.valueOf(list.get(3)))
-                    .setHeightInMeters(Double.parseDouble(list.get(4)))
-                    .setOccupation(list.get(5))
-                    .setNationality(list.get(6))
+                    .setFirstName(list.get(FIRST_NAME_INDEX))
+                    .setLastName(list.get(LAST_NAME_INDEX))
+                    .setAge(Integer.parseInt(list.get(AGE_INDEX)))
+                    .setGender(Gender.valueOf(list.get(GENDER_INDEX)))
+                    .setHeightInMeters(Double.parseDouble(list.get(HEIGHT_INDEX)))
+                    .setOccupation(list.get(OCCUPATION_INDEX))
+                    .setNationality(list.get(NATIONALITY_INDEX))
                     .createPerson();
             persons.add(person);
         }

@@ -1,12 +1,18 @@
 package ee.taltech.iti0202.personstatistics;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * For calculating and finding statistical info based on persons.
  */
 public class PersonStatistics {
+    public static final int DIFFERENCE = 100;
     private List<Person> persons;
 
     /**
@@ -66,7 +72,7 @@ public class PersonStatistics {
      * @return list of heights in cm
      */
     public List<Double> getHeightInCm() {
-        return persons.stream().map(person -> person.getHeightInMeters()*100).collect(Collectors.toList());
+        return persons.stream().map(person -> person.getHeightInMeters() * DIFFERENCE).collect(Collectors.toList());
     }
 
     /**
@@ -85,7 +91,7 @@ public class PersonStatistics {
         return persons.stream()
                 .filter(person -> person.getNationality().equals(nationality))
                 .filter(person -> person.getGender().equals(gender))
-                .filter(person -> person.getAge()==age)
+                .filter(person -> person.getAge() == age)
                 .findFirst();
     }
 
@@ -111,8 +117,8 @@ public class PersonStatistics {
      * Return list of people whose age is between ageFrom to ageTo (inclusive).
      */
     public List<Person> findBetweenAge(int ageFrom, int ageTo) {
-        return persons.stream().filter(person -> person.getAge()>=ageFrom)
-                .filter(person -> person.getAge()<=ageTo)
+        return persons.stream().filter(person -> person.getAge() >= ageFrom)
+                .filter(person -> person.getAge() <= ageTo)
                 .collect(Collectors.toList());
     }
 
@@ -123,8 +129,8 @@ public class PersonStatistics {
      */
     public List<Person> findSameLetterNameAndNationality() {
         return persons.stream()
-                .filter(person -> person.getFirstName().substring(0,1).toLowerCase()
-                        .equals(person.getNationality().substring(0,1).toLowerCase()))
+                .filter(person -> person.getFirstName().substring(0, 1).toLowerCase()
+                        .equals(person.getNationality().substring(0, 1).toLowerCase()))
                 .collect(Collectors.toList());
     }
 
@@ -137,11 +143,10 @@ public class PersonStatistics {
         return persons.stream().collect(Collectors.groupingBy(Person::getOccupation));
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         CsvPersonMapper mapper = new CsvPersonMapper();
         List<Person> persons = mapper.mapToPersons("persons.csv");
         PersonStatistics statistics = new PersonStatistics(persons);
         System.out.println(statistics.countPersons());
     }
-
 }

@@ -9,8 +9,19 @@ public class Person {
     private String occupation;
     private String nationality;
 
+    /**
+     * Person
+     *
+     * @param firstName      first name
+     * @param lastName       last name
+     * @param age            age
+     * @param gender         gender
+     * @param heightInMeters height
+     * @param occupation     occupation
+     * @param nationality    nationality
+     */
     public Person(String firstName, String lastName, int age, Gender gender, double heightInMeters,
-                  String occupation, String nationality){
+                  String occupation, String nationality) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -27,7 +38,8 @@ public class Person {
     public String getLastName() {
         return lastName;
     }
-    public int getLastNameLength(){
+
+    public int getLastNameLength() {
         return lastName.length();
     }
 
