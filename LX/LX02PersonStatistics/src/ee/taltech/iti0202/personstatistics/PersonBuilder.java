@@ -44,6 +44,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * creates a person
+     * @return person
+     */
     public Person createPerson() {
         return new Person(firstName, lastName, age, gender, heightInMeters, occupation, nationality);
     }
