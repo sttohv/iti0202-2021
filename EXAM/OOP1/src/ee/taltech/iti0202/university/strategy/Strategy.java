@@ -5,5 +5,10 @@ import ee.taltech.iti0202.university.course.Course;
 import java.util.List;
 
 public interface Strategy {
-    public List<Course> getCourses();
+    /**
+     * Strategy that declares your courses
+     *
+     * @return courses
+     */
+    List<Course> getCourses();
 }

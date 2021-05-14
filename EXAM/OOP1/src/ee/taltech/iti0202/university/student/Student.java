@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Student {
+    public static final int APPROPRIATE_AGE = 18;
     private String name;
     private int age;
     private Map<Course, List<String>> grades;
@@ -36,7 +37,7 @@ public class Student {
      */
     public Student(String name, int age, StudyProgramme studyProgramme) throws CannotAddStudent {
         this.name = name;
-        if (age > 18) {
+        if (age > APPROPRIATE_AGE) {
             this.age = age;
         } else {
             throw new CannotAddStudent(CannotAddStudent.Reason.TOO_YOUNG);
