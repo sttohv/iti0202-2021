@@ -2,12 +2,14 @@ package ee.taltech.iti0202.university.course;
 
 import ee.taltech.iti0202.university.University;
 import ee.taltech.iti0202.university.exceptions.CannotAddCourse;
+import ee.taltech.iti0202.university.teacher.Teacher;
 
 public class Course {
     private String name;
     private int creditPoints;
     private boolean isGraded;
     private University university;
+    private Teacher teacher;
 
     /**
      * Creates a new course
@@ -17,7 +19,7 @@ public class Course {
      * @param isGraded     If courses is graded then it has grades otherwise just passed or not
      * @throws CannotAddCourse why can't add course
      */
-    public Course(String name, int creditPoints, boolean isGraded) throws CannotAddCourse {
+    public Course(String name, int creditPoints, boolean isGraded, Teacher teacher) throws CannotAddCourse {
         this.name = name;
         if (creditPoints > 0) {
             this.creditPoints = creditPoints;
@@ -25,6 +27,7 @@ public class Course {
             throw new CannotAddCourse(CannotAddCourse.Reason.ECTS_CANT_BE_NEGATIVE);
         }
         this.isGraded = isGraded;
+        this.teacher = teacher;
     }
 
     public University getUniversity() {

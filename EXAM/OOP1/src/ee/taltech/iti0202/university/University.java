@@ -24,6 +24,7 @@ public class University {
         this.name = name;
         courses = new ArrayList<>();
         allStudents = new ArrayList<>();
+        studyingStudents = new ArrayList<>();
     }
 
     /**
@@ -40,6 +41,13 @@ public class University {
             throw new CannotAddStudent(CannotAddStudent.Reason.ALREADY_IN_UNI);
         }
     }
+
+    /**
+     * TO-DO: Use strategy here
+     */
+    public void declareCourses() {
+    }
+
 
     /**
      * Add course to university courses if course doesn't have a uni assigned
@@ -60,6 +68,7 @@ public class University {
 
     /**
      * If the student and course are in the same uni then adds grade to student
+     * Later removes the student from studying students list if no more active courses
      * Otherwise throws cannot enroll exception
      *
      * @param student Student who got the grade
@@ -71,6 +80,9 @@ public class University {
         if (areInTheSameUni(student, course)) {
             if (isStudentEnrolledToClass(student, course)) {
                 student.addGrade(course, grade);
+                if (student.getOngoingCourses().isEmpty()) {
+                    studyingStudents.remove(student);
+                }
             } else {
                 throw new CannotGrade(CannotGrade.Reason.STUDENT_IS_NOT_ENROLLED);
             }
@@ -90,10 +102,10 @@ public class University {
     public void addStudentToCourse(Student student, Course course) throws CannotAddCourse {
         if (areInTheSameUni(student, course)) {
             student.enrollToCourse(course);
+            studyingStudents.add(student);
         } else {
             throw new CannotAddCourse(CannotAddCourse.Reason.STUDENT_AND_COURSE_IN_DIFFERENT_UNIS);
         }
-
     }
 
     /**
@@ -138,4 +150,19 @@ public class University {
         return student.getOngoingCourses().contains(course);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public List<Student> getAllStudents() {
+        return allStudents;
+    }
+
+    public List<Student> getStudyingStudents() {
+        return studyingStudents;
+    }
 }

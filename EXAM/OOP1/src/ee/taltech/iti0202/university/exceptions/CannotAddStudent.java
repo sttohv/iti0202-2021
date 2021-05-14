@@ -15,4 +15,8 @@ public class CannotAddStudent extends Exception {
     public CannotAddStudent(Reason reason) {
         this.reason = reason;
     }
+
+    public Reason getReason() {
+        return reason;
+    }
 }

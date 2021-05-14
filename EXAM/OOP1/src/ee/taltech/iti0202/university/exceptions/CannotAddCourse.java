@@ -18,5 +18,9 @@ public class CannotAddCourse extends Exception {
     public CannotAddCourse(Reason reason) {
         this.reason = reason;
     }
+
+    public Reason getReason() {
+        return reason;
+    }
 }
 

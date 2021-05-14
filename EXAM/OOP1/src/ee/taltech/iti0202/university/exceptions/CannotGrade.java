@@ -11,4 +11,8 @@ public class CannotGrade extends Exception{
     public CannotGrade(Reason reason){
         this.reason = reason;
     }
+
+    public Reason getReason() {
+        return reason;
+    }
 }

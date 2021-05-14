@@ -5,6 +5,8 @@ import ee.taltech.iti0202.university.course.Course;
 import ee.taltech.iti0202.university.exceptions.CannotAddCourse;
 import ee.taltech.iti0202.university.exceptions.CannotAddStudent;
 import ee.taltech.iti0202.university.exceptions.CannotGrade;
+import ee.taltech.iti0202.university.strategy.Strategy;
+import ee.taltech.iti0202.university.studyprogramme.StudyProgramme;
 
 import java.util.*;
 
@@ -18,6 +20,8 @@ public class Student {
     private List<Course> courseHistory;
     private List<Course> passedCourses;
     private List<Course> failedCourses;
+    private StudyProgramme studyProgramme;
+    private Strategy strategy;
 
     /**
      * Creates a new student when the student is older than 18
@@ -26,7 +30,7 @@ public class Student {
      * @param age  Student age
      * @throws CannotAddStudent Why cannot add student
      */
-    public Student(String name, int age) throws CannotAddStudent {
+    public Student(String name, int age, StudyProgramme studyProgramme) throws CannotAddStudent {
         this.name = name;
         if (age > 18) {
             this.age = age;
@@ -37,6 +41,8 @@ public class Student {
         isStudying = false;
         ongoingCourses = new ArrayList<>();
         courseHistory = new ArrayList<>();
+        this.studyProgramme = studyProgramme;
+        strategy = null;
     }
 
 
@@ -57,22 +63,14 @@ public class Student {
     }
 
     /**
-     * If the course is graded meaning that has grades in between 0-5
+     * Adds grades to correct courses list and then removes the from ongoing courses.
      *
-     * @param course
-     * @param grade
+     * @param course course
+     * @param grade  grade
      */
     public void addGrade(Course course, String grade) throws CannotGrade {
-        if (doesCourseGradeMatch(course, grade).equals("num")) {
-            if (grade.equals("0")) {
-                failedCourses.add(course);
-            } else {
-                passedCourses.add(course);
-            }
-            ongoingCourses.remove(course);
-            addGradeToMap(course, grade);
-        } else if (doesCourseGradeMatch(course, grade).equals("pas")) {
-            if (grade.equals("pass")) {
+        if (doesCourseGradeMatch(course, grade).equals("num") || doesCourseGradeMatch(course, grade).equals("pas")) {
+            if (grade.equals("0") || grade.equals("pass")) {
                 failedCourses.add(course);
             } else {
                 passedCourses.add(course);
@@ -82,6 +80,12 @@ public class Student {
         }
     }
 
+    /**
+     * Adds grade to map depending on whether the student has gotten a grade there before or not
+     *
+     * @param course course
+     * @param grade  grade
+     */
     public void addGradeToMap(Course course, String grade) {
         List<String> gradeList;
         if (grades.containsKey(course)) {
@@ -93,6 +97,14 @@ public class Student {
         grades.put(course, gradeList);
     }
 
+    /**
+     * Checks if the grade matches the course grading type and then returns the type of grade
+     *
+     * @param course course
+     * @param grade  grade
+     * @return grade type
+     * @throws CannotGrade if wrong grade type entered
+     */
     public String doesCourseGradeMatch(Course course, String grade) throws CannotGrade {
         if (course.isGraded()) {
             List<String> grades = Arrays.asList("0", "1", "2", "3", "4", "5");
@@ -153,4 +165,13 @@ public class Student {
     public List<Course> getOngoingCourses() {
         return ongoingCourses;
     }
+
+    public StudyProgramme getStudyProgramme() {
+        return studyProgramme;
+    }
+
+    public void setStrategy(Strategy strategy) {
+        this.strategy = strategy;
+    }
+
 }
