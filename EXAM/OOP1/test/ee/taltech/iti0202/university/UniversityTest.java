@@ -11,12 +11,15 @@ import java.util.List;
 
 class UniversityTest {
 
+    public static final int STINA_AGE = 20;
+    public static final int ERGO_AGE = 10;
+
     @Test
     public void addTooYoungStudentToUni() {
         StudyProgramme developement = new StudyProgramme("developement", List.of());
         CannotAddStudent.Reason reason = null;
         try {
-            Student ergo = new Student("Ergo", 10, developement);
+            Student ergo = new Student("Ergo", ERGO_AGE, developement);
         } catch (CannotAddStudent e) {
             reason = e.getReason();
         }
@@ -26,7 +29,7 @@ class UniversityTest {
     @Test
     public void addStudentCorrect() throws CannotAddStudent {
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of());
-        Student stina = new Student("Stina", 20, businessIt);
+        Student stina = new Student("Stina", STINA_AGE, businessIt);
         University talTech = new University("TalTech");
 
         talTech.addStudent(stina);
@@ -41,7 +44,7 @@ class UniversityTest {
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of());
         CannotAddStudent.Reason reason = null;
 
-        Student stina = new Student("Stina", 20, businessIt);
+        Student stina = new Student("Stina", STINA_AGE, businessIt);
         University talTech = new University("TalTech");
         talTech.addStudent(stina);
 
