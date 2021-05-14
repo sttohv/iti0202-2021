@@ -8,7 +8,13 @@ public class Teacher {
     private String name;
     private List<Course> courseList;
 
-    public Teacher(String name, List<Course> courseList){
+    /**
+     * Creates a new teacher
+     *
+     * @param name       teacher name
+     * @param courseList teacher courses
+     */
+    public Teacher(String name, List<Course> courseList) {
         this.name = name;
         this.courseList = courseList;
     }

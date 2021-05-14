@@ -23,4 +23,3 @@ public class CannotAddCourse extends Exception {
         return reason;
     }
 }
-

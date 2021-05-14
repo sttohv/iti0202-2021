@@ -8,7 +8,11 @@ import ee.taltech.iti0202.university.exceptions.CannotGrade;
 import ee.taltech.iti0202.university.strategy.Strategy;
 import ee.taltech.iti0202.university.studyprogramme.StudyProgramme;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Student {
     private String name;

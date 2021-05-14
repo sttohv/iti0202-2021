@@ -8,6 +8,11 @@ public class CannotGrade extends Exception{
     }
     private Reason reason;
 
+    /**
+     * Creates a new exception
+     *
+     * @param reason reason
+     */
     public CannotGrade(Reason reason){
         this.reason = reason;
     }
