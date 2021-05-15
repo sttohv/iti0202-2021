@@ -2,10 +2,10 @@ package ee.taltech.iti0202.university.student;
 
 import ee.taltech.iti0202.university.University;
 import ee.taltech.iti0202.university.course.Course;
-import ee.taltech.iti0202.university.exceptions.CannotAddCourse;
-import ee.taltech.iti0202.university.exceptions.CannotAddStudent;
-import ee.taltech.iti0202.university.exceptions.CannotGrade;
-import ee.taltech.iti0202.university.strategy.Strategy;
+import ee.taltech.iti0202.university.exceptions.CannotAddCourseException;
+import ee.taltech.iti0202.university.exceptions.CannotAddStudentException;
+import ee.taltech.iti0202.university.exceptions.CannotGradeException;
+import ee.taltech.iti0202.university.declarationstrategy.DeclarationStrategy;
 import ee.taltech.iti0202.university.studyprogramme.StudyProgramme;
 
 import java.util.ArrayList;
@@ -26,21 +26,21 @@ public class Student {
     private List<Course> passedCourses;
     private List<Course> failedCourses;
     private StudyProgramme studyProgramme;
-    private Strategy strategy;
+    private DeclarationStrategy strategy;
 
     /**
      * Creates a new student when the student is older than 18
      *
      * @param name Student name
      * @param age  Student age
-     * @throws CannotAddStudent Why cannot add student
+     * @throws CannotAddStudentException Why cannot add student
      */
-    public Student(String name, int age, StudyProgramme studyProgramme) throws CannotAddStudent {
+    public Student(String name, int age, StudyProgramme studyProgramme) throws CannotAddStudentException {
         this.name = name;
         if (age > APPROPRIATE_AGE) {
             this.age = age;
         } else {
-            throw new CannotAddStudent(CannotAddStudent.Reason.TOO_YOUNG);
+            throw new CannotAddStudentException(CannotAddStudentException.Reason.TOO_YOUNG);
         }
         grades = new HashMap<>();
         isStudying = false;
@@ -56,11 +56,11 @@ public class Student {
      * if not already in there and then adds it to the history.
      *
      * @param course course to be enrolled
-     * @throws CannotAddCourse when already enrolled to the course then throws this error
+     * @throws CannotAddCourseException when already enrolled to the course then throws this error
      */
-    public void enrollToCourse(Course course) throws CannotAddCourse {
+    public void enrollToCourse(Course course) throws CannotAddCourseException {
         if (ongoingCourses.contains(course)) {
-            throw new CannotAddCourse(CannotAddCourse.Reason.ALREADY_ENROLLED_TO_COURSE);
+            throw new CannotAddCourseException(CannotAddCourseException.Reason.ALREADY_ENROLLED_TO_COURSE);
         } else {
             ongoingCourses.add(course);
             courseHistory.add(course);
@@ -73,7 +73,7 @@ public class Student {
      * @param course course
      * @param grade  grade
      */
-    public void addGrade(Course course, String grade) throws CannotGrade {
+    public void addGrade(Course course, String grade) throws CannotGradeException {
         if (doesCourseGradeMatch(course, grade).equals("num") || doesCourseGradeMatch(course, grade).equals("pas")) {
             if (grade.equals("0") || grade.equals("pass")) {
                 failedCourses.add(course);
@@ -108,22 +108,22 @@ public class Student {
      * @param course course
      * @param grade  grade
      * @return grade type
-     * @throws CannotGrade if wrong grade type entered
+     * @throws CannotGradeException if wrong grade type entered
      */
-    public String doesCourseGradeMatch(Course course, String grade) throws CannotGrade {
+    public String doesCourseGradeMatch(Course course, String grade) throws CannotGradeException {
         if (course.isGraded()) {
             List<String> grades = Arrays.asList("0", "1", "2", "3", "4", "5");
             if (grades.contains(grade)) {
                 return "num";
             } else {
-                throw new CannotGrade(CannotGrade.Reason.WRONG_GRADE);
+                throw new CannotGradeException(CannotGradeException.Reason.WRONG_GRADE);
             }
         } else {
             List<String> grades = Arrays.asList("pass", "fail");
             if (grades.contains(grade)) {
                 return "pas";
             } else {
-                throw new CannotGrade(CannotGrade.Reason.WRONG_GRADE);
+                throw new CannotGradeException(CannotGradeException.Reason.WRONG_GRADE);
             }
         }
     }
@@ -137,6 +137,17 @@ public class Student {
         if (ongoingCourses.contains(course)) {
             ongoingCourses.remove(course);
         }
+    }
+
+    public List<Course> coursesLeftToTakeFromProgramme(){
+        List<Course> coursesLeft = new ArrayList<>();
+        for (Course course:studyProgramme.getCourseList()
+             ) {
+            if(!passedCourses.contains(course)){
+                coursesLeft.add(course);
+            }
+        }
+        return coursesLeft;
     }
 
     public String getName() {
@@ -175,8 +186,19 @@ public class Student {
         return studyProgramme;
     }
 
-    public void setStrategy(Strategy strategy) {
-        this.strategy = strategy;
+    public void setStrategy(DeclarationStrategy declarationStrategy) {
+        this.strategy = declarationStrategy;
     }
 
+    public List<Course> getPassedCourses() {
+        return passedCourses;
+    }
+
+    public DeclarationStrategy getStrategy() {
+        return strategy;
+    }
+
+    public void setOngoingCourses(List<Course> ongoingCourses) {
+        this.ongoingCourses = ongoingCourses;
+    }
 }

@@ -1,9 +1,11 @@
 package ee.taltech.iti0202.university;
 
 import ee.taltech.iti0202.university.course.Course;
-import ee.taltech.iti0202.university.exceptions.CannotAddCourse;
-import ee.taltech.iti0202.university.exceptions.CannotAddStudent;
-import ee.taltech.iti0202.university.exceptions.CannotGrade;
+import ee.taltech.iti0202.university.declarationstrategy.DeclarationStrategy;
+import ee.taltech.iti0202.university.exceptions.CannotAddCourseException;
+import ee.taltech.iti0202.university.exceptions.CannotAddStudentException;
+import ee.taltech.iti0202.university.exceptions.CannotDeclareException;
+import ee.taltech.iti0202.university.exceptions.CannotGradeException;
 import ee.taltech.iti0202.university.student.Student;
 
 import java.util.ArrayList;
@@ -14,38 +16,59 @@ public class University {
     private List<Course> courses;
     private List<Student> allStudents;
     private List<Student> studyingStudents;
+    private final int minCreditPoints;
+    private final int maxCreditPoints;
 
     /**
      * Creates a new university
      *
      * @param name university name
      */
-    public University(String name) {
+    public University(String name, int minCreditPoints, int maxCreditPoints) {
         this.name = name;
         courses = new ArrayList<>();
         allStudents = new ArrayList<>();
         studyingStudents = new ArrayList<>();
+        this.minCreditPoints = minCreditPoints;
+        this.maxCreditPoints = maxCreditPoints;
     }
 
     /**
      * Enrolls student to university if student isn't already enrolled to one
      *
      * @param student Student to be enrolled
-     * @throws CannotAddStudent Why can't enroll
+     * @throws CannotAddStudentException Why can't enroll
      */
-    public void addStudent(Student student) throws CannotAddStudent {
+    public void addStudent(Student student) throws CannotAddStudentException {
         if (!isStudentAlreadyInSomeUni(student)) {
             allStudents.add(student);
             student.setUniversity(this);
         } else {
-            throw new CannotAddStudent(CannotAddStudent.Reason.ALREADY_IN_UNI);
+            throw new CannotAddStudentException(CannotAddStudentException.Reason.ALREADY_IN_UNI);
         }
     }
 
     /**
-     * TO-DO: Use strategy here
+     * Declares courses for student and gets courses from strategy
+     * Student can declare course only when student doesn't have any ongoing courses
+     *
+     * @param student student who want to declare courses
      */
-    public void declareCourses() {
+    public void declareCourses(Student student) throws CannotDeclareException {
+        if (student.getOngoingCourses().isEmpty()) {
+            DeclarationStrategy declarationStrategy = student.getStrategy();
+            student.setOngoingCourses(declarationStrategy.getCourses());
+        }
+    }
+
+    /**
+     * Checks if the study programme is completed by comparing students passed courses and the programme course list
+     *
+     * @param student student to be checked
+     * @return if the study programme is completed
+     */
+    private boolean isStudyProgrammeCompleted(Student student) {
+        return student.getStudyProgramme().getCourseList().equals(student.getPassedCourses());
     }
 
 
@@ -53,14 +76,14 @@ public class University {
      * Add course to university courses if course doesn't have a uni assigned
      *
      * @param course Course to be added
-     * @throws CannotAddCourse Error when already has a uni assigned
+     * @throws CannotAddCourseException Error when already has a uni assigned
      */
-    public void addCourse(Course course) throws CannotAddCourse {
+    public void addCourse(Course course) throws CannotAddCourseException {
         if (!isCourseInSomeUni(course)) {
             courses.add(course);
             course.setUniversity(this);
         } else {
-            throw new CannotAddCourse(CannotAddCourse.Reason.COURSE_ALREADY_HAS_UNI_ASSIGNED);
+            throw new CannotAddCourseException(CannotAddCourseException.Reason.COURSE_ALREADY_HAS_UNI_ASSIGNED);
         }
 
     }
@@ -74,9 +97,9 @@ public class University {
      * @param student Student who got the grade
      * @param course  Course where the grade was gotten
      * @param grade   Grade that the student got
-     * @throws CannotGrade When
+     * @throws CannotGradeException When
      */
-    public void addGrade(Student student, Course course, String grade) throws CannotGrade {
+    public void addGrade(Student student, Course course, String grade) throws CannotGradeException {
         if (areInTheSameUni(student, course)) {
             if (isStudentEnrolledToClass(student, course)) {
                 student.addGrade(course, grade);
@@ -84,10 +107,10 @@ public class University {
                     studyingStudents.remove(student);
                 }
             } else {
-                throw new CannotGrade(CannotGrade.Reason.STUDENT_IS_NOT_ENROLLED);
+                throw new CannotGradeException(CannotGradeException.Reason.STUDENT_IS_NOT_ENROLLED);
             }
         } else {
-            throw new CannotGrade(CannotGrade.Reason.STUDENT_AND_COURSE_NOT_IN_THE_SAME_UNI);
+            throw new CannotGradeException(CannotGradeException.Reason.STUDENT_AND_COURSE_NOT_IN_THE_SAME_UNI);
         }
 
     }
@@ -99,12 +122,12 @@ public class University {
      * @param student student to be enrolled
      * @param course  course that student wants to enroll
      */
-    public void addStudentToCourse(Student student, Course course) throws CannotAddCourse {
+    public void addStudentToCourse(Student student, Course course) throws CannotAddCourseException {
         if (areInTheSameUni(student, course)) {
             student.enrollToCourse(course);
             studyingStudents.add(student);
         } else {
-            throw new CannotAddCourse(CannotAddCourse.Reason.STUDENT_AND_COURSE_IN_DIFFERENT_UNIS);
+            throw new CannotAddCourseException(CannotAddCourseException.Reason.STUDENT_AND_COURSE_IN_DIFFERENT_UNIS);
         }
     }
 
@@ -140,6 +163,23 @@ public class University {
     }
 
     /**
+     * Checks if all the courses match the student uni
+     *
+     * @param student    student to be checked
+     * @param courseList courses to check
+     * @return if are all same or not
+     */
+    private boolean areAllCoursesInTheSameUni(Student student, List<Course> courseList) {
+        for (Course course : courseList
+        ) {
+            if (!areInTheSameUni(student, course)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Checks if the student is enrolled to the course
      *
      * @param student student to be checked
@@ -164,5 +204,13 @@ public class University {
 
     public List<Student> getStudyingStudents() {
         return studyingStudents;
+    }
+
+    public int getMinCreditPoints() {
+        return minCreditPoints;
+    }
+
+    public int getMaxCreditPoints() {
+        return maxCreditPoints;
     }
 }

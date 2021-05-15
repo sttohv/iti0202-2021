@@ -1,18 +1,18 @@
 package ee.taltech.iti0202.university.exceptions;
 
-public class CannotAddStudent extends Exception {
+public class CannotDeclareException extends Exception{
     public enum Reason {
-        TOO_YOUNG, ALREADY_IN_UNI
+        NO_SUCH_COURSES
     }
 
     private Reason reason;
 
     /**
-     * Creates a new error
+     * Creates a new exception
      *
      * @param reason reason
      */
-    public CannotAddStudent(Reason reason) {
+    public CannotDeclareException(Reason reason) {
         this.reason = reason;
     }
 
