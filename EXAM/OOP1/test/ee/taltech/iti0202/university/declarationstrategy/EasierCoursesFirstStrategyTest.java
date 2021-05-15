@@ -15,6 +15,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class EasierCoursesFirstStrategyTest {
+    public static final int MAX_CREDIT_POINTS1 = 30;
+    public static final int APPROPRAITE_AGE = 20;
+    public static final int APPROPRIATE_AGE2 = 22;
     private University ttu;
     private University tu;
 
@@ -43,7 +46,7 @@ class EasierCoursesFirstStrategyTest {
 
     @BeforeEach
     void setUp() throws CannotAddStudentException, CannotAddCourseException {
-        ttu = new University("TalTech", 3, 30);
+        ttu = new University("TalTech", 3, MAX_CREDIT_POINTS1);
         tu = new University("TÜ", 6, 10);
 
         ago = new Teacher("Ago", ttu);
@@ -74,9 +77,9 @@ class EasierCoursesFirstStrategyTest {
         informatics = new StudyProgramme("informatics", tuCourses, tu);
         mathematics = new StudyProgramme("math", oneBigCourse, ttu);
 
-        stina = new Student("Stina", 20, businessIt);
-        lorenz = new Student("Lorenz", 22, informatics);
-        liisi = new Student("Liisi", 20, mathematics);
+        stina = new Student("Stina", APPROPRAITE_AGE, businessIt);
+        lorenz = new Student("Lorenz", APPROPRIATE_AGE2, informatics);
+        liisi = new Student("Liisi", APPROPRAITE_AGE, mathematics);
 
         ttu.addStudent(stina);
         tu.addStudent(lorenz);
