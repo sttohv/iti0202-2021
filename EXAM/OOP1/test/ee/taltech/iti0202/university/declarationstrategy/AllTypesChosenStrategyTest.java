@@ -30,7 +30,7 @@ class AllTypesChosenStrategyTest {
     private Course course4;
 
     @BeforeEach
-    void SetUp() throws CannotAddStudentException, CannotAddCourseException {
+    void setUp() throws CannotAddStudentException, CannotAddCourseException {
         ttu = new University("TalTech", 3, 30);
 
         ago = new Teacher("Ago", ttu);
@@ -59,7 +59,7 @@ class AllTypesChosenStrategyTest {
     }
 
     @Test
-    public void TestNotEnoughEcts() throws CannotDeclareException {
+    public void testNotEnoughEcts() throws CannotDeclareException {
         ttu.setMinCreditPoints(12);
         lorenz.setStrategy(new AllTypesChosenStrategy(lorenz));
         CannotDeclareException.Reason reason = null;
@@ -74,7 +74,7 @@ class AllTypesChosenStrategyTest {
     }
 
     @Test
-    public void TestAllTypesExist() throws CannotDeclareException {
+    public void testAllTypesExist() throws CannotDeclareException {
         stina.setStrategy(new AllTypesChosenStrategy(stina));
         ttu.declareCourses(stina);
 
@@ -82,7 +82,7 @@ class AllTypesChosenStrategyTest {
     }
 
     @Test
-    public void TestAllTypesDontExist() throws CannotDeclareException {
+    public void testAllTypesDontExist() throws CannotDeclareException {
 
         lorenz.setStrategy(new AllTypesChosenStrategy(lorenz));
         CannotDeclareException.Reason reason = null;

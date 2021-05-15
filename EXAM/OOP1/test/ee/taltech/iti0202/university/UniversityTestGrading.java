@@ -14,6 +14,11 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class UniversityTestGrading {
+    public static final int RANDOM_SMALL_CPOINT1 = 3;
+    public static final int RANDOM_BIG_CPOINT1 = 30;
+    public static final int RANDOM_SMALL_CPOINT2 = 6;
+    public static final int RANDOM_BIG_CPOINT2 = 10;
+    public static final int APPROPRIATE_AGE = 20;
     private University ttu;
     private University tu;
     private Teacher ago;
@@ -27,26 +32,26 @@ class UniversityTestGrading {
 
     @BeforeEach
     void setUp() throws CannotAddCourseException, CannotAddStudentException {
-        ttu = new University("TalTech", 3, 30);
-        tu = new University("TÜ", 6, 10);
+        ttu = new University("TalTech", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
+        tu = new University("TÜ", RANDOM_SMALL_CPOINT2, RANDOM_BIG_CPOINT2);
 
         ago = new Teacher("Ago", ttu);
         mari = new Teacher("Mari", tu);
 
-        java = new Course("java", 6, true, ago, Course.Type.SPECIAL);
+        java = new Course("java", RANDOM_BIG_CPOINT2, true, ago, Course.Type.SPECIAL);
         ttu.addCourse(java);
-        python = new Course("python", 6, false, ago, Course.Type.BASIC);
+        python = new Course("python", RANDOM_BIG_CPOINT2, false, ago, Course.Type.BASIC);
         ttu.addCourse(python);
-        math = new Course("math", 6, true, mari, Course.Type.GENERAL);
+        math = new Course("math", RANDOM_BIG_CPOINT2, true, mari, Course.Type.GENERAL);
 
         informatics = new StudyProgramme("informatics", List.of(java, python), ttu);
-        stina = new Student("Stina", 20, informatics);
+        stina = new Student("Stina", APPROPRIATE_AGE, informatics);
 
         ttu.addStudent(stina);
     }
 
     @Test
-    public void addGradeWithNumbersPassed() throws CannotGradeException, CannotAddCourseException {
+    public void testAddGradeWithNumbersPassed() throws CannotGradeException, CannotAddCourseException {
         ttu.addStudentToCourse(stina, java);
         ttu.addGrade(stina, java, "5");
 
@@ -57,7 +62,7 @@ class UniversityTestGrading {
     }
 
     @Test
-    public void addGradeWithNumbersFailed() throws CannotAddCourseException, CannotGradeException {
+    public void testAddGradeWithNumbersFailed() throws CannotAddCourseException, CannotGradeException {
         ttu.addStudentToCourse(stina, java);
         ttu.addGrade(stina, java, "0");
 
@@ -67,7 +72,7 @@ class UniversityTestGrading {
     }
 
     @Test
-    public void TestAddGradeWrongNumber() throws CannotAddCourseException {
+    public void testAddGradeWrongNumber() throws CannotAddCourseException {
         ttu.addStudentToCourse(stina, java);
         CannotGradeException.Reason reason = null;
         try {
@@ -82,7 +87,7 @@ class UniversityTestGrading {
 
 
     @Test
-    public void addGradePassed() throws CannotAddCourseException, CannotGradeException {
+    public void testAddGradePassed() throws CannotAddCourseException, CannotGradeException {
         ttu.addStudentToCourse(stina, python);
         ttu.addGrade(stina, python, "pass");
 
@@ -93,7 +98,7 @@ class UniversityTestGrading {
     }
 
     @Test
-    public void addGradeFailed() throws CannotAddCourseException, CannotGradeException {
+    public void testAddGradeFailed() throws CannotAddCourseException, CannotGradeException {
         ttu.addStudentToCourse(stina, python);
         ttu.addGrade(stina, python, "fail");
 
@@ -105,7 +110,7 @@ class UniversityTestGrading {
     }
 
     @Test
-    public void TestAddGradeWrongLetter() throws CannotAddCourseException {
+    public void testAddGradeWrongLetter() throws CannotAddCourseException {
         ttu.addStudentToCourse(stina, python);
         CannotGradeException.Reason reason = null;
         try {
@@ -144,6 +149,4 @@ class UniversityTestGrading {
         Assertions.assertEquals(CannotGradeException.Reason.STUDENT_IS_NOT_ENROLLED, reason);
 
     }
-
-
 }

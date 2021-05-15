@@ -8,9 +8,12 @@ import org.junit.jupiter.api.Test;
 
 class TeacherTest {
 
+    public static final int RANDOM_SMALL_CPOINT1 = 6;
+    public static final int RANDOM_BIG_CPOINT1 = 10;
+
     @Test
     public void TestCreatingCorrectTeacher() {
-        University taltech = new University("taltech", 6, 10);
+        University taltech = new University("taltech", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         Teacher ago = new Teacher("Ago", taltech);
 
         Assertions.assertEquals("Ago", ago.getName());
@@ -19,9 +22,9 @@ class TeacherTest {
 
     @Test
     public void TestAddCourseAlreadyIn() throws CannotAddCourseException {
-        University taltech = new University("taltech", 6, 10);
+        University taltech = new University("taltech", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         Teacher ago = new Teacher("Ago", taltech);
-        Course java = new Course("java", 6, true, ago, Course.Type.BASIC);
+        Course java = new Course("java", RANDOM_SMALL_CPOINT1, true, ago, Course.Type.BASIC);
 
         ago.addCourses(java);
 

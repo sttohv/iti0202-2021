@@ -13,10 +13,12 @@ class UniversityTestAddStudents {
 
     public static final int STINA_AGE = 20;
     public static final int ERGO_AGE = 10;
+    public static final int RANDOM_SMALL_CPOINT1 = 6;
+    public static final int RANDOM_BIG_CPOINT1 = 60;
 
     @Test
     public void addTooYoungStudentToUni() {
-        University ttu = new University("ttu", 6, 60);
+        University ttu = new University("ttu", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         StudyProgramme developement = new StudyProgramme("developement", List.of(), ttu);
         CannotAddStudentException.Reason reason = null;
         try {
@@ -29,10 +31,10 @@ class UniversityTestAddStudents {
 
     @Test
     public void addStudentCorrect() throws CannotAddStudentException {
-        University ttu = new University("ttu", 6, 60);
+        University ttu = new University("ttu", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of(), ttu);
         Student stina = new Student("Stina", STINA_AGE, businessIt);
-        University talTech = new University("TalTech", 6, 60);
+        University talTech = new University("TalTech", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
 
         talTech.addStudent(stina);
 
@@ -43,12 +45,12 @@ class UniversityTestAddStudents {
 
     @Test
     public void addStudentAlreadyInUni() throws CannotAddStudentException {
-        University ttu = new University("ttu", 6, 60);
+        University ttu = new University("ttu", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of(), ttu);
         CannotAddStudentException.Reason reason = null;
 
         Student stina = new Student("Stina", STINA_AGE, businessIt);
-        University talTech = new University("TalTech", 6, 60);
+        University talTech = new University("TalTech", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         talTech.addStudent(stina);
 
         try {

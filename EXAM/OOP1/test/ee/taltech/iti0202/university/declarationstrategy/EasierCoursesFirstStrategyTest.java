@@ -42,7 +42,7 @@ class EasierCoursesFirstStrategyTest {
     private Course course9;
 
     @BeforeEach
-    void SetUp() throws CannotAddStudentException, CannotAddCourseException {
+    void setUp() throws CannotAddStudentException, CannotAddCourseException {
         ttu = new University("TalTech", 3, 30);
         tu = new University("TÜ", 6, 10);
 
@@ -88,16 +88,17 @@ class EasierCoursesFirstStrategyTest {
         stina.setStrategy(easy);
         ttu.declareCourses(stina);
 
-        Assertions.assertEquals(2 ,stina.getOngoingCourses().size());
-
-    }
-    @Test
-    public void TestEasyStrategyWhenHasOngoingCourses(){
+        Assertions.assertEquals(2, stina.getOngoingCourses().size());
 
     }
 
     @Test
-    public void TestStrategyInCorrectUni(){
+    public void TestEasyStrategyWhenHasOngoingCourses() {
+
+    }
+
+    @Test
+    public void TestStrategyInCorrectUni() {
         EasierCoursesFirstStrategy easy = new EasierCoursesFirstStrategy(stina);
         stina.setStrategy(easy);
         CannotDeclareException.Reason reason = null;
@@ -111,7 +112,7 @@ class EasierCoursesFirstStrategyTest {
     }
 
     @Test
-    public void TestStrategyWhereStudentNotEnrolled(){
+    public void TestStrategyWhereStudentNotEnrolled() {
         EasierCoursesFirstStrategy easy = new EasierCoursesFirstStrategy(liisi);
         liisi.setStrategy(easy);
         CannotDeclareException.Reason reason = null;

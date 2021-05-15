@@ -13,14 +13,20 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class UniversityTestAddStudentsToCourses {
+
+    public static final int APPROPRIATE_AGE = 20;
+    public static final int RANDOM_SMALL_CPOINT1 = 6;
+    public static final int RANDOM_BIG_CPOINT1 = 60;
+    public static final int RANDOM_SMALL_CPOINT2 = 12;
+
     @Test
     public void addStudentToCourseDifferentUni() throws CannotAddCourseException, CannotAddStudentException {
-        University ttu = new University("ttü", 6, 60);
+        University ttu = new University("ttü", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of(), ttu);
-        Student stina = new Student("Stina", 20, businessIt);
+        Student stina = new Student("Stina", APPROPRIATE_AGE, businessIt);
         Teacher ago = new Teacher("Ago", ttu);
-        Course java = new Course("java", 6, true, ago, Course.Type.CORE);
-        University tu = new University("tü", 12, 60);
+        Course java = new Course("java", RANDOM_SMALL_CPOINT1, true, ago, Course.Type.CORE);
+        University tu = new University("tü", RANDOM_SMALL_CPOINT2, RANDOM_BIG_CPOINT1);
         CannotAddCourseException.Reason reason = null;
 
         tu.addStudent(stina);
@@ -38,11 +44,11 @@ class UniversityTestAddStudentsToCourses {
 
     @Test
     public void addStudentToCourseWhereAlreadyLearning() throws CannotAddStudentException, CannotAddCourseException {
-        University ttu = new University("ttü", 6, 60);
+        University ttu = new University("ttü", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of(), ttu);
-        Student stina = new Student("Stina", 20, businessIt);
+        Student stina = new Student("Stina", APPROPRIATE_AGE, businessIt);
         Teacher ago = new Teacher("Ago", ttu);
-        Course java = new Course("java", 6, true, ago, Course.Type.BASIC);
+        Course java = new Course("java", RANDOM_SMALL_CPOINT1, true, ago, Course.Type.BASIC);
         CannotAddCourseException.Reason reason = null;
 
         ttu.addStudent(stina);
@@ -61,17 +67,16 @@ class UniversityTestAddStudentsToCourses {
 
     @Test
     public void addCorrectStudentToCourse() throws CannotAddCourseException, CannotAddStudentException {
-        University ttu = new University("ttü", 6, 60);
+        University ttu = new University("ttü", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of(), ttu);
-        Student stina = new Student("Stina", 20, businessIt);
+        Student stina = new Student("Stina", APPROPRIATE_AGE, businessIt);
         Teacher ago = new Teacher("Ago", ttu);
-        Course java = new Course("java", 6, true, ago, Course.Type.GENERAL);
+        Course java = new Course("java", RANDOM_SMALL_CPOINT1, true, ago, Course.Type.GENERAL);
 
         ttu.addStudent(stina);
         ttu.addCourse(java);
         ttu.addStudentToCourse(stina, java);
 
         Assertions.assertEquals(1, stina.getOngoingCourses().size());
-
     }
 }
