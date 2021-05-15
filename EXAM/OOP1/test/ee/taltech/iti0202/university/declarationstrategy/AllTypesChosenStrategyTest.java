@@ -15,6 +15,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class AllTypesChosenStrategyTest {
+    public static final int MAX_CREDIT_POINTS1 = 30;
+    public static final int APPROPRIATE_AGE = 20;
+    public static final int APPROPRIATE_AGE2 = 22;
+    public static final int MIN_CREDIT_POINTS1 = 12;
     private Teacher ago;
     private University ttu;
 
@@ -31,7 +35,7 @@ class AllTypesChosenStrategyTest {
 
     @BeforeEach
     void setUp() throws CannotAddStudentException, CannotAddCourseException {
-        ttu = new University("TalTech", 3, 30);
+        ttu = new University("TalTech", 3, MAX_CREDIT_POINTS1);
 
         ago = new Teacher("Ago", ttu);
 
@@ -51,8 +55,8 @@ class AllTypesChosenStrategyTest {
         businessIt = new StudyProgramme("businessIt", allTypes, ttu);
         informatics = new StudyProgramme("informatics", oneMissing, ttu);
 
-        stina = new Student("Stina", 20, businessIt);
-        lorenz = new Student("Lorenz", 22, informatics);
+        stina = new Student("Stina", APPROPRIATE_AGE, businessIt);
+        lorenz = new Student("Lorenz", APPROPRIATE_AGE2, informatics);
 
         ttu.addStudent(stina);
         ttu.addStudent(lorenz);
@@ -60,7 +64,7 @@ class AllTypesChosenStrategyTest {
 
     @Test
     public void testNotEnoughEcts() throws CannotDeclareException {
-        ttu.setMinCreditPoints(12);
+        ttu.setMinCreditPoints(MIN_CREDIT_POINTS1);
         lorenz.setStrategy(new AllTypesChosenStrategy(lorenz));
         CannotDeclareException.Reason reason = null;
         try {

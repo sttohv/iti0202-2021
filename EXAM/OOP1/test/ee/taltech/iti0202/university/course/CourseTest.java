@@ -29,8 +29,8 @@ class CourseTest {
 
     @Test
     public void createCorrectCourse() throws CannotAddCourseException {
-        University talTech = new University("TalTech", MIN_CREDIT_POINTS
-                , MAX_CREDIT_POINTS);
+        University talTech = new University("TalTech", MIN_CREDIT_POINTS,
+                MAX_CREDIT_POINTS);
         Teacher ago = new Teacher("Ago", talTech);
         Course java = new Course("java", MIN_CREDIT_POINTS, true, ago, Course.Type.SPECIAL);
 
