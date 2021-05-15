@@ -140,6 +140,11 @@ public class Student {
         }
     }
 
+    /**
+     * Get courses left to take from study programme
+     *
+     * @return courses
+     */
     public List<Course> getCoursesLeftToTakeFromProgramme() {
         List<Course> coursesLeft = new ArrayList<>();
         for (Course course : studyProgramme.getCourseList()

@@ -17,6 +17,11 @@ public class AllTypesChosenStrategy implements DeclarationStrategy {
             Course.Type.SPECIAL);
     private Student student;
 
+    /**
+     * Make a new strategy for student
+     *
+     * @param student student who needs the strategy
+     */
     public AllTypesChosenStrategy(Student student) {
         this.student = student;
     }
@@ -31,7 +36,7 @@ public class AllTypesChosenStrategy implements DeclarationStrategy {
         }
         if (isDeclaredEnoughCreditPoints(courses, student.getUniversity())) {
             return courses;
-        }else {
+        } else {
             throw new CannotDeclareException(CannotDeclareException.Reason.NOT_ENOUGH_ECTS);
         }
     }

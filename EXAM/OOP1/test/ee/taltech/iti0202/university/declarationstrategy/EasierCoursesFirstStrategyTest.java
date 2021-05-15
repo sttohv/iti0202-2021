@@ -83,7 +83,7 @@ class EasierCoursesFirstStrategyTest {
     }
 
     @Test
-    public void TestEasyStrategyAllCorrect() throws CannotDeclareException {
+    public void testEasyStrategyAllCorrect() throws CannotDeclareException {
         EasierCoursesFirstStrategy easy = new EasierCoursesFirstStrategy(stina);
         stina.setStrategy(easy);
         ttu.declareCourses(stina);
@@ -93,12 +93,12 @@ class EasierCoursesFirstStrategyTest {
     }
 
     @Test
-    public void TestEasyStrategyWhenHasOngoingCourses() {
+    public void testEasyStrategyWhenHasOngoingCourses() {
 
     }
 
     @Test
-    public void TestStrategyInCorrectUni() {
+    public void testStrategyInCorrectUni() {
         EasierCoursesFirstStrategy easy = new EasierCoursesFirstStrategy(stina);
         stina.setStrategy(easy);
         CannotDeclareException.Reason reason = null;
@@ -112,7 +112,7 @@ class EasierCoursesFirstStrategyTest {
     }
 
     @Test
-    public void TestStrategyWhereStudentNotEnrolled() {
+    public void testStrategyWhereStudentNotEnrolled() {
         EasierCoursesFirstStrategy easy = new EasierCoursesFirstStrategy(liisi);
         liisi.setStrategy(easy);
         CannotDeclareException.Reason reason = null;
@@ -125,7 +125,7 @@ class EasierCoursesFirstStrategyTest {
     }
 
     @Test
-    public void TestStrategyWhenNoMatchingCourses() throws CannotAddStudentException {
+    public void testStrategyWhenNoMatchingCourses() throws CannotAddStudentException {
         ttu.addStudent(liisi);
         EasierCoursesFirstStrategy easy = new EasierCoursesFirstStrategy(liisi);
         liisi.setStrategy(easy);

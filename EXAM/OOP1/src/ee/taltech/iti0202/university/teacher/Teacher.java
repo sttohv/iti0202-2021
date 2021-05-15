@@ -14,7 +14,7 @@ public class Teacher {
     /**
      * Creates a new teacher
      *
-     * @param name       teacher name
+     * @param name teacher name
      */
     public Teacher(String name, University university) {
         this.name = name;
@@ -30,8 +30,13 @@ public class Teacher {
         return courseList;
     }
 
-    public void addCourses(Course course){
-        if(!courseList.contains(course)){
+    /**
+     * Add courses to teacher
+     *
+     * @param course course to be added
+     */
+    public void addCourses(Course course) {
+        if (!courseList.contains(course)) {
             courseList.add(course);
         }
     }

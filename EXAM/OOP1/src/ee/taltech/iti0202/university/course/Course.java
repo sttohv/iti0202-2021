@@ -27,7 +27,8 @@ public class Course {
      * @param isGraded     If courses is graded then it has grades otherwise just passed or not
      * @throws CannotAddCourseException why can't add course
      */
-    public Course(String name, int creditPoints, boolean isGraded, Teacher teacher, Type type) throws CannotAddCourseException {
+    public Course(String name, int creditPoints, boolean isGraded, Teacher teacher, Type type)
+            throws CannotAddCourseException {
         this.name = name;
         if (creditPoints > 0) {
             this.creditPoints = creditPoints;
@@ -63,6 +64,11 @@ public class Course {
         return teacher;
     }
 
+    /**
+     * Set teacher for course when have the same uni
+     *
+     * @param teacher teacher that should give the course
+     */
     public void setTeacher(Teacher teacher) {
         if (teacher.getUniversity().equals(university)) {
             this.teacher = teacher;

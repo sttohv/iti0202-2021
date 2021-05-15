@@ -122,8 +122,7 @@ public class University {
             } else {
                 throw new CannotGradeException(CannotGradeException.Reason.STUDENT_AND_COURSE_NOT_IN_THE_SAME_UNI);
             }
-        }
-        else {
+        } else {
             throw new CannotGradeException(CannotGradeException.Reason.STUDENT_IS_NOT_ENROLLED);
         }
 

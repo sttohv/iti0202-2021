@@ -37,7 +37,8 @@ public class EasierCoursesFirstStrategy implements DeclarationStrategy {
             if (isDeclaredEnoughCreditPoints(courses, student.getUniversity())) {
                 return courses;
             } else {
-                if ((getSumOfCreditPoints(courses) + course.getCreditPoints()) <= student.getUniversity().getMaxCreditPoints()) {
+                if ((getSumOfCreditPoints(courses) + course.getCreditPoints()) <= student.getUniversity()
+                        .getMaxCreditPoints()) {
                     courses.add(course);
                 } else {
                     throw new CannotDeclareException(CannotDeclareException.Reason.NO_SUCH_COURSES);

@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.university.exceptions;
 
-public class CannotDeclareException extends Exception{
+public class CannotDeclareException extends Exception {
     public enum Reason {
         NO_SUCH_COURSES,
         WRONG_UNI,

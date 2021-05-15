@@ -12,7 +12,7 @@ class TeacherTest {
     public static final int RANDOM_BIG_CPOINT1 = 10;
 
     @Test
-    public void TestCreatingCorrectTeacher() {
+    public void testCreatingCorrectTeacher() {
         University taltech = new University("taltech", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         Teacher ago = new Teacher("Ago", taltech);
 
@@ -21,7 +21,7 @@ class TeacherTest {
     }
 
     @Test
-    public void TestAddCourseAlreadyIn() throws CannotAddCourseException {
+    public void testAddCourseAlreadyIn() throws CannotAddCourseException {
         University taltech = new University("taltech", RANDOM_SMALL_CPOINT1, RANDOM_BIG_CPOINT1);
         Teacher ago = new Teacher("Ago", taltech);
         Course java = new Course("java", RANDOM_SMALL_CPOINT1, true, ago, Course.Type.BASIC);
