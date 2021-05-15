@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class EasierCoursesFirstStrategy implements DeclarationStrategy {
 
     private List<Course> courseList;
-    private University university;
+    private Student student;
 
     /**
      * Creates a new strategy that takes in courses to be declared and university to declare
@@ -25,8 +25,8 @@ public class EasierCoursesFirstStrategy implements DeclarationStrategy {
      * @param student student who wants to declare courses
      */
     public EasierCoursesFirstStrategy(Student student) {
-        this.courseList = sortCourses(student.coursesLeftToTakeFromProgramme());
-        this.university = student.getUniversity();
+        this.courseList = sortCourses(student.getCoursesLeftToTakeFromProgramme());
+        this.student = student;
     }
 
     @Override
@@ -34,10 +34,10 @@ public class EasierCoursesFirstStrategy implements DeclarationStrategy {
         List<Course> courses = new ArrayList<>();
         for (Course course : courseList
         ) {
-            if (isDeclaredEnoughCreditPoints(courses, university)) {
+            if (isDeclaredEnoughCreditPoints(courses, student.getUniversity())) {
                 return courses;
             } else {
-                if (getSumOfCreditPoints(courses) + course.getCreditPoints() <= university.getMaxCreditPoints()) {
+                if ((getSumOfCreditPoints(courses) + course.getCreditPoints()) <= student.getUniversity().getMaxCreditPoints()) {
                     courses.add(course);
                 } else {
                     throw new CannotDeclareException(CannotDeclareException.Reason.NO_SUCH_COURSES);
@@ -45,18 +45,6 @@ public class EasierCoursesFirstStrategy implements DeclarationStrategy {
             }
         }
         return courses;
-    }
-
-    /**
-     * Checks if chosen courses has less or equal credit points
-     * than the university max credit points that can be declared
-     *
-     * @param courseList courses to check
-     * @param university universtiy to get max credit point from
-     * @return if chosen courses has less or equal credit points
-     */
-    private boolean isChosenLessCreditPointsFromMax(List<Course> courseList, University university) {
-        return getSumOfCreditPoints(courseList) <= university.getMaxCreditPoints();
     }
 
     /**

@@ -5,11 +5,19 @@ import ee.taltech.iti0202.university.exceptions.CannotAddCourseException;
 import ee.taltech.iti0202.university.teacher.Teacher;
 
 public class Course {
+    public enum Type {
+        GENERAL,
+        BASIC,
+        CORE,
+        SPECIAL
+    }
+
     private String name;
     private int creditPoints;
     private boolean isGraded;
     private University university;
     private Teacher teacher;
+    private Type type;
 
     /**
      * Creates a new course
@@ -19,7 +27,7 @@ public class Course {
      * @param isGraded     If courses is graded then it has grades otherwise just passed or not
      * @throws CannotAddCourseException why can't add course
      */
-    public Course(String name, int creditPoints, boolean isGraded, Teacher teacher) throws CannotAddCourseException {
+    public Course(String name, int creditPoints, boolean isGraded, Teacher teacher, Type type) throws CannotAddCourseException {
         this.name = name;
         if (creditPoints > 0) {
             this.creditPoints = creditPoints;
@@ -28,6 +36,7 @@ public class Course {
         }
         this.isGraded = isGraded;
         setTeacher(teacher);
+        this.type = type;
     }
 
     public University getUniversity() {
@@ -59,5 +68,9 @@ public class Course {
             this.teacher = teacher;
             teacher.addCourses(this);
         }
+    }
+
+    public Type getType() {
+        return type;
     }
 }

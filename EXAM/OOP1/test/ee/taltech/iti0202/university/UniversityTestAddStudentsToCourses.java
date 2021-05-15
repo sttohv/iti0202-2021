@@ -19,7 +19,7 @@ class UniversityTestAddStudentsToCourses {
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of(), ttu);
         Student stina = new Student("Stina", 20, businessIt);
         Teacher ago = new Teacher("Ago", ttu);
-        Course java = new Course("java", 6, true, ago);
+        Course java = new Course("java", 6, true, ago, Course.Type.CORE);
         University tu = new University("tü", 12, 60);
         CannotAddCourseException.Reason reason = null;
 
@@ -42,7 +42,7 @@ class UniversityTestAddStudentsToCourses {
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of(), ttu);
         Student stina = new Student("Stina", 20, businessIt);
         Teacher ago = new Teacher("Ago", ttu);
-        Course java = new Course("java", 6, true, ago);
+        Course java = new Course("java", 6, true, ago, Course.Type.BASIC);
         CannotAddCourseException.Reason reason = null;
 
         ttu.addStudent(stina);
@@ -65,7 +65,7 @@ class UniversityTestAddStudentsToCourses {
         StudyProgramme businessIt = new StudyProgramme("businessIt", List.of(), ttu);
         Student stina = new Student("Stina", 20, businessIt);
         Teacher ago = new Teacher("Ago", ttu);
-        Course java = new Course("java", 6, true, ago);
+        Course java = new Course("java", 6, true, ago, Course.Type.GENERAL);
 
         ttu.addStudent(stina);
         ttu.addCourse(java);

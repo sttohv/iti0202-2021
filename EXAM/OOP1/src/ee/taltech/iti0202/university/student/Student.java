@@ -43,11 +43,12 @@ public class Student {
             throw new CannotAddStudentException(CannotAddStudentException.Reason.TOO_YOUNG);
         }
         grades = new HashMap<>();
-        isStudying = false;
         ongoingCourses = new ArrayList<>();
         courseHistory = new ArrayList<>();
         this.studyProgramme = studyProgramme;
         strategy = null;
+        passedCourses = new ArrayList<>();
+        failedCourses = new ArrayList<>();
     }
 
 
@@ -75,7 +76,7 @@ public class Student {
      */
     public void addGrade(Course course, String grade) throws CannotGradeException {
         if (doesCourseGradeMatch(course, grade).equals("num") || doesCourseGradeMatch(course, grade).equals("pas")) {
-            if (grade.equals("0") || grade.equals("pass")) {
+            if (grade.equals("0") || grade.equals("fail")) {
                 failedCourses.add(course);
             } else {
                 passedCourses.add(course);
@@ -139,11 +140,11 @@ public class Student {
         }
     }
 
-    public List<Course> coursesLeftToTakeFromProgramme(){
+    public List<Course> getCoursesLeftToTakeFromProgramme() {
         List<Course> coursesLeft = new ArrayList<>();
-        for (Course course:studyProgramme.getCourseList()
-             ) {
-            if(!passedCourses.contains(course)){
+        for (Course course : studyProgramme.getCourseList()
+        ) {
+            if (!passedCourses.contains(course)) {
                 coursesLeft.add(course);
             }
         }
@@ -198,7 +199,12 @@ public class Student {
         return strategy;
     }
 
+    public List<Course> getFailedCourses() {
+        return failedCourses;
+    }
+
     public void setOngoingCourses(List<Course> ongoingCourses) {
         this.ongoingCourses = ongoingCourses;
     }
+
 }

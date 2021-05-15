@@ -14,7 +14,7 @@ class UniversityTestAddCourses {
     public void addCourseCorrect() throws CannotAddCourseException {
         University talTech = new University("TalTech", 6, 60);
         Teacher ago = new Teacher("Ago", talTech);
-        Course java = new Course("java", 6, true, ago);
+        Course java = new Course("java", 6, true, ago, Course.Type.BASIC);
 
         talTech.addCourse(java);
         Assertions.assertEquals(1, talTech.getCourses().size());
@@ -24,7 +24,7 @@ class UniversityTestAddCourses {
     public void addCourseAlreadyInSameUni() throws CannotAddCourseException {
         University talTech = new University("TalTech", 6, 60);
         Teacher ago = new Teacher("Ago", talTech);
-        Course java = new Course("java", 6, true, ago);
+        Course java = new Course("java", 6, true, ago, Course.Type.CORE);
         CannotAddCourseException.Reason reason = null;
 
         talTech.addCourse(java);
@@ -44,7 +44,7 @@ class UniversityTestAddCourses {
         University talTech = new University("TalTech", 6, 60);
         University tartu = new University("TÜ", 12, 60);
         Teacher ago = new Teacher("Ago", talTech);
-        Course java = new Course("java", 6, true, ago);
+        Course java = new Course("java", 6, true, ago, Course.Type.SPECIAL);
         CannotAddCourseException.Reason reason = null;
 
         talTech.addCourse(java);

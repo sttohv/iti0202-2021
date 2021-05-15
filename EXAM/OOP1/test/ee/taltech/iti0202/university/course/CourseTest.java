@@ -16,7 +16,7 @@ class CourseTest {
         CannotAddCourseException.Reason reason = null;
 
         try {
-            Course java = new Course("java", -6, true, ago);
+            Course java = new Course("java", -6, true, ago, Course.Type.CORE);
         } catch (CannotAddCourseException cannotAddCourse) {
             reason = cannotAddCourse.getReason();
         }
@@ -28,7 +28,7 @@ class CourseTest {
     public void createCorrectCourse() throws CannotAddCourseException {
         University talTech = new University("TalTech", 6, 60);
         Teacher ago = new Teacher("Ago", talTech);
-        Course java = new Course("java", 6, true, ago);
+        Course java = new Course("java", 6, true, ago, Course.Type.SPECIAL);
 
         Assertions.assertNull(java.getUniversity());
         Assertions.assertEquals("java", java.getName());

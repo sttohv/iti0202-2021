@@ -16,8 +16,8 @@ public class University {
     private List<Course> courses;
     private List<Student> allStudents;
     private List<Student> studyingStudents;
-    private final int minCreditPoints;
-    private final int maxCreditPoints;
+    private int minCreditPoints;
+    private int maxCreditPoints;
 
     /**
      * Creates a new university
@@ -55,9 +55,18 @@ public class University {
      * @param student student who want to declare courses
      */
     public void declareCourses(Student student) throws CannotDeclareException {
-        if (student.getOngoingCourses().isEmpty()) {
-            DeclarationStrategy declarationStrategy = student.getStrategy();
-            student.setOngoingCourses(declarationStrategy.getCourses());
+        if (student.getUniversity() != null) {
+            if (student.getUniversity().equals(this)) {
+                if (student.getOngoingCourses().isEmpty()) {
+                    DeclarationStrategy declarationStrategy = student.getStrategy();
+                    student.setOngoingCourses(declarationStrategy.getCourses());
+                    studyingStudents.add(student);
+                }
+            } else {
+                throw new CannotDeclareException(CannotDeclareException.Reason.WRONG_UNI);
+            }
+        } else {
+            throw new CannotDeclareException(CannotDeclareException.Reason.STUDENT_NOT_ENROLLED_IN_UNI);
         }
     }
 
@@ -100,17 +109,22 @@ public class University {
      * @throws CannotGradeException When
      */
     public void addGrade(Student student, Course course, String grade) throws CannotGradeException {
-        if (areInTheSameUni(student, course)) {
-            if (isStudentEnrolledToClass(student, course)) {
-                student.addGrade(course, grade);
-                if (student.getOngoingCourses().isEmpty()) {
-                    studyingStudents.remove(student);
+        if (areBothInUni(student, course)) {
+            if (areInTheSameUni(student, course)) {
+                if (isStudentEnrolledToClass(student, course)) {
+                    student.addGrade(course, grade);
+                    if (student.getOngoingCourses().isEmpty()) {
+                        studyingStudents.remove(student);
+                    }
+                } else {
+                    throw new CannotGradeException(CannotGradeException.Reason.STUDENT_IS_NOT_ENROLLED);
                 }
             } else {
-                throw new CannotGradeException(CannotGradeException.Reason.STUDENT_IS_NOT_ENROLLED);
+                throw new CannotGradeException(CannotGradeException.Reason.STUDENT_AND_COURSE_NOT_IN_THE_SAME_UNI);
             }
-        } else {
-            throw new CannotGradeException(CannotGradeException.Reason.STUDENT_AND_COURSE_NOT_IN_THE_SAME_UNI);
+        }
+        else {
+            throw new CannotGradeException(CannotGradeException.Reason.STUDENT_IS_NOT_ENROLLED);
         }
 
     }
@@ -123,7 +137,7 @@ public class University {
      * @param course  course that student wants to enroll
      */
     public void addStudentToCourse(Student student, Course course) throws CannotAddCourseException {
-        if (areInTheSameUni(student, course)) {
+        if (areBothInUni(student, course) && areInTheSameUni(student, course)) {
             student.enrollToCourse(course);
             studyingStudents.add(student);
         } else {
@@ -159,7 +173,12 @@ public class University {
      * @return If the student and the course are in the same uni
      */
     private boolean areInTheSameUni(Student student, Course course) {
-        return student.getUniversity().equals(course.getUniversity()) && student.getUniversity() != null;
+        return student.getUniversity().equals(this)
+                && course.getUniversity().equals(this);
+    }
+
+    private boolean areBothInUni(Student student, Course course) {
+        return student.getUniversity() != null && course.getUniversity() != null;
     }
 
     /**
@@ -212,5 +231,9 @@ public class University {
 
     public int getMaxCreditPoints() {
         return maxCreditPoints;
+    }
+
+    public void setMinCreditPoints(int minCreditPoints) {
+        this.minCreditPoints = minCreditPoints;
     }
 }
