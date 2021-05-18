@@ -89,22 +89,6 @@ public class Exam {
 
 
     public static void main(String[] args) {
-        /**
-         * Example:
-         *            "10:Ago,Mati"
-         * "20:Ago,Kati"
-         * =>
-         * {Ago=30, Kati=20, Mati=10}
-         * <p>
-         * "1:Ago"
-         * "2:ago"
-         * =>
-         * {Ago=1, ago=2}
-         * <p>
-         * "0:Ago"
-         * =>
-         * {}
-         *  */
         System.out.println(sumScoresFromText(List.of("10:Ago,Mati", "20:Ago,Kati"))); // {Ago=30, Mari=20}
         System.out.println(sumScoresFromText(List.of("1:Ago", "2:ago")));
         System.out.println(sumScoresFromText(List.of("0:Ago")));
