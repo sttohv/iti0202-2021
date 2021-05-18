@@ -12,9 +12,9 @@ public class Order {
     /**
      * Order constructor
      */
-    public Order() {
+    public Order(int id) {
         this.orderedProducts = new ArrayList<>();
-        orderId = getAndIncrementNextId();
+        orderId = id;
         cancelled = false;
     }
 

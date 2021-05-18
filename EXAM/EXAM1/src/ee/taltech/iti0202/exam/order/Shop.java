@@ -30,7 +30,8 @@ public class Shop {
      * @return order id
      */
     public int createNewOrder() {
-        Order order = new Order();
+        index++;
+        Order order = new Order(index);
         orders.add(order);
         return order.getOrderId();
     }
