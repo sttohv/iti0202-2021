@@ -84,12 +84,11 @@ public class Exam {
      */
 
     public static int combineNumbers(int[] numbers) {
-        if(numbers.length<2){
+        if (numbers.length == 1) {
             return 0;
         }
-        if(numbers.length==2){
-            String num = String.valueOf(numbers[0]) + String.valueOf(numbers[1]);
-            return getCrossSum(Integer.parseInt(num));
+        if (numbers.length == 2) {
+            return Integer.parseInt(String.valueOf(numbers[0]) + String.valueOf(numbers[1]));
         }
 
         return 1;
@@ -97,10 +96,9 @@ public class Exam {
 
     public static int getCrossSum(int number) {
         String num = String.valueOf(number);
-        if(num.length()==1){
+        if (num.length() == 1) {
             return Integer.parseInt(num);
-        }
-        else{
+        } else {
             int sum = 0;
             String[] nums = num.split("");
             for (String i : nums
