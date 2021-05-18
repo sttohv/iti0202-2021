@@ -45,7 +45,7 @@ public class Shop {
         Optional<Order> order = orders.stream().filter(i -> i.getOrderId() == orderNumber).findFirst();
         int sum = 0;
         if (order.isPresent()) {
-            if (order.get().getOrderedProducts().size() == 0) {
+            if (order.get().getOrderedProducts().size() == 0 || order.get().isCancelled()) {
                 return 0;
             } else {
                 for (Product product : order.get().getOrderedProducts(

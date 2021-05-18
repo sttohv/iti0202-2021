@@ -86,8 +86,7 @@ public class Exam {
     public static int combineNumbers(int[] numbers) {
         if (numbers.length == 1) {
             return 0;
-        }
-        if (numbers.length == 2) {
+        } else if (numbers.length == 2) {
             return Integer.parseInt(String.valueOf(numbers[0]) + String.valueOf(numbers[1]));
         }
 
