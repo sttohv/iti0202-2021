@@ -47,11 +47,13 @@ public class Exam {
             String[] splitNames = split[1].split(",");
             for (String name : splitNames
             ) {
-                if (result.containsKey(name)) {
-                    int old = result.get(name);
-                    result.put(name, result.get(name) + Integer.parseInt(split[0]));
-                } else {
-                    result.put(name, Integer.parseInt(split[0]));
+                if (!split[0].equals("0")) {
+                    if (result.containsKey(name)) {
+                        int old = result.get(name);
+                        result.put(name, result.get(name) + Integer.parseInt(split[0]));
+                    } else {
+                        result.put(name, Integer.parseInt(split[0]));
+                    }
                 }
             }
         }
@@ -87,7 +89,25 @@ public class Exam {
 
 
     public static void main(String[] args) {
-        System.out.println(sumScoresFromText(List.of("10:Ago", "20:Ago,Mari"))); // {Ago=30, Mari=20}
+        /**
+         * Example:
+         *            "10:Ago,Mati"
+         * "20:Ago,Kati"
+         * =>
+         * {Ago=30, Kati=20, Mati=10}
+         * <p>
+         * "1:Ago"
+         * "2:ago"
+         * =>
+         * {Ago=1, ago=2}
+         * <p>
+         * "0:Ago"
+         * =>
+         * {}
+         *  */
+        System.out.println(sumScoresFromText(List.of("10:Ago,Mati", "20:Ago,Kati"))); // {Ago=30, Mari=20}
+        System.out.println(sumScoresFromText(List.of("1:Ago", "2:ago")));
+        System.out.println(sumScoresFromText(List.of("0:Ago")));
         System.out.println(combineNumbers(new int[]{1, 2, 3}));  // 23
     }
 
