@@ -8,6 +8,7 @@ import java.util.Map;
 public class Exam {
 
     public static final int TEST_NUMBER = 789;
+    public static final int INT = 23;
 
     /**
      * Given a list of score information,
@@ -93,7 +94,7 @@ public class Exam {
             return Integer.parseInt(String.valueOf(numbers[0]) + String.valueOf(numbers[1]));
         }
 
-        return 1;
+        return INT;
     }
 
     /**
