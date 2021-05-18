@@ -84,15 +84,40 @@ public class Exam {
      */
 
     public static int combineNumbers(int[] numbers) {
+        if(numbers.length<2){
+            return 0;
+        }
+        if(numbers.length==2){
+            String num = String.valueOf(numbers[0]) + String.valueOf(numbers[1]);
+            return getCrossSum(Integer.parseInt(num));
+        }
+
         return 1;
+    }
+
+    public static int getCrossSum(int number) {
+        String num = String.valueOf(number);
+        if(num.length()==1){
+            return Integer.parseInt(num);
+        }
+        else{
+            int sum = 0;
+            String[] nums = num.split("");
+            for (String i : nums
+            ) {
+                sum += Integer.parseInt(i);
+            }
+            return getCrossSum(sum);
+        }
     }
 
 
     public static void main(String[] args) {
-        System.out.println(sumScoresFromText(List.of("10:Ago,Mati", "20:Ago,Kati"))); // {Ago=30, Mari=20}
-        System.out.println(sumScoresFromText(List.of("1:Ago", "2:ago")));
-        System.out.println(sumScoresFromText(List.of("0:Ago")));
-        System.out.println(combineNumbers(new int[]{1, 2, 3}));  // 23
+        System.out.println(getCrossSum(789));
+//        System.out.println(sumScoresFromText(List.of("10:Ago,Mati", "20:Ago,Kati"))); // {Ago=30, Mari=20}
+//        System.out.println(sumScoresFromText(List.of("1:Ago", "2:ago")));
+//        System.out.println(sumScoresFromText(List.of("0:Ago")));
+//        System.out.println(combineNumbers(new int[]{1, 2, 3}));  // 23
     }
 
 }
