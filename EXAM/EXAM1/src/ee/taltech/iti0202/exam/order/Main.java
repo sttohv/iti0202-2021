@@ -1,13 +1,19 @@
 package ee.taltech.iti0202.exam.order;
 
 public class Main {
+
+    public static final int RADIO_PRICE = 60;
+    public static final int TV_PRICE = 90;
+    public static final int PIIM_PRICE = 90;
+    public static final int TV_PRICE2 = 100;
+
     public static void main(String[] args) {
 
         Shop topShop = new Shop();
-        Product p1 = new Product("TV", 100);
-        Product p2 = new Product("Radio", 60);
-        Product p3 = new Product("TV", 90);
-        Product p5 = new Product("piim", 90);
+        Product p1 = new Product("TV", TV_PRICE2);
+        Product p2 = new Product("Radio", RADIO_PRICE);
+        Product p3 = new Product("TV", TV_PRICE);
+        Product p5 = new Product("piim", PIIM_PRICE);
         topShop.addProduct(p1);
         topShop.addProduct(p2);
         topShop.addProduct(p3);

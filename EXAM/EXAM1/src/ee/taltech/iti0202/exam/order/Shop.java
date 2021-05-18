@@ -10,6 +10,12 @@ public class Shop {
     private List<Order> orders = new ArrayList<>();
     private int index = 0;
 
+    /**
+     * Add product if not already in available products
+     *
+     * @param product product to add
+     * @return if could be added
+     */
     public boolean addProduct(Product product) {
         if (!availableProducts.contains(product)) {
             availableProducts.add(product);
@@ -18,12 +24,24 @@ public class Shop {
         return false;
     }
 
+    /**
+     * Creates a new order
+     *
+     * @return order id
+     */
     public int createNewOrder() {
         Order order = new Order();
         orders.add(order);
         return order.getOrderId();
     }
 
+    /**
+     * Add product to order
+     *
+     * @param orderNumber order number to get order
+     * @param itemName    product name to get product
+     * @return if could be added or not
+     */
     public boolean addProductToOrder(int orderNumber, String itemName) {
         Optional<Order> order = orders.stream().filter(i -> i.getOrderId() == orderNumber).findFirst();
         Optional<Product> product = availableProducts.stream().sorted(Comparator.comparingInt(Product::getPrice)).filter(i -> i.getName().equals(itemName)).findFirst();
@@ -41,6 +59,12 @@ public class Shop {
         }
     }
 
+    /**
+     * Get sum of all the products in order
+     *
+     * @param orderNumber number to get order by
+     * @return the sum of products
+     */
     public int getOrderSum(int orderNumber) {
         Optional<Order> order = orders.stream().filter(i -> i.getOrderId() == orderNumber).findFirst();
         int sum = 0;
@@ -59,6 +83,12 @@ public class Shop {
         }
     }
 
+    /**
+     * Cancel order if not already cancelled and the order has to exist
+     *
+     * @param orderNumber order number to get order by
+     * @return if order could be cancelled
+     */
     public boolean cancelOrder(int orderNumber) {
         Optional<Order> order = orders.stream().filter(i -> i.getOrderId() == orderNumber).findFirst();
         if (order.isEmpty() || order.get().isCancelled()) {
