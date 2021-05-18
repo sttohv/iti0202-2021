@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Exam {
+
+    public static final int TEST_NUMBER = 789;
+
     /**
      * Given a list of score information,
      * return a map with name and the
@@ -93,6 +96,12 @@ public class Exam {
         return 1;
     }
 
+    /**
+     * Get cross sum
+     *
+     * @param number number to get cross sum from
+     * @return cross sum of a number
+     */
     public static int getCrossSum(int number) {
         String num = String.valueOf(number);
         if (num.length() == 1) {
@@ -110,7 +119,7 @@ public class Exam {
 
 
     public static void main(String[] args) {
-        System.out.println(getCrossSum(789));
+        System.out.println(getCrossSum(TEST_NUMBER));
 //        System.out.println(sumScoresFromText(List.of("10:Ago,Mati", "20:Ago,Kati"))); // {Ago=30, Mari=20}
 //        System.out.println(sumScoresFromText(List.of("1:Ago", "2:ago")));
 //        System.out.println(sumScoresFromText(List.of("0:Ago")));

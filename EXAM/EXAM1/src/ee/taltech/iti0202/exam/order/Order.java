@@ -46,6 +46,11 @@ public class Order {
         return !isCancelled() && !orderedProducts.contains(product);
     }
 
+    /**
+     * Add product to order
+     *
+     * @param product product to be added
+     */
     public void addProductToOrder(Product product) {
         orderedProducts.add(product);
     }

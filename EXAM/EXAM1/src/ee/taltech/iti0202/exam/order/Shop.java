@@ -44,7 +44,11 @@ public class Shop {
      */
     public boolean addProductToOrder(int orderNumber, String itemName) {
         Optional<Order> order = orders.stream().filter(i -> i.getOrderId() == orderNumber).findFirst();
-        Optional<Product> product = availableProducts.stream().sorted(Comparator.comparingInt(Product::getPrice)).filter(i -> i.getName().equals(itemName)).findFirst();
+        Optional<Product> product = availableProducts
+                .stream()
+                .sorted(Comparator.comparingInt(Product::getPrice))
+                .filter(i -> i.getName().equals(itemName))
+                .findFirst();
 
         if (order.isEmpty() || product.isEmpty()) {
             return false;
