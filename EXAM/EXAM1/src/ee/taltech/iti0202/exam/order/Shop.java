@@ -104,6 +104,7 @@ public class Shop {
             ) {
                 availableProducts.add(product);
             }
+            orders.remove(order.get());
             return true;
         }
 
