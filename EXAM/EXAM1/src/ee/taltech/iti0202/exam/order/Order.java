@@ -43,13 +43,7 @@ public class Order {
      * @return if product could be added or not
      */
     public boolean canAddProductToOrder(Product product) {
-        if (isCancelled()) {
-            return false;
-        }
-        else if (orderedProducts.contains(product)) {
-            return false;
-        }
-        return false;
+        return !isCancelled() && !orderedProducts.contains(product);
     }
 
     public void addProductToOrder(Product product) {
